@@ -1,14 +1,39 @@
 import { getAllExperience } from '@/lib/content';
-import { buildMetadata, siteConfig } from '@/lib/metadata';
+import {
+  buildMetadata,
+  siteConfig,
+  personJsonLd,
+  breadcrumbJsonLd,
+} from '@/lib/metadata';
 import Logo from '@/components/logo';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'About',
+  title: 'About — Sandeep Prajapati',
   description:
-    'AI Engineer and Full-Stack Developer from New Delhi. My story, experience, skills, and education.',
+    'About Sandeep Prajapati — AI Engineer & Full-Stack Developer from New Delhi, India. Experience at DrCode, GDG on Campus, Google, and Infosys Springboard, plus skills in RAG, LangGraph, Next.js, and Python.',
   path: '/about',
+  keywords: [
+    'Sandeep Prajapati about',
+    'Sandeep Prajapati experience',
+    'Sandeep Prajapati resume',
+    'Sandeep Prajapati skills',
+    'Infosys Springboard AI Intern',
+    'Google Student Ambassador',
+  ],
 });
+
+const profileJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: `${siteConfig.url}/about`,
+  mainEntity: personJsonLd,
+};
+
+const breadcrumb = breadcrumbJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+]);
 
 const skills: Record<string, string[]> = {
   'AI / ML': [
@@ -32,6 +57,14 @@ export default function AboutPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
 
       {/* Page header */}
       <div className="flex items-start gap-5">

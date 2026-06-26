@@ -7,24 +7,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
-  description:
-    'AI Engineer & Full-Stack Developer based in New Delhi. Building RAG pipelines, AI agents, and modern web applications.',
-};
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Sandeep Prajapati',
-  url: siteConfig.url,
-  jobTitle: 'AI Engineer & Full-Stack Developer',
-  worksFor: { '@type': 'Organization', name: 'DrCode' },
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'New Delhi',
-    addressCountry: 'IN',
-  },
-  sameAs: [siteConfig.github, siteConfig.linkedin],
-  email: siteConfig.email,
+  description: siteConfig.description,
+  alternates: { canonical: siteConfig.url },
 };
 
 export default function HomePage() {
@@ -35,11 +19,6 @@ export default function HomePage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
       <div className="max-w-2xl mx-auto px-6 py-16">
 
         {/* Hero */}

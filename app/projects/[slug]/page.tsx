@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getAllProjects, getProjectBySlug, formatDate } from '@/lib/content';
 import MDXContent from '@/components/mdx-content';
-import { siteConfig } from '@/lib/metadata';
+import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 type Props = { params: { slug: string } };
@@ -16,15 +16,31 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProjectBySlug(params.slug);
   if (!project) return {};
-  const { title, description } = project.frontmatter;
+  const { title, description, tags } = project.frontmatter;
+  const url = `${siteConfig.url}/projects/${params.slug}`;
   return {
     title: `${title} | Sandeep Prajapati`,
     description,
+    keywords: [
+      ...siteKeywords,
+      title,
+      `Sandeep Prajapati ${title}`,
+      ...(tags ?? []),
+    ],
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
-      url: `${siteConfig.url}/projects/${params.slug}`,
+      url,
       type: 'article',
+      images: [`${siteConfig.url}/opengraph-image`],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      creator: siteConfig.twitter,
+      images: [`${siteConfig.url}/opengraph-image`],
     },
   };
 }
@@ -50,11 +66,21 @@ export default function ProjectPage({ params }: Props) {
     keywords: tags?.join(', '),
   };
 
+  const breadcrumb = breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Projects', path: '/projects' },
+    { name: title, path: `/projects/${params.slug}` },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
 
       <div className="max-w-2xl mx-auto px-6 py-16">

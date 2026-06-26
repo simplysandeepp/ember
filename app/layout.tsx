@@ -4,7 +4,12 @@ import './globals.css';
 import Nav from '@/components/nav';
 import Footer from '@/components/footer';
 import { ThemeProvider } from '@/components/theme-provider';
-import { siteConfig } from '@/lib/metadata';
+import {
+  siteConfig,
+  siteKeywords,
+  personJsonLd,
+  websiteJsonLd,
+} from '@/lib/metadata';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -17,32 +22,63 @@ const geistMono = localFont({
   weight: '100 900',
 });
 
+const defaultTitle =
+  'Sandeep Prajapati — AI Engineer & Full-Stack Developer';
+
 export const metadata: Metadata = {
   title: {
-    default: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
+    default: defaultTitle,
     template: '%s | Sandeep Prajapati',
   },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
-  authors: [{ name: 'Sandeep Prajapati', url: siteConfig.url }],
-  creator: 'Sandeep Prajapati',
+  applicationName: 'Sandeep Prajapati',
+  keywords: siteKeywords,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: 'technology',
+  alternates: { canonical: siteConfig.url },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  ...(siteConfig.googleVerification
+    ? { verification: { google: siteConfig.googleVerification } }
+    : {}),
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: siteConfig.url,
-    siteName: 'Sandeep Prajapati',
-    title: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
+    siteName: siteConfig.name,
+    title: defaultTitle,
     description: siteConfig.description,
-    images: [{ url: `${siteConfig.url}/og.png`, width: 1200, height: 630 }],
+    images: [
+      {
+        url: `${siteConfig.url}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
+    title: defaultTitle,
     description: siteConfig.description,
     creator: siteConfig.twitter,
+    images: [`${siteConfig.url}/opengraph-image`],
   },
   icons: {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/favicon.svg' }],
   },
 };
 
@@ -51,6 +87,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans`}
       >

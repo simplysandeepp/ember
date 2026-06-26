@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/content';
 import MDXContent from '@/components/mdx-content';
-import { siteConfig } from '@/lib/metadata';
+import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 type Props = { params: { slug: string } };
@@ -16,17 +16,28 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
   if (!post) return {};
-  const { title, description, date } = post.frontmatter;
+  const { title, description, date, tags } = post.frontmatter;
+  const url = `${siteConfig.url}/blog/${params.slug}`;
   return {
     title: `${title} | Sandeep Prajapati`,
     description,
+    keywords: [...siteKeywords, title, ...(tags ?? [])],
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
-      url: `${siteConfig.url}/blog/${params.slug}`,
+      url,
       type: 'article',
       publishedTime: date,
       authors: ['Sandeep Prajapati'],
+      images: [`${siteConfig.url}/opengraph-image`],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      creator: siteConfig.twitter,
+      images: [`${siteConfig.url}/opengraph-image`],
     },
   };
 }
@@ -43,20 +54,41 @@ export default function BlogPostPage({ params }: Props) {
     headline: title,
     description,
     datePublished: date,
+    dateModified: date,
     author: {
       '@type': 'Person',
       name: 'Sandeep Prajapati',
       url: siteConfig.url,
     },
+    publisher: {
+      '@type': 'Person',
+      name: 'Sandeep Prajapati',
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteConfig.url}/blog/${params.slug}`,
+    },
+    image: `${siteConfig.url}/opengraph-image`,
     url: `${siteConfig.url}/blog/${params.slug}`,
     keywords: tags?.join(', '),
   };
+
+  const breadcrumb = breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Writing', path: '/blog' },
+    { name: title, path: `/blog/${params.slug}` },
+  ]);
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
 
       <div className="max-w-2xl mx-auto px-6 py-16">
