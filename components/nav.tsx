@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from '@/components/theme-toggle';
-import Logo from '@/components/logo';
 
 const links = [
   { href: '/about', label: 'About' },
@@ -18,8 +17,11 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-neutral-100 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md">
       <nav className="max-w-2xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <Logo size="sm" wordmark={false} />
+        <Link
+          href="/"
+          className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight hover:text-neutral-500 dark:hover:text-neutral-400 transition-colors duration-200"
+        >
+          Home
         </Link>
         <div className="flex items-center">
           <ul className="flex items-center gap-1">

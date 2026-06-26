@@ -18,9 +18,7 @@ const config: Config = {
         DEFAULT: {
           css: {
             maxWidth: "none",
-            color: "#1a1a1a",
             a: {
-              color: "#1a1a1a",
               textDecoration: "underline",
               textUnderlineOffset: "3px",
               "&:hover": { opacity: "0.7" },
@@ -30,7 +28,6 @@ const config: Config = {
               letterSpacing: "-0.02em",
             },
             code: {
-              backgroundColor: "#f4f4f4",
               borderRadius: "0.25rem",
               padding: "0.1em 0.3em",
               fontWeight: "400",
