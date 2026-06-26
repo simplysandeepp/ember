@@ -134,7 +134,7 @@ export default function AboutPage() {
         </h2>
         <div className="flex gap-8">
           <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-20">
-            2022 – 2026
+            2023 – 2027
           </div>
           <div>
             <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
