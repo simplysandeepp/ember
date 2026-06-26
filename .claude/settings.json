@@ -6,7 +6,9 @@
       "Bash(npm run *)",
       "Read(//private/tmp/**)",
       "Bash(curl -s http://localhost:3001/blog/)",
-      "Bash(curl -sv http://localhost:3001/blog/)"
+      "Bash(curl -sv http://localhost:3001/blog/)",
+      "Bash(bun run *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
