@@ -15,7 +15,7 @@ export default function BlogPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
-      <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
+      <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
         Writing
       </h1>
       <p className="mt-2 text-sm text-neutral-500">
@@ -23,7 +23,7 @@ export default function BlogPage() {
       </p>
 
       {posts.length === 0 ? (
-        <p className="mt-12 text-sm text-neutral-400">
+        <p className="mt-12 text-sm text-neutral-400 dark:text-neutral-500">
           Nothing published yet — check back soon.
         </p>
       ) : (
