@@ -1,101 +1,172 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { getFeaturedProjects, getAllProjects, getAllPosts, formatDate } from '@/lib/content';
+import ProjectRow from '@/components/project-row';
+import { siteConfig } from '@/lib/metadata';
+import type { Metadata } from 'next';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
+  description:
+    'AI Engineer & Full-Stack Developer based in New Delhi. Building RAG pipelines, AI agents, and modern web applications.',
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Sandeep Prajapati',
+  url: siteConfig.url,
+  jobTitle: 'AI Engineer & Full-Stack Developer',
+  worksFor: { '@type': 'Organization', name: 'DrCode' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'New Delhi',
+    addressCountry: 'IN',
+  },
+  sameAs: [siteConfig.github, siteConfig.linkedin],
+  email: siteConfig.email,
+};
+
+export default function HomePage() {
+  const featured = getFeaturedProjects();
+  const allProjects = getAllProjects();
+  const displayProjects = featured.length > 0 ? featured : allProjects.slice(0, 4);
+  const recentPosts = getAllPosts().slice(0, 3);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <div className="max-w-2xl mx-auto px-6 py-16">
+
+        {/* Hero */}
+        <section className="flex items-start gap-5">
+          {/* Avatar */}
+          <div className="w-14 h-14 rounded-full bg-neutral-900 flex items-center justify-center text-white text-base font-semibold flex-shrink-0 select-none ring-2 ring-neutral-100">
+            SP
+          </div>
+          <div className="flex-1 min-w-0">
+            <h1 className="text-xl font-semibold tracking-tight text-neutral-900">
+              Sandeep Prajapati
+            </h1>
+            <p className="text-sm text-neutral-500 mt-0.5">
+              AI Software Intern
+            </p>
+
+            {/* Status badge */}
+            <p className="text-xs text-neutral-400 mt-3">
+              Exploring what&apos;s next, one stack at a time
+            </p>
+          </div>
+        </section>
+
+        {/* Bio */}
+        <section className="mt-10">
+          <p className="text-base text-neutral-600 leading-relaxed">
+            I build intelligent systems — RAG pipelines, AI agents, and the
+            full-stack applications that run them. Currently interning at{' '}
+            <a
+              href="https://drcode.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-900 underline-link"
+            >
+              DrCode
+            </a>{' '}
+            in New Delhi, where I work on production AI features used by real
+            developers.
+          </p>
+          <p className="text-base text-neutral-600 leading-relaxed mt-3">
+            I care about making AI systems actually reliable — not just
+            impressive in demos.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-6">
+            <Link href="/projects" className="text-sm font-medium text-neutral-900 underline-link">
+              View work →
+            </Link>
+            <Link href="/about" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors duration-200">
+              About
+            </Link>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors duration-200"
+            >
+              {siteConfig.email}
+            </a>
+          </div>
+        </section>
+
+        {/* Selected work */}
+        {displayProjects.length > 0 && (
+          <section className="mt-16">
+            <div className="flex items-center justify-between mb-1">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
+                Selected Work
+              </h2>
+              <Link
+                href="/projects"
+                className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+              >
+                All projects →
+              </Link>
+            </div>
+            <div className="mt-2">
+              {displayProjects.map((project, i) => (
+                <ProjectRow
+                  key={project.slug}
+                  slug={project.slug}
+                  frontmatter={project.frontmatter}
+                  index={i}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Writing */}
+        <section className="mt-16">
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
+              Writing
+            </h2>
+            {recentPosts.length > 0 && (
+              <Link
+                href="/blog"
+                className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+              >
+                All posts →
+              </Link>
+            )}
+          </div>
+
+          {recentPosts.length === 0 ? (
+            <p className="mt-4 text-sm text-neutral-400">
+              Occasional writing on AI engineering and building with LLMs — coming soon.
+            </p>
+          ) : (
+            <div className="mt-2">
+              {recentPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group flex items-start justify-between gap-6 py-4 border-b border-neutral-100 last:border-0"
+                >
+                  <p className="text-sm text-neutral-700 group-hover:text-neutral-500 transition-colors duration-200 flex-1 min-w-0">
+                    {post.frontmatter.title}
+                  </p>
+                  <time className="text-xs text-neutral-400 whitespace-nowrap flex-shrink-0 mt-0.5">
+                    {formatDate(post.frontmatter.date)}
+                  </time>
+                </Link>
+              ))}
+            </div>
+          )}
+        </section>
+
+      </div>
+    </>
   );
 }
