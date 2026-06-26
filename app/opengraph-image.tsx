@@ -20,22 +20,28 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div
-            style={{
-              width: 88,
-              height: 88,
-              borderRadius: 18,
-              background: '#fafafa',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#0a0a0a',
-              fontSize: 44,
-              fontWeight: 700,
-            }}
-          >
-            SP
-          </div>
+          <svg width="92" height="110" viewBox="0 0 100 120" fill="none">
+            <path
+              d="M74 36 C74 18 26 18 26 42 C26 62 74 60 74 84 C74 106 26 106 26 86"
+              stroke="#fafafa"
+              strokeWidth="15"
+              strokeLinecap="round"
+            />
+            <path
+              d="M58 22 L75 34 L67 50"
+              stroke="#fafafa"
+              strokeWidth="12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M42 98 L25 86 L33 70"
+              stroke="#fafafa"
+              strokeWidth="12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>

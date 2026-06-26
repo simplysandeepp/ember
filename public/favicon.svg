@@ -1,21 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <style>
-    .bg { fill: #0a0a0a; }
-    .fg { fill: #ffffff; }
-    @media (prefers-color-scheme: dark) {
-      .bg { fill: #f5f5f5; }
-      .fg { fill: #0a0a0a; }
-    }
-  </style>
-  <rect width="32" height="32" rx="6" class="bg"/>
-  <text
-    x="16"
-    y="21.5"
-    font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
-    font-size="13"
-    font-weight="700"
-    text-anchor="middle"
-    letter-spacing="-0.5"
-    class="fg"
-  >SP</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" fill="none">
+  <defs>
+    <linearGradient id="sp" x1="10" y1="0" x2="110" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#525252"/>
+    </linearGradient>
+    <style>
+      @media (prefers-color-scheme: dark) {
+        #sp stop:first-child { stop-color: #fafafa; }
+        #sp stop:last-child  { stop-color: #a3a3a3; }
+      }
+    </style>
+  </defs>
+  <g transform="translate(10,0)" stroke="url(#sp)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M74 36 C74 18 26 18 26 42 C26 62 74 60 74 84 C74 106 26 106 26 86" stroke-width="15"/>
+    <path d="M58 22 L75 34 L67 50" stroke-width="12"/>
+    <path d="M42 98 L25 86 L33 70" stroke-width="12"/>
+  </g>
 </svg>

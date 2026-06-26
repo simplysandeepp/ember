@@ -3,24 +3,59 @@ type Props = {
   wordmark?: boolean;
 };
 
+/**
+ * "S" ribbon mark with arrow tips and a subtle gradient.
+ * Gradient stops use currentColor so it adapts to light/dark automatically.
+ */
+function Mark({ id, className }: { id: string; className: string }) {
+  return (
+    <svg viewBox="0 0 100 120" fill="none" className={className} aria-hidden="true">
+      <defs>
+        <linearGradient id={id} x1="0" y1="0" x2="100" y2="120" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="currentColor" stopOpacity="1" />
+          <stop offset="1" stopColor="currentColor" stopOpacity="0.55" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M74 36 C74 18 26 18 26 42 C26 62 74 60 74 84 C74 106 26 106 26 86"
+        stroke={`url(#${id})`}
+        strokeWidth="15"
+        strokeLinecap="round"
+      />
+      <path
+        d="M58 22 L75 34 L67 50"
+        stroke={`url(#${id})`}
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M42 98 L25 86 L33 70"
+        stroke={`url(#${id})`}
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function Logo({ size = 'sm', wordmark = true }: Props) {
   if (size === 'lg') {
     return (
-      <div className="w-14 h-14 rounded-[6px] bg-neutral-900 dark:bg-neutral-50 flex items-center justify-center select-none shrink-0">
-        <span className="text-lg font-bold text-white dark:text-neutral-900 tracking-tight font-sans leading-none">
-          SP
-        </span>
-      </div>
+      <Mark
+        id="sp-mark-lg"
+        className="h-14 w-auto text-neutral-900 dark:text-neutral-50 shrink-0"
+      />
     );
   }
 
   return (
     <div className="flex items-center gap-2">
-      <div className="w-[26px] h-[26px] rounded-[4px] bg-neutral-900 dark:bg-neutral-50 flex items-center justify-center select-none shrink-0">
-        <span className="text-[10px] font-bold text-white dark:text-neutral-900 tracking-tight font-sans leading-none">
-          SP
-        </span>
-      </div>
+      <Mark
+        id="sp-mark-sm"
+        className="h-7 w-auto text-neutral-900 dark:text-neutral-100 shrink-0"
+      />
       {wordmark && (
         <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
           sp.
