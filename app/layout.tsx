@@ -41,6 +41,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     creator: siteConfig.twitter,
   },
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+  },
 };
 
 export default function RootLayout({

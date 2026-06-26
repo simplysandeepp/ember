@@ -1,5 +1,6 @@
 import { getAllExperience } from '@/lib/content';
 import { buildMetadata, siteConfig } from '@/lib/metadata';
+import Logo from '@/components/logo';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = buildMetadata({
@@ -34,9 +35,7 @@ export default function AboutPage() {
 
       {/* Page header */}
       <div className="flex items-start gap-5">
-        <div className="w-14 h-14 rounded-full bg-neutral-900 dark:bg-neutral-100 flex items-center justify-center text-white dark:text-neutral-900 text-base font-semibold flex-shrink-0 select-none ring-2 ring-neutral-100 dark:ring-neutral-800">
-          SP
-        </div>
+        <Logo size="lg" />
         <div>
           <h1 className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
             Sandeep Prajapati

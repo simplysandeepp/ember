@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getFeaturedProjects, getAllProjects, getAllPosts, formatDate } from '@/lib/content';
 import ProjectRow from '@/components/project-row';
+import Logo from '@/components/logo';
 import { siteConfig } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
@@ -43,9 +44,7 @@ export default function HomePage() {
 
         {/* Hero */}
         <section className="flex items-start gap-5">
-          <div className="w-14 h-14 rounded-full bg-neutral-900 dark:bg-neutral-100 flex items-center justify-center text-white dark:text-neutral-900 text-base font-semibold flex-shrink-0 select-none ring-2 ring-neutral-100 dark:ring-neutral-800">
-            SP
-          </div>
+          <Logo size="lg" />
           <div className="flex-1 min-w-0">
             <h1 className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
               Sandeep Prajapati
