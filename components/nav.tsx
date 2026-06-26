@@ -19,7 +19,7 @@ export default function Nav() {
     <header className="sticky top-0 z-50 w-full border-b border-neutral-100 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md">
       <nav className="max-w-2xl mx-auto px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <Logo size="sm" wordmark />
+          <Logo size="sm" wordmark={false} />
         </Link>
         <div className="flex items-center">
           <ul className="flex items-center gap-1">
