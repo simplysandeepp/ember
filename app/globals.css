@@ -15,11 +15,22 @@
   body {
     background: #ffffff;
     color: #1a1a1a;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .dark body {
+    background: #0a0a0a;
+    color: #fafafa;
   }
 
   ::selection {
     background: #1a1a1a;
     color: #ffffff;
+  }
+
+  .dark ::selection {
+    background: #fafafa;
+    color: #0a0a0a;
   }
 }
 
@@ -30,6 +41,10 @@
     color: #1a1a1a;
     text-decoration: none;
     transition: color 0.2s ease;
+  }
+
+  .dark .underline-link {
+    color: #fafafa;
   }
 
   .underline-link::after {
@@ -45,6 +60,10 @@
 
   .underline-link:hover {
     color: #737373;
+  }
+
+  .dark .underline-link:hover {
+    color: #a3a3a3;
   }
 
   .underline-link:hover::after {

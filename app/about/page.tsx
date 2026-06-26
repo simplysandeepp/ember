@@ -34,11 +34,11 @@ export default function AboutPage() {
 
       {/* Page header */}
       <div className="flex items-start gap-5">
-        <div className="w-14 h-14 rounded-full bg-neutral-900 flex items-center justify-center text-white text-base font-semibold flex-shrink-0 select-none ring-2 ring-neutral-100">
+        <div className="w-14 h-14 rounded-full bg-neutral-900 dark:bg-neutral-100 flex items-center justify-center text-white dark:text-neutral-900 text-base font-semibold flex-shrink-0 select-none ring-2 ring-neutral-100 dark:ring-neutral-800">
           SP
         </div>
         <div>
-          <h1 className="text-xl font-semibold tracking-tight text-neutral-900">
+          <h1 className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
             Sandeep Prajapati
           </h1>
           <p className="text-sm text-neutral-500 mt-0.5">
@@ -49,7 +49,7 @@ export default function AboutPage() {
               href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+              className="text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
             >
               GitHub
             </a>
@@ -57,13 +57,13 @@ export default function AboutPage() {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+              className="text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
             >
               LinkedIn
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+              className="text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
             >
               Email
             </a>
@@ -72,7 +72,7 @@ export default function AboutPage() {
       </div>
 
       {/* Bio */}
-      <div className="mt-10 space-y-4 text-base text-neutral-600 leading-relaxed">
+      <div className="mt-10 space-y-4 text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
         <p>
           I&apos;m Sandeep — an AI Software Developer Intern at{' '}
           <a
@@ -100,17 +100,17 @@ export default function AboutPage() {
       {/* Experience */}
       {experience.length > 0 && (
         <section className="mt-14">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-6">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-6">
             Experience
           </h2>
           <div className="space-y-8">
             {experience.map((exp) => (
               <div key={exp.slug} className="flex gap-8">
-                <div className="flex-shrink-0 text-xs text-neutral-400 pt-0.5 leading-5 w-20">
+                <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-20">
                   {exp.frontmatter.start} – {exp.frontmatter.end}
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-neutral-900">
+                  <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
                     {exp.frontmatter.role}
                   </p>
                   <p className="text-sm text-neutral-500 mt-0.5">
@@ -130,15 +130,15 @@ export default function AboutPage() {
 
       {/* Education */}
       <section className="mt-14">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-6">
+        <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-6">
           Education
         </h2>
         <div className="flex gap-8">
-          <div className="flex-shrink-0 text-xs text-neutral-400 pt-0.5 leading-5 w-20">
+          <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-20">
             2022 – 2026
           </div>
           <div>
-            <p className="text-sm font-semibold text-neutral-900">
+            <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
               B.Tech, Computer Science
             </p>
             <p className="text-sm text-neutral-500 mt-0.5">
@@ -150,16 +150,16 @@ export default function AboutPage() {
 
       {/* Skills */}
       <section className="mt-14">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-6">
+        <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-6">
           Skills
         </h2>
         <div className="space-y-3">
           {Object.entries(skills).map(([category, items]) => (
             <div key={category} className="flex gap-8">
-              <div className="flex-shrink-0 text-xs text-neutral-400 pt-0.5 w-20">
+              <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 w-20">
                 {category}
               </div>
-              <p className="flex-1 text-sm text-neutral-600 leading-relaxed">
+              <p className="flex-1 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 {items.join(', ')}
               </p>
             </div>
@@ -168,7 +168,7 @@ export default function AboutPage() {
       </section>
 
       {/* Contact */}
-      <section className="mt-14 pt-10 border-t border-neutral-100">
+      <section className="mt-14 pt-10 border-t border-neutral-100 dark:border-neutral-800">
         <p className="text-sm text-neutral-500 leading-relaxed">
           Open to AI engineering roles, interesting projects, and good
           conversations.{' '}

@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Nav from '@/components/nav';
 import Footer from '@/components/footer';
+import { ThemeProvider } from '@/components/theme-provider';
 import { siteConfig } from '@/lib/metadata';
 
 const geistSans = localFont({
@@ -46,13 +47,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-neutral-900 font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans`}
       >
-        <Nav />
-        <main className="min-h-[calc(100vh-64px)]">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Nav />
+          <main className="min-h-[calc(100vh-64px)]">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

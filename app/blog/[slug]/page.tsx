@@ -63,25 +63,25 @@ export default function BlogPostPage({ params }: Props) {
         {/* Back */}
         <Link
           href="/blog"
-          className="text-sm text-neutral-400 hover:text-neutral-900 transition-colors"
+          className="text-sm text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
         >
           ← Writing
         </Link>
 
         {/* Header */}
         <div className="mt-8">
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 leading-snug">
+          <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 leading-snug">
             {title}
           </h1>
           <p className="mt-2 text-base text-neutral-500">{description}</p>
           <div className="flex items-center gap-4 mt-3">
-            <time className="text-xs text-neutral-400">{formatDate(date)}</time>
+            <time className="text-xs text-neutral-400 dark:text-neutral-500">{formatDate(date)}</time>
             {tags && tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs px-2 py-0.5 bg-neutral-100 text-neutral-500 rounded-full"
+                    className="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 rounded-full"
                   >
                     {tag}
                   </span>
@@ -92,7 +92,7 @@ export default function BlogPostPage({ params }: Props) {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-neutral-100 my-8" />
+        <div className="border-t border-neutral-100 dark:border-neutral-800 my-8" />
 
         {/* Content */}
         <MDXContent source={post.content} />

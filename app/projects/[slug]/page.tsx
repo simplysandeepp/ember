@@ -61,26 +61,26 @@ export default function ProjectPage({ params }: Props) {
         {/* Back */}
         <Link
           href="/projects"
-          className="text-sm text-neutral-400 hover:text-neutral-900 transition-colors"
+          className="text-sm text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
         >
           ← Projects
         </Link>
 
         {/* Header */}
         <div className="mt-8">
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
             {title}
           </h1>
           <p className="mt-2 text-base text-neutral-500">{description}</p>
 
           <div className="flex flex-wrap items-center gap-3 mt-4">
-            <time className="text-xs text-neutral-400">{formatDate(date)}</time>
+            <time className="text-xs text-neutral-400 dark:text-neutral-500">{formatDate(date)}</time>
             {github && (
               <a
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-neutral-500 underline underline-offset-2 hover:text-neutral-900 transition-colors"
+                className="text-xs text-neutral-500 underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
               >
                 GitHub
               </a>
@@ -90,7 +90,7 @@ export default function ProjectPage({ params }: Props) {
                 href={live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-neutral-500 underline underline-offset-2 hover:text-neutral-900 transition-colors"
+                className="text-xs text-neutral-500 underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
               >
                 Live demo
               </a>
@@ -102,7 +102,7 @@ export default function ProjectPage({ params }: Props) {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs px-2 py-0.5 bg-neutral-100 text-neutral-500 rounded-full"
+                  className="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 rounded-full"
                 >
                   {tag}
                 </span>
@@ -112,7 +112,7 @@ export default function ProjectPage({ params }: Props) {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-neutral-100 my-8" />
+        <div className="border-t border-neutral-100 dark:border-neutral-800 my-8" />
 
         {/* Content */}
         <MDXContent source={project.content} />

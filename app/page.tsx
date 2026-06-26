@@ -43,20 +43,17 @@ export default function HomePage() {
 
         {/* Hero */}
         <section className="flex items-start gap-5">
-          {/* Avatar */}
-          <div className="w-14 h-14 rounded-full bg-neutral-900 flex items-center justify-center text-white text-base font-semibold flex-shrink-0 select-none ring-2 ring-neutral-100">
+          <div className="w-14 h-14 rounded-full bg-neutral-900 dark:bg-neutral-100 flex items-center justify-center text-white dark:text-neutral-900 text-base font-semibold flex-shrink-0 select-none ring-2 ring-neutral-100 dark:ring-neutral-800">
             SP
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl font-semibold tracking-tight text-neutral-900">
+            <h1 className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
               Sandeep Prajapati
             </h1>
             <p className="text-sm text-neutral-500 mt-0.5">
               AI Software Intern
             </p>
-
-            {/* Status badge */}
-            <p className="text-xs text-neutral-400 mt-3">
+            <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-3">
               Exploring what&apos;s next, one stack at a time
             </p>
           </div>
@@ -64,35 +61,35 @@ export default function HomePage() {
 
         {/* Bio */}
         <section className="mt-10">
-          <p className="text-base text-neutral-600 leading-relaxed">
+          <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
             I build intelligent systems — RAG pipelines, AI agents, and the
             full-stack applications that run them. Currently interning at{' '}
             <a
               href="https://drcode.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-900 underline-link"
+              className="text-neutral-900 dark:text-neutral-100 underline-link"
             >
               DrCode
             </a>{' '}
             in New Delhi, where I work on production AI features used by real
             developers.
           </p>
-          <p className="text-base text-neutral-600 leading-relaxed mt-3">
+          <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mt-3">
             I care about making AI systems actually reliable — not just
             impressive in demos.
           </p>
 
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-6">
-            <Link href="/projects" className="text-sm font-medium text-neutral-900 underline-link">
+            <Link href="/projects" className="text-sm font-medium text-neutral-900 dark:text-neutral-100 underline-link">
               View work →
             </Link>
-            <Link href="/about" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors duration-200">
+            <Link href="/about" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200">
               About
             </Link>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors duration-200"
+              className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
             >
               {siteConfig.email}
             </a>
@@ -103,12 +100,12 @@ export default function HomePage() {
         {displayProjects.length > 0 && (
           <section className="mt-16">
             <div className="flex items-center justify-between mb-1">
-              <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
                 Selected Work
               </h2>
               <Link
                 href="/projects"
-                className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+                className="text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
               >
                 All projects →
               </Link>
@@ -129,13 +126,13 @@ export default function HomePage() {
         {/* Writing */}
         <section className="mt-16">
           <div className="flex items-center justify-between mb-1">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
               Writing
             </h2>
             {recentPosts.length > 0 && (
               <Link
                 href="/blog"
-                className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+                className="text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
               >
                 All posts →
               </Link>
@@ -143,7 +140,7 @@ export default function HomePage() {
           </div>
 
           {recentPosts.length === 0 ? (
-            <p className="mt-4 text-sm text-neutral-400">
+            <p className="mt-4 text-sm text-neutral-400 dark:text-neutral-500">
               Occasional writing on AI engineering and building with LLMs — coming soon.
             </p>
           ) : (
@@ -152,12 +149,12 @@ export default function HomePage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group flex items-start justify-between gap-6 py-4 border-b border-neutral-100 last:border-0"
+                  className="group flex items-start justify-between gap-6 py-4 border-b border-neutral-100 dark:border-neutral-800 last:border-0"
                 >
-                  <p className="text-sm text-neutral-700 group-hover:text-neutral-500 transition-colors duration-200 flex-1 min-w-0">
+                  <p className="text-sm text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors duration-200 flex-1 min-w-0">
                     {post.frontmatter.title}
                   </p>
-                  <time className="text-xs text-neutral-400 whitespace-nowrap flex-shrink-0 mt-0.5">
+                  <time className="text-xs text-neutral-400 dark:text-neutral-500 whitespace-nowrap flex-shrink-0 mt-0.5">
                     {formatDate(post.frontmatter.date)}
                   </time>
                 </Link>

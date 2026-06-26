@@ -40,7 +40,7 @@ const socials = [
 export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
-      <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
+      <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
         Contact
       </h1>
       <p className="mt-2 text-sm text-neutral-500 leading-relaxed max-w-sm">
@@ -52,7 +52,7 @@ export default function ContactPage() {
       <div className="mt-10 space-y-4">
         {socials.map(({ label, href, display }) => (
           <div key={label} className="flex items-baseline gap-8">
-            <span className="w-16 text-xs text-neutral-400 flex-shrink-0">
+            <span className="w-16 text-xs text-neutral-400 dark:text-neutral-500 flex-shrink-0">
               {label}
             </span>
             <a
@@ -70,7 +70,7 @@ export default function ContactPage() {
       </div>
 
       {/* Divider */}
-      <div className="border-t border-neutral-100 my-12" />
+      <div className="border-t border-neutral-100 dark:border-neutral-800 my-12" />
 
       {/* Form */}
       <ContactForm />

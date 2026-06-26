@@ -34,39 +34,34 @@ export default function ContactForm() {
 
   return (
     <div>
-      <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-6">
+      <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-6">
         Send a message
       </h2>
 
       {status === 'success' ? (
         <div className="py-10 text-center">
-          <p className="text-sm font-medium text-neutral-900">Message sent.</p>
+          <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">Message sent.</p>
           <p className="text-sm text-neutral-500 mt-1">
             I&apos;ll get back to you soon.
           </p>
           <button
             onClick={() => setStatus('idle')}
-            className="mt-6 text-xs text-neutral-400 underline underline-offset-2 hover:text-neutral-900 transition-colors duration-200"
+            className="mt-6 text-xs text-neutral-400 dark:text-neutral-500 underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
           >
             Send another
           </button>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Web3Forms access key — set NEXT_PUBLIC_WEB3FORMS_KEY in .env.local and Vercel */}
           <input
             type="hidden"
             name="access_key"
             value={process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? ''}
           />
-          {/* Honeypot spam protection */}
           <input type="checkbox" name="botcheck" className="hidden" />
 
           <div className="space-y-1">
-            <label
-              htmlFor="name"
-              className="block text-xs text-neutral-500"
-            >
+            <label htmlFor="name" className="block text-xs text-neutral-500">
               Name
             </label>
             <input
@@ -76,15 +71,12 @@ export default function ContactForm() {
               required
               autoComplete="name"
               placeholder="Your name"
-              className="w-full px-3 py-2.5 text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 focus:ring-1 focus:ring-neutral-400 transition-colors duration-200"
+              className="w-full px-3 py-2.5 text-sm bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-500 focus:ring-1 focus:ring-neutral-400 dark:focus:ring-neutral-500 transition-colors duration-200"
             />
           </div>
 
           <div className="space-y-1">
-            <label
-              htmlFor="subject"
-              className="block text-xs text-neutral-500"
-            >
+            <label htmlFor="subject" className="block text-xs text-neutral-500">
               Subject
             </label>
             <input
@@ -93,15 +85,12 @@ export default function ContactForm() {
               type="text"
               required
               placeholder="What is this about?"
-              className="w-full px-3 py-2.5 text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 focus:ring-1 focus:ring-neutral-400 transition-colors duration-200"
+              className="w-full px-3 py-2.5 text-sm bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-500 focus:ring-1 focus:ring-neutral-400 dark:focus:ring-neutral-500 transition-colors duration-200"
             />
           </div>
 
           <div className="space-y-1">
-            <label
-              htmlFor="message"
-              className="block text-xs text-neutral-500"
-            >
+            <label htmlFor="message" className="block text-xs text-neutral-500">
               Message
             </label>
             <textarea
@@ -110,7 +99,7 @@ export default function ContactForm() {
               required
               rows={5}
               placeholder="Tell me about your project, opportunity, or just say hi."
-              className="w-full px-3 py-2.5 text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 focus:ring-1 focus:ring-neutral-400 transition-colors duration-200 resize-none"
+              className="w-full px-3 py-2.5 text-sm bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-500 focus:ring-1 focus:ring-neutral-400 dark:focus:ring-neutral-500 transition-colors duration-200 resize-none"
             />
           </div>
 
@@ -123,7 +112,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="w-full sm:w-auto px-5 py-2.5 text-sm font-medium bg-neutral-900 text-white rounded-lg hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            className="w-full sm:w-auto px-5 py-2.5 text-sm font-medium bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-lg hover:bg-neutral-700 dark:hover:bg-neutral-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
             {status === 'loading' ? 'Sending…' : 'Send message'}
           </button>
