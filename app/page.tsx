@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getFeaturedProjects, getAllProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
+import { getAllProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
 import ProjectRow from '@/components/project-row';
 import Logo from '@/components/logo';
 import { siteConfig } from '@/lib/metadata';
@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const featured = getFeaturedProjects();
   const allProjects = getAllProjects();
-  const displayProjects = featured.length > 0 ? featured : allProjects.slice(0, 4);
-  const recentPosts = getAllPosts().slice(0, 3);
+  // Selected Work = the 4 most recent projects by date (always dynamic).
+  const displayProjects = allProjects.slice(0, 4);
+  const recentPosts = getAllPosts().slice(0, 4);
   const certifications = getCertifications();
 
   // Real, auto-counted stats — refine the labels/values as you do your R&D.
