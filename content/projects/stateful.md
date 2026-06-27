@@ -6,6 +6,7 @@ tags: ["React 19", "TypeScript", "FastAPI", "Ollama", "FAISS", "Firebase", "Fram
 github: "https://github.com/simplysandeepp/Stateful"
 live: "https://stateful.vercel.app"
 featured: true
+priority: 4
 ---
 
 ## Overview

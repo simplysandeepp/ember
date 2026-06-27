@@ -5,6 +5,7 @@ date: "2025-03-01"
 tags: ["Python", "FastAPI", "React", "XGBoost", "Groq LLaMA", "Gemini 2.0", "Docker"]
 github: "https://github.com/simplysandeepp/finSight-AI"
 featured: true
+priority: 2
 ---
 
 ## Overview

@@ -6,6 +6,7 @@ tags: ["Next.js 14", "FastAPI", "Python", "Groq LLM", "PostgreSQL", "Firebase"]
 github: "https://github.com/simplysandeepp/Beacon"
 live: "https://brd-agent-xi.vercel.app"
 featured: true
+priority: 1
 ---
 
 ## Overview
