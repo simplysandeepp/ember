@@ -1,4 +1,4 @@
-import { getAllExperience } from '@/lib/content';
+import { getAllExperience, getCertifications } from '@/lib/content';
 import {
   buildMetadata,
   siteConfig,
@@ -54,6 +54,7 @@ const skills: Record<string, string[]> = {
 
 export default function AboutPage() {
   const experience = getAllExperience();
+  const certifications = getCertifications();
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
@@ -198,6 +199,56 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      {/* Certifications */}
+      {certifications.length > 0 && (
+        <section className="mt-14">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-6">
+            Certifications
+          </h2>
+          <div className="space-y-5">
+            {certifications.map((cert) => (
+              <div key={cert.title} className="flex gap-4">
+                <div className="flex-shrink-0 w-9 h-9 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center">
+                  {cert.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={cert.logo}
+                      alt={cert.issuer}
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="text-xs font-semibold text-neutral-400 dark:text-neutral-500">
+                      {cert.issuer.charAt(0)}
+                    </span>
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                      {cert.title}
+                    </p>
+                    {cert.link && (
+                      <a
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-shrink-0 text-xs font-normal text-neutral-400 dark:text-neutral-500 underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
+                      >
+                        Verify
+                      </a>
+                    )}
+                  </div>
+                  <p className="text-xs text-neutral-500 mt-0.5">
+                    {cert.issuer} · {cert.issued}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Contact */}
       <section className="mt-14 pt-10 border-t border-neutral-100 dark:border-neutral-800">
