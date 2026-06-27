@@ -18,7 +18,10 @@ export const siteConfig = {
   linkedin: 'https://linkedin.com/in/simplysandeepp',
   instagram: 'https://instagram.com/simplysandeepp',
   leetcode: 'https://leetcode.com/u/turiyax/',
-  email: 'sandeepprajapati1202@gmail.com',
+  // Tally contact form — visitors fill this instead of a backend-powered form.
+  tallyUrl: 'https://tally.so/r/rjpAAl',
+  // TODO: replace with your public resume Drive/PDF link when ready.
+  resumeUrl: '#',
   // Replace with the value from Google Search Console once you verify the domain.
   googleVerification: '',
 };
@@ -129,7 +132,6 @@ export const personJsonLd = {
   image: `${siteUrl}/opengraph-image`,
   jobTitle: siteConfig.jobTitle,
   description: siteConfig.description,
-  email: `mailto:${siteConfig.email}`,
   worksFor: {
     '@type': 'Organization',
     name: 'DrCode',

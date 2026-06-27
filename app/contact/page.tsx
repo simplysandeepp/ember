@@ -11,11 +11,6 @@ export const metadata: Metadata = buildMetadata({
 
 const socials = [
   {
-    label: 'Email',
-    href: `mailto:${siteConfig.email}`,
-    display: siteConfig.email,
-  },
-  {
     label: 'GitHub',
     href: siteConfig.github,
     display: 'github.com/simplysandeepp',
