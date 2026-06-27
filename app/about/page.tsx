@@ -70,7 +70,7 @@ export default function AboutPage() {
       {/* Page header */}
       <div className="flex items-start gap-5">
         <Logo size="lg" />
-        <div>
+        <div className="flex-1 min-w-0">
           <h1 className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
             Sandeep Prajapati
           </h1>
@@ -100,7 +100,26 @@ export default function AboutPage() {
             >
               Contact
             </a>
+            <a
+              href={siteConfig.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto text-xs font-medium text-neutral-900 dark:text-neutral-100 underline underline-offset-2 hover:text-neutral-500 dark:hover:text-neutral-400 transition-colors duration-200 flex-shrink-0"
+            >
+              Download CV
+            </a>
           </div>
+          <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-3">
+            Tip: press{' '}
+            <kbd className="px-1 py-0.5 rounded border border-neutral-200 dark:border-neutral-700 font-mono text-[10px]">
+              ⌘K
+            </kbd>{' '}
+            /{' '}
+            <kbd className="px-1 py-0.5 rounded border border-neutral-200 dark:border-neutral-700 font-mono text-[10px]">
+              Ctrl K
+            </kbd>{' '}
+            to search anything about me.
+          </p>
         </div>
       </div>
 
