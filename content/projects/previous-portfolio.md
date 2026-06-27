@@ -1,7 +1,7 @@
 ---
 title: "Sandeepp.in — 3D Animated Portfolio"
 description: "My previous portfolio — a fully 3D, heavily animated personal site built to push creative UI: custom motion, immersive effects, a REST API backend, and a private admin dashboard."
-date: "2026-06-24"
+date: "2024-08-01"
 tags: ["React 18", "TypeScript", "Three.js", "Framer Motion", "Express", "MongoDB", "Node.js"]
 github: "https://github.com/simplysandeepp/Sandeepp.in"
 live: "https://prev.sandeepp.in"
