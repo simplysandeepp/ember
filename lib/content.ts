@@ -31,6 +31,14 @@ export type ExperienceFrontmatter = {
   order?: number;
 };
 
+export type Certification = {
+  title: string;
+  issuer: string;
+  issued: string;
+  link?: string;
+  logo?: string;
+};
+
 export type ContentItem<T> = {
   slug: string;
   frontmatter: T;
@@ -100,6 +108,20 @@ export function getAllExperience(): ContentItem<ExperienceFrontmatter>[] {
   return readDir('experience')
     .map((f) => parseFile<ExperienceFrontmatter>('experience', f))
     .sort((a, b) => (a.frontmatter.order ?? 99) - (b.frontmatter.order ?? 99));
+}
+
+export function getCertifications(): Certification[] {
+  const filePath = path.join(contentDir, 'certifications.md');
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  const { data } = matter(raw);
+  const certs = (data.certifications as Certification[]) ?? [];
+  return certs
+    .slice()
+    .sort(
+      (a, b) =>
+        new Date(b.issued).getTime() - new Date(a.issued).getTime()
+    );
 }
 
 export function formatDate(dateStr: string): string {
