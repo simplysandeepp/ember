@@ -9,13 +9,25 @@ featured: false
 
 ## Overview
 
-A complete recreation of Flappy Bird built entirely in pure Java — no external game engines, no frameworks. Every system built from scratch using Java's foundational libraries.
+A complete recreation of Flappy Bird built in **pure Java** — no game engine, no external libraries. Every part of it (rendering loop, physics, collision, scoring) is written from scratch using Java Swing and AWT, as an exercise in core game-programming fundamentals and object-oriented design.
 
-## What's Built from Scratch
+## What I Built
 
-- **Custom game engine** — Smooth 60fps loop using Java Swing/AWT
-- **Physics simulation** — Gravity, velocity calculations, and jump mechanics
-- **Procedural generation** — Pipes with randomized vertical gap positioning for infinite variation
-- **Collision detection** — Accurate pixel-level collision logic
-- **Game states** — Start screen → active gameplay → game over screen
-- **Scoring system** — Live score tracking
+- **Custom game loop** — a fixed-timestep render/update cycle driving the animation
+- **Physics** — gravity, flap impulse, and velocity integration for the bird's motion
+- **Collision detection** — pixel/bounds checks between the bird and the pipes
+- **Procedural pipes** — randomized gaps that scroll and recycle
+- **Scoring & game states** — start, playing, and game-over screens with score tracking
+- **Keyboard input** handling for the flap control
+
+## Tech Stack
+
+**Language:** Java
+
+**UI / Rendering:** Java Swing, AWT
+
+**Design:** Object-oriented architecture (separate entities for bird, pipes, game manager)
+
+## Why It Matters
+
+Building a game without an engine forced me to understand the fundamentals most frameworks hide — the render loop, frame timing, physics integration, and collision math — all in clean OOP Java.

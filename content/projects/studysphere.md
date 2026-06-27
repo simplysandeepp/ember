@@ -9,11 +9,22 @@ featured: false
 
 ## Overview
 
-A focused web application to help students manage study sessions, track goals, and maintain an organized academic schedule with minimal friction.
+A productivity web app for students — bringing a session timer, goal tracking, and study analytics together in a clean, distraction-free interface to make focused study sessions easier to start and measure.
 
-## Features
+## What I Built
 
-- **Session timer** — Tag study sessions by subject
-- **Goal tracking** — Set academic goals and track progress visually
-- **Session history** — Analytics and summaries of past study time distribution
-- **Distraction-free UI** — Minimal interface built for deep work
+- **Session timer** for focused study blocks
+- **Goal tracking** to set and monitor study targets
+- **Study analytics** to see progress over time
+- **Distraction-free UI** that keeps the focus on the work
+- Built on React + Vite, deployed on Vercel
+
+## Tech Stack
+
+**Frontend:** React, JavaScript, Tailwind CSS, Vite
+
+**Deploy:** Vercel
+
+## Use Case
+
+Students who want a simple, focused space to time their study sessions, track goals, and see how consistent they've been.

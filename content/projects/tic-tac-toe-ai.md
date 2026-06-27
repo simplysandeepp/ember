@@ -9,11 +9,26 @@ featured: false
 
 ## Overview
 
-A clean, web-based Tic-Tac-Toe game featuring an AI opponent that never loses. The AI uses the Minimax Algorithm with Alpha-Beta Pruning — mathematically guaranteed to play a perfect game every time.
+A web-based Tic-Tac-Toe game with an **unbeatable AI opponent** — powered by the Minimax algorithm with Alpha-Beta pruning. Play optimally and the best you can do is draw.
 
-## Features
+## How It Works
 
-- Unbeatable AI using Minimax + Alpha-Beta Pruning
-- Human vs. AI gameplay
-- Animated win/draw detection with winning cell highlighting
-- Responsive UI playable on any modern device
+- **Minimax** explores the full game tree, scoring terminal states (win/lose/draw) and assuming both players play optimally
+- **Alpha-Beta pruning** cuts branches that can't affect the outcome, making the search far more efficient
+- The AI always picks the move that maximizes its guaranteed result — so it never loses
+
+## What I Built
+
+- A clean, responsive game board in vanilla HTML/CSS/JS
+- The full Minimax + Alpha-Beta decision engine
+- Win/draw detection and game-state management
+
+## Tech Stack
+
+**Frontend:** HTML, CSS, JavaScript
+
+**Algorithm:** Minimax with Alpha-Beta pruning
+
+## Why It Matters
+
+A hands-on implementation of adversarial game-search — the same family of algorithms behind classic game AI — built from scratch and visibly unbeatable.

@@ -10,11 +10,22 @@ featured: false
 
 ## Overview
 
-A meticulously crafted frontend clone achieving pixel-accurate replication of the Spotify music streaming interface. Recreates the essential components of the web player.
+A pixel-accurate front-end clone of the Spotify web player — recreating its signature layout and visual language using only HTML, CSS, and JavaScript. A focused exercise in matching a polished, real-world UI exactly.
 
-## What's Replicated
+## What I Built
 
-- Sidebar navigation with playlists and library sections
-- Album and artist cards with realistic hover interactions
-- Bottom player bar with progress, volume, and playback controls
-- Responsive layout matching Spotify's own adaptive behavior
+- **Sidebar** with navigation and playlist library
+- **Album/playlist cards** in a responsive grid
+- **Playlist layout** matching Spotify's spacing and typography
+- **Bottom player bar** with playback controls and track info
+- Careful attention to spacing, colors, and hover states to match the real product
+
+## Tech Stack
+
+**Frontend:** HTML, CSS, JavaScript
+
+**Deploy:** Vercel
+
+## Why It Matters
+
+Cloning a production-grade UI pixel-for-pixel sharpens the eye for detail — spacing, hierarchy, and responsive behavior — that separates a rough layout from a polished one.

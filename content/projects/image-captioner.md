@@ -9,15 +9,24 @@ featured: false
 
 ## Overview
 
-Three AI projects completed during the **CodSoft Internship**, demonstrating applied skills across web development, algorithmic AI, and computer vision.
+Three AI mini-projects bundled into one, built during the MISA program — each exploring a different corner of applied AI: a conversational chatbot, a game-playing agent, and a vision-language captioner.
 
-## Projects
+## What I Built
 
-**Task 1 — MISA Personal AI Assistant**
-A responsive web-based chatbot powered by the DeepSeek R1 model via the OpenRouter API. Built with core HTML/CSS/JS.
+**1. DeepSeek-powered chatbot** — a conversational assistant built on the DeepSeek R1 model.
 
-**Task 2 — Tic-Tac-Toe AI**
-An unbeatable AI opponent using the **Minimax Algorithm with Alpha-Beta Pruning**. The AI never loses.
+**2. Unbeatable Tic-Tac-Toe AI** — a game agent using the Minimax algorithm; it never loses.
 
-**Task 3 — AI Image Caption Generator**
-A computer vision application that generates natural, descriptive captions for uploaded images using the **BLIP (Bootstrapping Language-Image Pre-training)** model via Hugging Face Transformers.
+**3. BLIP image caption generator** — a vision-language model (BLIP via Hugging Face) that generates natural-language descriptions of uploaded images.
+
+## Tech Stack
+
+**AI / ML:** BLIP, Hugging Face Transformers, DeepSeek R1
+
+**Algorithms:** Minimax (game AI)
+
+**Languages:** Python, JavaScript
+
+## Why It Matters
+
+A compact tour of three AI paradigms — LLM chat, classical game-search, and multimodal vision-language — implemented end to end.

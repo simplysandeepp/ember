@@ -10,11 +10,32 @@ featured: false
 
 ## Overview
 
-A unified personal development tracker designed to give a single dashboard view across all dimensions of daily life — technical practice, health, study, and habits.
+A comprehensive personal-development and productivity dashboard built to help maintain discipline, track daily progress, and hit long-term goals. It combines habit tracking, study metrics, DSA practice logging, and well-being into a single cohesive interface — anchored by a unique **Integrity Score** that quantifies daily discipline.
 
-## Features
+## What I Built
 
-- **Visual dashboard** — Interactive charts via Recharts, daily summaries, and a unique **Integrity Score** tracking overall commitment
-- **Daily logging** — DSA problems, study hours, step count, water intake, meditation sessions, and custom habit toggles
-- **Subject & task management** — Custom color codes and an integrated to-do list
-- **Secure auth** — Supabase Auth with Row Level Security (RLS) enforced across all PostgreSQL tables
+**Comprehensive dashboard**
+- Interactive charts (Recharts) visualizing progress over time
+- Daily summaries of study hours, tasks, and habits
+- **Integrity Score** — a daily discipline metric from completed habits and tasks
+
+**Daily tracking**
+- **DSA progress** (Easy/Medium/Hard solved), **study time** per subject/project
+- **Physical health** (steps, water) and **mental/spiritual** minutes
+- **Binary habits** with Pass/Fail tracking for critical daily disciplines
+
+**Management**
+- Subject manager with color codes and daily targets
+- Task tracker and configurable daily goals
+
+## Tech Stack
+
+**Frontend:** React 19, TypeScript, Vite, Tailwind CSS, Framer Motion, Recharts, Lucide
+
+**Backend:** Supabase (PostgreSQL), Supabase Auth (email/password)
+
+**Security:** Row Level Security (RLS) on all tables — users only ever see their own data
+
+## Use Case
+
+Anyone serious about self-improvement who wants one private dashboard to track habits, study, health, and discipline — with real analytics instead of scattered notes.

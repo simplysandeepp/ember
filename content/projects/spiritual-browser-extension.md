@@ -9,16 +9,25 @@ featured: false
 
 ## Overview
 
-A production-ready Chrome Extension (Manifest V3) that replaces the default new tab page with a calm, spiritual, and motivational experience. Designed to make every new tab a moment of intention.
+A **Manifest V3 Chrome extension** that replaces the default New Tab page with a calm, spiritual experience — a centered mantra/shlok over an animated cosmic particle background. Lightweight by design: no backend, no analytics, no tracking.
 
-## Features
+## What I Built
 
-- **Galaxy particle animation** — Canvas-based interactive particles with line connections that follow cursor movement
-- **Mantra selector** — Sidebar for choosing preferred mantras or quotes, with active-state highlighting and smooth transitions
-- **Privacy-first** — Preferences stored via `chrome.storage.local`. Zero backend, zero analytics, zero tracking
-- **Fully offline** — Works without an internet connection
-- **Chrome Web Store ready** — Complete packaging pipeline included
+- **New Tab override** via `chrome_url_overrides`
+- **Animated canvas particle background** with interactive line connections between particles
+- **Hamburger sidebar** with a selectable mantra list and active-state highlighting
+- **Multi-line mantra rendering** with controlled layout
+- **Preference persistence** via `chrome.storage.local` (with a safe fallback)
+- **Tested** with Jest + jsdom, and packaged for the Chrome Web Store
 
-## Code Quality
+## Tech Stack
 
-Automated unit tests with Jest and jsdom ensure reliability across updates.
+**Frontend:** HTML5, CSS3, vanilla JavaScript (no framework)
+
+**Platform:** Chrome Extensions Manifest V3
+
+**Testing:** Jest + jsdom
+
+## Use Case
+
+A distraction-free, peaceful new-tab page for anyone who wants a moment of calm and intention every time they open a browser tab — fully local and private.

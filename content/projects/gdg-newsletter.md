@@ -9,11 +9,21 @@ featured: false
 
 ## Overview
 
-A dedicated platform for the GDG On Campus chapter to streamline newsletter creation, management, and distribution. Optimized for readability and easy publishing.
+A newsletter platform for **GDG On Campus** — a place to create, manage, and distribute community newsletters, with an archive so past editions stay accessible.
 
-## Features
+## What I Built
 
-- Structured publishing workflow for new editions
-- Archival system for all past editions
-- Clean typography optimized for long-form content
-- Fully responsive across desktop and mobile
+- **Newsletter creation & management** for the community team
+- **Archive system** so every past edition remains browsable
+- **Clean, brand-aligned UI** consistent with GDG design language
+- Fast Vite build, deployed on Vercel
+
+## Tech Stack
+
+**Frontend:** React, TypeScript, Tailwind CSS, Vite
+
+**Deploy:** Vercel
+
+## Use Case
+
+A GDG On Campus chapter that wants a single home for its newsletters — easy to publish, easy for members to revisit.
