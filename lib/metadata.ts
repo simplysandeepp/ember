@@ -23,7 +23,7 @@ export const siteConfig = {
   // Public resume (Google Drive). Opens in a new tab from the ⌘K palette.
   resumeUrl: 'https://drive.google.com/file/d/1I9tdTdKXyH-P6YAoZCYpWhW9UwqzzKw5/view?usp=share_link',
   // Replace with the value from Google Search Console once you verify the domain.
-  googleVerification: '',
+  googleVerification: '0HfkcWG72TL4Mr_b2PxTpKNXUmcBUPdrnOrWpfwX9Q0',
 };
 
 /**
