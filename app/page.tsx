@@ -18,14 +18,15 @@ export default function HomePage() {
   const featured = getFeaturedProjects();
   const displayProjects =
     featured.length > 0 ? featured.slice(0, 4) : allProjects.slice(0, 4);
-  const recentPosts = getAllPosts().slice(0, 4);
+  const allPosts = getAllPosts();
+  const recentPosts = allPosts.slice(0, 4);
   const certifications = getCertifications();
 
-  // Real, auto-counted stats — refine the labels/values as you do your R&D.
+  // Real, auto-counted stats — all dynamic from content.
   const stats = [
     { value: `${allProjects.length}+`, label: 'Projects shipped' },
     { value: `${certifications.length}+`, label: 'Certifications' },
-    { value: '4', label: 'AI agents in FinSight' },
+    { value: `${allPosts.length}+`, label: 'Blog posts' },
   ];
 
   return (

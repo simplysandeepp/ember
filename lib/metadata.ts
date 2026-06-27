@@ -20,8 +20,8 @@ export const siteConfig = {
   leetcode: 'https://leetcode.com/u/turiyax/',
   // Tally contact form — visitors fill this instead of a backend-powered form.
   tallyUrl: 'https://tally.so/r/rjpAAl',
-  // TODO: replace with your public resume Drive/PDF link when ready.
-  resumeUrl: '#',
+  // Public resume (Google Drive). Opens in a new tab from the ⌘K palette.
+  resumeUrl: 'https://drive.google.com/file/d/1I9tdTdKXyH-P6YAoZCYpWhW9UwqzzKw5/view?usp=share_link',
   // Replace with the value from Google Search Console once you verify the domain.
   googleVerification: '',
 };
