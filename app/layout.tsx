@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import './globals.css';
 import Nav from '@/components/nav';
 import Footer from '@/components/footer';
@@ -12,17 +11,6 @@ import {
   personJsonLd,
   websiteJsonLd,
 } from '@/lib/metadata';
-
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
 
 const defaultTitle =
   'Sandeep Prajapati — AI Engineer & Full-Stack Developer';
@@ -100,7 +88,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans`}
+        className="antialiased bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans"
       >
         <ThemeProvider>
           <Nav />
