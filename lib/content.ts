@@ -12,6 +12,7 @@ export type ProjectFrontmatter = {
   github?: string;
   live?: string;
   featured?: boolean;
+  priority?: number;
   image?: string;
 };
 
@@ -72,7 +73,13 @@ export function getAllProjects(): ContentItem<ProjectFrontmatter>[] {
 }
 
 export function getFeaturedProjects(): ContentItem<ProjectFrontmatter>[] {
-  return getAllProjects().filter((p) => p.frontmatter.featured);
+  // Featured projects ordered by `priority` (1 = first); ties fall back to date.
+  return getAllProjects()
+    .filter((p) => p.frontmatter.featured)
+    .sort(
+      (a, b) =>
+        (a.frontmatter.priority ?? 99) - (b.frontmatter.priority ?? 99)
+    );
 }
 
 export function getProjectBySlug(

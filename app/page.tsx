@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
+import { getAllProjects, getFeaturedProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
 import ProjectRow from '@/components/project-row';
 import Logo from '@/components/logo';
 import { siteConfig } from '@/lib/metadata';
@@ -13,8 +13,11 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const allProjects = getAllProjects();
-  // Selected Work = the 4 most recent projects by date (always dynamic).
-  const displayProjects = allProjects.slice(0, 4);
+  // Selected Work = featured projects ordered by `priority` in their md files.
+  // Falls back to the 4 most recent projects if none are featured.
+  const featured = getFeaturedProjects();
+  const displayProjects =
+    featured.length > 0 ? featured.slice(0, 4) : allProjects.slice(0, 4);
   const recentPosts = getAllPosts().slice(0, 4);
   const certifications = getCertifications();
 
