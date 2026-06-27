@@ -7,7 +7,7 @@ export default function NotFound() {
         404
       </h1>
       <p className="mt-3 text-base text-neutral-500">
-        This page does not exist.
+        You are trying to access a page that does not exist. Please check the URL or return to the homepage.
       </p>
       <Link
         href="/"
