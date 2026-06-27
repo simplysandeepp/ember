@@ -4,27 +4,47 @@ description: "An AI platform that converts unstructured project data — Slack t
 date: "2025-02-01"
 tags: ["Next.js 14", "FastAPI", "Python", "Groq LLM", "PostgreSQL", "Firebase"]
 github: "https://github.com/simplysandeepp/Beacon"
-live: "https://brd-agent-xi.vercel.app"
+live: "https://beacon.sandeepp.in"
 featured: true
-priority: 1
+priority: 2
 ---
 
 ## Overview
 
-Built at **HackFest 2.0** with a team of four. Beacon dramatically accelerates Business Requirements Document creation by ingesting scattered, unstructured data and converting it into structured, semantically validated BRD drafts.
+Beacon is a full-stack AI platform that automates **Business Requirements Document (BRD)** creation. It ingests raw project data from multiple sources, filters out the noise, extracts the meaningful signals, and runs a multi-agent LLM pipeline to produce a structured, professional BRD — all reviewable and exportable from a modern web UI. Built at **HackFest 2.0** with a team of four.
 
-## How It Works
+## The Problem
 
-1. **Ingest** — Accepts Slack threads, emails, meeting notes, and file uploads
-2. **Filter** — Hybrid heuristics + LLM classification suppresses noise and irrelevant content
-3. **Generate** — Produces a structured BRD across 7 standardized sections using Groq LLM
-4. **Validate** — AI detects contradictions, ambiguities, and requirement gaps in the draft
-5. **Export** — Supports Markdown, HTML, and DOCX output with collaborative sharing
+Writing a BRD means manually sifting through scattered Slack threads, email chains, meeting notes, and documents — then turning that mess into a structured, stakeholder-ready document. It's slow, error-prone, and easy to miss requirements buried in the noise.
+
+Beacon takes that scattered, unstructured input and turns it into a validated BRD draft automatically.
+
+## What I Built
+
+- **Multi-source ingestion** — Slack OAuth and Gmail connectors plus file uploads pull in raw project data
+- **Two-phase noise filter** — heuristics followed by a Groq LLM batch classifier separate signal from noise
+- **Multi-agent BRD pipeline** — specialized agents generate the structured document, with a validator and exporter
+- **Human-in-the-loop versioning** — drafts are reviewable, editable, and collaboratively refined before export
+- **Modern web app** — auth, sessions, ingestion UI, BRD review, collaboration, and export
 
 ## Architecture
 
-**Frontend** — Next.js 14, React 18, TypeScript, Tailwind CSS, Zustand, Framer Motion
+- **`frontend/`** — Next.js 14 app: auth, sessions, ingestion UI, BRD review, collaboration, export
+- **`backend/api/`** — FastAPI server: REST endpoints, orchestration, streaming
+- **Noise filter module** — two-phase classifier (heuristics + Groq LLM batch)
+- **BRD module** — multi-agent generation pipeline, validator, exporter, HITL versioning
+- **Integration module** — Slack OAuth + Gmail connectors
 
-**Backend** — FastAPI, Python 3.9+, Groq LLM for fast inference
+## Tech Stack
 
-**Database** — PostgreSQL (SQLite fallback locally), Firebase Firestore for document storage, Firebase Auth
+**Frontend:** Next.js 14, TypeScript, Tailwind CSS
+
+**Backend:** FastAPI, Python 3.9+
+
+**AI:** Groq LLM engine, multi-agent classification + generation
+
+**Data & Auth:** Firebase (Auth & Firestore), PostgreSQL
+
+## Use Case
+
+Product teams, consultants, and engineering orgs who want to compress hours of requirements-gathering into minutes — turning the chatter that already exists across their tools into a clean, validated BRD.
