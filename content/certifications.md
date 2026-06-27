@@ -2,7 +2,7 @@
 certifications:
   - title: "AWS AI Practitioner Challenge"
     issuer: "Udacity"
-    issued: "May 2026"
+    issued: "Jun 2026"
     link: "https://www.udacity.com/certificate/e/ef05ef52-2fd8-11f1-a81b-8b587cc1e9b7"
     logo: "https://media.licdn.com/dms/image/v2/C560BAQHiNYfm0YHKrg/company-logo_400_400/company-logo_400_400/0/1656621848677/udacity_logo?e=1784160000&v=beta&t=ZJelIPnmKN1tQeR_YSgF7UycFjon68RcP-mmtQD7_Tw"
   - title: "HackDays Hackathon Certification"
