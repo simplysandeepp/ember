@@ -1,6 +1,7 @@
 'use client';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 function SunIcon() {
   return (
@@ -29,15 +30,56 @@ function MoonIcon() {
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return <div className="w-8 h-8" />;
 
   const isDark = resolvedTheme === 'dark';
 
+  const toggle = async () => {
+    const next = isDark ? 'light' : 'dark';
+
+    // Respect reduced-motion and browsers without the View Transitions API.
+    const prefersReduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    if (!document.startViewTransition || prefersReduced) {
+      setTheme(next);
+      return;
+    }
+
+    // Origin = center of the toggle button; radius reaches the farthest corner.
+    const rect = buttonRef.current!.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const root = document.documentElement;
+    root.style.setProperty('--vt-x', `${x}px`);
+    root.style.setProperty('--vt-y', `${y}px`);
+    root.style.setProperty('--vt-r', `${endRadius}px`);
+    // to-light expands the new theme outward; to-dark collapses the old to a dot.
+    root.dataset.vtDir = next === 'dark' ? 'to-dark' : 'to-light';
+
+    const transition = document.startViewTransition(() => {
+      flushSync(() => setTheme(next));
+    });
+
+    try {
+      await transition.finished;
+    } finally {
+      delete root.dataset.vtDir;
+    }
+  };
+
   return (
     <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      ref={buttonRef}
+      onClick={toggle}
       className="ml-1 w-8 h-8 rounded-md flex items-center justify-center text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
