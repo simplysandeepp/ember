@@ -10,8 +10,19 @@ export default function ProjectCard({ slug, frontmatter }: Props) {
   return (
     <Link
       href={`/projects/${slug}`}
-      className="group flex items-start justify-between gap-6 py-5 border-b border-neutral-100 dark:border-neutral-800 last:border-0"
+      className="group flex items-start gap-4 py-5 border-b border-neutral-100 dark:border-neutral-800 last:border-0"
     >
+      {frontmatter.image && (
+        <div className="flex-shrink-0 w-20 h-14 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-800">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={frontmatter.image}
+            alt={frontmatter.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+      )}
       <div className="flex-1 min-w-0">
         <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors duration-200">
           {frontmatter.title}

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getFeaturedProjects, getAllProjects, getAllPosts, formatDate } from '@/lib/content';
+import { getFeaturedProjects, getAllProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
 import ProjectRow from '@/components/project-row';
 import Logo from '@/components/logo';
 import { siteConfig } from '@/lib/metadata';
@@ -16,6 +16,14 @@ export default function HomePage() {
   const allProjects = getAllProjects();
   const displayProjects = featured.length > 0 ? featured : allProjects.slice(0, 4);
   const recentPosts = getAllPosts().slice(0, 3);
+  const certifications = getCertifications();
+
+  // Real, auto-counted stats — refine the labels/values as you do your R&D.
+  const stats = [
+    { value: `${allProjects.length}+`, label: 'Projects shipped' },
+    { value: `${certifications.length}+`, label: 'Certifications' },
+    { value: '4', label: 'AI agents in FinSight' },
+  ];
 
   return (
     <>
@@ -65,13 +73,27 @@ export default function HomePage() {
             <Link href="/about" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200">
               About
             </Link>
-            <a
-              href={`mailto:${siteConfig.email}`}
+            <Link
+              href="/contact"
               className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
             >
-              {siteConfig.email}
-            </a>
+              Get in touch →
+            </Link>
           </div>
+        </section>
+
+        {/* Stats */}
+        <section className="mt-12 grid grid-cols-3 gap-4 border-t border-b border-neutral-100 dark:border-neutral-800 py-6">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <div className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+                {s.value}
+              </div>
+              <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-1 leading-snug">
+                {s.label}
+              </div>
+            </div>
+          ))}
         </section>
 
         {/* Selected work */}

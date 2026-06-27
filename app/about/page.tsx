@@ -95,10 +95,10 @@ export default function AboutPage() {
               LinkedIn
             </a>
             <a
-              href={`mailto:${siteConfig.email}`}
+              href="/contact"
               className="text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
             >
-              Email
+              Contact
             </a>
           </div>
         </div>
@@ -255,11 +255,8 @@ export default function AboutPage() {
         <p className="text-sm text-neutral-500 leading-relaxed">
           Open to AI engineering roles, interesting projects, and good
           conversations.{' '}
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="underline-link"
-          >
-            {siteConfig.email}
+          <a href="/contact" className="underline-link">
+            Get in touch →
           </a>
         </p>
       </section>

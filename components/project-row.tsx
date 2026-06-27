@@ -16,6 +16,17 @@ export default function ProjectRow({ slug, frontmatter, index }: Props) {
       <span className="text-xs text-neutral-300 dark:text-neutral-600 font-mono w-5 flex-shrink-0 mt-1 select-none">
         {String(index + 1).padStart(2, '0')}
       </span>
+      {frontmatter.image && (
+        <div className="flex-shrink-0 w-16 h-11 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-800 mt-0.5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={frontmatter.image}
+            alt={frontmatter.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+      )}
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-4">
           <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors duration-200">

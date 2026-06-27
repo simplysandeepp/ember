@@ -4,6 +4,8 @@ import './globals.css';
 import Nav from '@/components/nav';
 import Footer from '@/components/footer';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Analytics } from '@vercel/analytics/react';
+import CommandPalette from '@/components/command-palette';
 import {
   siteConfig,
   siteKeywords,
@@ -104,7 +106,9 @@ export default function RootLayout({
           <Nav />
           <main className="min-h-[calc(100vh-64px)]">{children}</main>
           <Footer />
+          <CommandPalette />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
