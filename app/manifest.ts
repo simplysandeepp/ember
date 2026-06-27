@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description:
       'Portfolio of Sandeep Prajapati — AI Engineer & Full-Stack Developer in New Delhi.',
     start_url: '/',
-    display: 'standalone',
+    display: 'browser',
     background_color: '#ffffff',
     theme_color: '#0a0a0a',
     icons: [
