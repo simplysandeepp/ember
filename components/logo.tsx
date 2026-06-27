@@ -22,20 +22,6 @@ function Mark({ id, className }: { id: string; className: string }) {
         strokeWidth="15"
         strokeLinecap="round"
       />
-      <path
-        d="M58 22 L75 34 L67 50"
-        stroke={`url(#${id})`}
-        strokeWidth="12"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M42 98 L25 86 L33 70"
-        stroke={`url(#${id})`}
-        strokeWidth="12"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
     </svg>
   );
 }

@@ -13,7 +13,5 @@
   </defs>
   <g transform="translate(10,0)" stroke="url(#sp)" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M74 36 C74 18 26 18 26 42 C26 62 74 60 74 84 C74 106 26 106 26 86" stroke-width="15"/>
-    <path d="M58 22 L75 34 L67 50" stroke-width="12"/>
-    <path d="M42 98 L25 86 L33 70" stroke-width="12"/>
   </g>
 </svg>
