@@ -166,6 +166,28 @@ export default function HomePage() {
           )}
         </section>
 
+        {/* Previous portfolio callout */}
+        <section className="mt-16 pt-10 border-t border-neutral-100 dark:border-neutral-800">
+          <a
+            href="https://prev.sandeepp.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-between gap-6"
+          >
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors duration-200">
+                My previous portfolio
+              </p>
+              <p className="text-sm text-neutral-500 mt-0.5 leading-relaxed">
+                A fully 3D, animated build — a playground for creative UI. Take a look.
+              </p>
+            </div>
+            <span className="text-neutral-300 dark:text-neutral-600 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all duration-200 flex-shrink-0">
+              →
+            </span>
+          </a>
+        </section>
+
       </div>
     </>
   );
