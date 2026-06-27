@@ -189,6 +189,19 @@ export default function HomePage() {
           </a>
         </section>
 
+        {/* Search hint */}
+        <p className="mt-12 text-center text-xs text-neutral-400 dark:text-neutral-500 leading-relaxed">
+          Didn&apos;t find what you&apos;re looking for? Press{' '}
+          <kbd className="px-1 py-0.5 rounded border border-neutral-200 dark:border-neutral-700 font-mono text-[10px]">
+            ⌘K
+          </kbd>{' '}
+          /{' '}
+          <kbd className="px-1 py-0.5 rounded border border-neutral-200 dark:border-neutral-700 font-mono text-[10px]">
+            Ctrl K
+          </kbd>{' '}
+          to search the site.
+        </p>
+
       </div>
     </>
   );
