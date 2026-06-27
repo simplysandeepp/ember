@@ -54,11 +54,29 @@ function readDir(folder: string): string[] {
     .filter((f) => f.endsWith('.md') || f.endsWith('.mdx'));
 }
 
+// Auto-find an image in /public/projects matching the slug (any common ext).
+// Lets you drop `public/projects/<slug>.{png,jpg,jpeg,gif,webp}` with no
+// frontmatter edits. An explicit `image:` in frontmatter still wins.
+const IMAGE_EXTS = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'avif'];
+function findProjectImage(slug: string): string | undefined {
+  const dir = path.join(process.cwd(), 'public', 'projects');
+  for (const ext of IMAGE_EXTS) {
+    if (fs.existsSync(path.join(dir, `${slug}.${ext}`))) {
+      return `/projects/${slug}.${ext}`;
+    }
+  }
+  return undefined;
+}
+
 function parseFile<T>(folder: string, filename: string): ContentItem<T> {
   const filePath = path.join(contentDir, folder, filename);
   const raw = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(raw);
   const slug = filename.replace(/\.(md|mdx)$/, '');
+  if (folder === 'projects' && !(data as ProjectFrontmatter).image) {
+    const found = findProjectImage(slug);
+    if (found) (data as ProjectFrontmatter).image = found;
+  }
   return { slug, frontmatter: data as T, content };
 }
 
