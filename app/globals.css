@@ -16,6 +16,22 @@
     background: #ffffff;
     color: #1a1a1a;
     transition: background-color 0.2s ease, color 0.2s ease;
+    /* Safety net: never allow accidental horizontal scroll on mobile.
+       `clip` (not `hidden`) so it doesn't break the sticky nav. */
+    overflow-x: clip;
+  }
+
+  /* Wide content in articles scrolls inside itself instead of stretching
+     the page on small screens. */
+  .prose pre,
+  .prose table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .prose img {
+    height: auto;
   }
 
   .dark body {
