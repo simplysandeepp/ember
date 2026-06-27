@@ -1,7 +1,7 @@
 ---
 title: "Personal Portfolio"
 description: "A premium full-stack portfolio built as a 3-app monorepo — public site, REST API backend, and a private admin dashboard."
-date: "2024-08-01"
+date: "2026-06-26"
 tags: ["React", "TypeScript", "Node.js", "MongoDB", "Framer Motion", "GSAP"]
 github: "https://github.com/simplysandeepp/Portfolio"
 live: "https://portfolio-simplysandeepp.vercel.app"
