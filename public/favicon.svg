@@ -1,17 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" fill="none">
-  <defs>
-    <linearGradient id="sp" x1="10" y1="0" x2="110" y2="120" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0a0a0a"/>
-      <stop offset="1" stop-color="#525252"/>
-    </linearGradient>
-    <style>
-      @media (prefers-color-scheme: dark) {
-        #sp stop:first-child { stop-color: #fafafa; }
-        #sp stop:last-child  { stop-color: #a3a3a3; }
-      }
-    </style>
-  </defs>
-  <g transform="translate(10,0)" stroke="url(#sp)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M74 36 C74 18 26 18 26 42 C26 62 74 60 74 84 C74 106 26 106 26 86" stroke-width="15"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect width="120" height="120" rx="26" fill="#0a0a0a"/>
+  <g transform="translate(5,0)" stroke="#fafafa" fill="none" stroke-linecap="round" stroke-width="17">
+    <path d="M74 36 C74 18 26 18 26 42 C26 62 74 60 74 84 C74 106 26 106 26 86"/>
   </g>
 </svg>
