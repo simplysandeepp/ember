@@ -9,18 +9,27 @@ featured: false
 
 ## Overview
 
-Instead of one AI prompt generating a resume, MultiAgent Resumer uses a pipeline of four specialized agents that each own a specific responsibility — resulting in a more tailored, ATS-optimized, and professionally formatted output.
+An **agentic resume builder** where specialized AI agents collaborate to tailor a resume to a specific job — analyzing the job description, rewriting content, scoring against ATS, and formatting the result, each handled by a focused agent rather than one monolithic prompt.
 
-## Agent Architecture
+## The Problem
 
-**JD Analyzer Agent** — Extracts skills, keywords, and explicit/implicit requirements from a job posting.
+Generic resumes get filtered out by ATS and don't speak to a specific role. Manually tailoring a resume per application is tedious. This system automates the tailoring while keeping the reasoning transparent and modular.
 
-**Content Agent** — Rewrites and tailors the user's experience bullets to semantically match what the JD Analyzer found.
+## What I Built
 
-**ATS Scorer Agent** — Evaluates the generated resume for Applicant Tracking System compatibility and suggests improvements in keyword density and formatting.
+A multi-agent pipeline where each agent owns one job:
 
-**Formatter Agent** — Assembles the optimized content into clean, export-ready resume layouts.
+- **JD analysis agent** — extracts key requirements, skills, and keywords from the job description
+- **Content rewriting agent** — rewrites resume sections to match the target role
+- **ATS scoring agent** — evaluates the resume against ATS criteria and surfaces gaps
+- **Formatting agent** — produces a clean, structured final document
 
-## Status
+## Tech Stack
 
-Early stage — architecture defined, agents in development.
+**Backend / Agents:** Python, FastAPI, LangChain, Groq LLM
+
+**Frontend:** React, TypeScript
+
+## Use Case
+
+Job seekers who want a resume tailored and ATS-optimized for a specific posting — automatically, with each step (analysis → rewrite → score → format) handled by a dedicated agent.

@@ -9,15 +9,23 @@ featured: false
 
 ## Overview
 
-A minimal, performance-focused text messaging application bootstrapped with the Next.js App Router. The focus is on UI clarity and fast real-time communication — nothing extraneous.
+A modern, minimal **real-time text-sharing utility** built on the Next.js App Router — designed to send and share text quickly between devices or people, with a fast, clean, type-safe foundation.
 
-## What's Being Built
+## What I Built
 
-- Real-time messaging interface leveraging Next.js App Router
-- Minimalist UI prioritizing communication clarity
-- Full TypeScript for type safety and maintainability
-- Tailwind CSS for responsive, adaptive layout across all devices
+- A focused, minimal UI for composing and sharing text instantly
+- Built on the **Next.js App Router** with full TypeScript type-safety
+- Clean, responsive styling with Tailwind CSS
+- Lightweight and fast — no clutter, just the core utility
 
-## Status
+## Tech Stack
 
-Actively in development.
+**Framework:** Next.js (App Router)
+
+**Language:** TypeScript
+
+**Styling:** Tailwind CSS
+
+## Use Case
+
+Quickly moving a snippet of text from one device or person to another without friction — a clean, minimal alternative to emailing yourself.

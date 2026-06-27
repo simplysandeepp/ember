@@ -9,11 +9,22 @@ featured: false
 
 ## Overview
 
-The official public-facing website for the Google Developers Group (GDG) On Campus chapter at Galgotias University. Primary hub for the community — events, team, announcements, and resources.
+The official website for **GDG On Campus, Galgotias University** — the community's public hub for events, the core team, and what the chapter is about, built to align with Google Developer Groups brand standards.
 
-## Features
+## What I Built
 
-- **Events listing** — Upcoming events with details and registration links
-- **Team showcase** — Current members, roles, and profiles
-- **Community hub** — Announcements and shared resources
-- **GDG brand compliant** — Responsive, modern design strictly aligned with GDG branding standards
+- **Events showcase** for upcoming and past chapter activities
+- **Team section** highlighting the core organizing members
+- **Community hub** — a single front door for the chapter
+- **GDG brand-aligned** visual system (colors, typography, layout)
+- Responsive, fast, and deployed on Vercel
+
+## Tech Stack
+
+**Frontend:** React, TypeScript, Tailwind CSS, Vite
+
+**Deploy:** Vercel
+
+## Use Case
+
+The public face of the GDG On Campus GU chapter — a polished, on-brand site for members and prospective attendees.

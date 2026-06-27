@@ -9,11 +9,19 @@ featured: false
 
 ## Overview
 
-An informational website celebrating the vast diversity of Indian culture across art, traditions, festivals, regional cuisines, and history.
+A visually rich informational website celebrating **Indian culture** — its art, traditions, festivals, cuisine, and regional heritage. One of my earlier front-end builds, focused on layout, content structure, and clean responsive design with vanilla web technologies.
 
-## Features
+## What I Built
 
-- Multi-section layout covering Art, Festivals, Cuisine, and Regional Culture
-- Rich imagery accompanying descriptive content
-- Smooth scroll navigation with a content-first layout
-- Fully responsive across mobile and desktop
+- **Themed sections** covering art, traditions, festivals, cuisine, and regional heritage
+- **Responsive layouts** that adapt across screen sizes
+- **Hand-written HTML/CSS/JS** — no framework, focusing on fundamentals
+- Image-forward, content-rich presentation
+
+## Tech Stack
+
+**Frontend:** HTML, CSS, JavaScript
+
+## Why It Matters
+
+An early project where I learned semantic structure, responsive CSS, and content-driven layout from the ground up.

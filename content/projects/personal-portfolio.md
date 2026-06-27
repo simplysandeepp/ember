@@ -11,25 +11,23 @@ priority: 5
 
 ## Overview
 
-A premium-themed, full-stack personal portfolio built as a 3-app monorepo. It includes a public-facing site, a complete REST API backend, and a private admin dashboard built from scratch — all independently deployable.
+A premium-themed personal portfolio built as a **3-app monorepo** — a public-facing site, a complete REST API backend, and a private admin dashboard built from scratch, each independently deployable. This was my earlier, animation-heavy portfolio before the current minimal one.
 
-## Architecture
+## What I Built
 
-**Frontend (Public Site)** — React 18, Vite, Tailwind CSS, Framer Motion, GSAP. Features a particle background, typewriter hero effect, and a floating chatbot (RoboChat) with fuzzy keyword matching.
+- **Public site** — the front-facing experience with rich motion (Framer Motion + GSAP)
+- **REST API backend** — a Node.js API powering dynamic content
+- **Private admin dashboard** — an authenticated surface to manage site content, built from the ground up
+- **Monorepo architecture** — three independently deployable apps in one repository
 
-**Admin Dashboard** — Protected-route React app with the TipTap rich-text editor. Manages all content: projects, blog posts, sessions, experience timeline, and contact submissions.
+## Tech Stack
 
-**Backend API** — Express + TypeScript REST API secured with JWT authentication. Handles CRUD for all content types, contact form validation, and Cloudinary-powered image uploads.
+**Frontend:** React, TypeScript, Framer Motion, GSAP
 
-## Key Features
+**Backend:** Node.js, REST API
 
-- 8 interactive skill cards covering core competencies
-- Slug-based routing with custom SEO metadata per page
-- CRUD-managed projects, blogs, and sessions via the admin panel
-- Experience timeline and contact form with backend validation
-- CI/CD pipeline with automated validation scripts
-- Cloudinary media storage
+**Database:** MongoDB
 
-## Status
+## Why It Matters
 
-Ongoing — actively maintained.
+A full-stack build that goes beyond a static portfolio — demonstrating API design, an admin CMS, and polished front-end motion across a multi-app architecture.
