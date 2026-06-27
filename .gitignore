@@ -37,3 +37,6 @@ next-env.d.ts
 
 # Claude Code local settings (permissions, per-machine)
 .claude/
+
+# Local staging — extracted GitHub repo data
+repo-import/
