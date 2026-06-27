@@ -70,3 +70,55 @@
     width: 100%;
   }
 }
+
+/* ── Theme toggle: circular reveal via the View Transitions API ──────────── */
+
+/* Disable the default cross-fade so our clip-path animation is clean. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Going to LIGHT: the new (light) layer grows from the toggle outward. */
+html[data-vt-dir='to-light']::view-transition-new(root) {
+  z-index: 1;
+  animation: vt-reveal 0.45s ease-in-out forwards;
+}
+html[data-vt-dir='to-light']::view-transition-old(root) {
+  z-index: 0;
+}
+
+/* Going to DARK: the old (light) layer shrinks into a single dot at the toggle. */
+html[data-vt-dir='to-dark']::view-transition-new(root) {
+  z-index: 0;
+}
+html[data-vt-dir='to-dark']::view-transition-old(root) {
+  z-index: 1;
+  animation: vt-collapse 0.45s ease-in-out forwards;
+}
+
+@keyframes vt-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--vt-r, 150%) at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+}
+
+@keyframes vt-collapse {
+  from {
+    clip-path: circle(var(--vt-r, 150%) at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+  to {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
