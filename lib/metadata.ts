@@ -24,7 +24,7 @@ export const siteConfig = {
   resumeUrl: 'https://drive.google.com/file/d/1I9tdTdKXyH-P6YAoZCYpWhW9UwqzzKw5/view?usp=share_link',
   // Buttondown newsletter username — the blog signup form + RSS auto-email use this.
   // Set this to your Buttondown username to enable the newsletter signup form.
-  buttondownUsername: '',
+  buttondownUsername: 'Sandeepp',
   // Replace with the value from Google Search Console once you verify the domain.
   googleVerification: '0HfkcWG72TL4Mr_b2PxTpKNXUmcBUPdrnOrWpfwX9Q0',
 };
