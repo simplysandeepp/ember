@@ -13,6 +13,7 @@ export type ProjectFrontmatter = {
   live?: string;
   featured?: boolean;
   priority?: number;
+  pinned?: boolean;
   image?: string;
 };
 
