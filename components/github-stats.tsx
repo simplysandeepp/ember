@@ -56,8 +56,8 @@ export default function GitHubStats() {
         <div className="space-y-4 min-w-0">
           <ThemedImg
             alt="GitHub stats"
-            lightSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&${LIGHT}`}
-            darkSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&${DARK}`}
+            lightSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&include_all_commits=true&${LIGHT}`}
+            darkSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&include_all_commits=true&${DARK}`}
           />
           <ThemedImg
             alt="Top languages"
