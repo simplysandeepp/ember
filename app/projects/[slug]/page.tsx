@@ -146,6 +146,7 @@ export default function ProjectPage({ params }: Props) {
               alt={title}
               className="w-full h-auto"
               loading="lazy"
+              decoding="async"
             />
           </div>
         )}
