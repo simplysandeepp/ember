@@ -255,6 +255,17 @@ export default function AboutPage() {
                   <p className="text-xs text-neutral-500 mt-0.5">
                     {cert.issuer} · {cert.issued}
                   </p>
+                  {cert.details && (
+                    <details className="group mt-1.5">
+                      <summary className="text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 cursor-pointer list-none transition-colors duration-200 marker:hidden">
+                        <span className="group-open:hidden">Details +</span>
+                        <span className="hidden group-open:inline">Details −</span>
+                      </summary>
+                      <p className="mt-1.5 text-xs text-neutral-500 leading-relaxed">
+                        {cert.details}
+                      </p>
+                    </details>
+                  )}
                 </div>
               </div>
             ))}

@@ -39,6 +39,7 @@ export type Certification = {
   issued: string;
   link?: string;
   logo?: string;
+  details?: string;
 };
 
 export type ContentItem<T> = {
