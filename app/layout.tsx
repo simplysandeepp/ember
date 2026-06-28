@@ -94,8 +94,16 @@ export default function RootLayout({
         className="antialiased bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans"
       >
         <ThemeProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-md focus:bg-neutral-900 focus:text-white dark:focus:bg-neutral-100 dark:focus:text-neutral-900 focus:text-sm focus:font-medium"
+          >
+            Skip to content
+          </a>
           <Nav />
-          <main className="min-h-[calc(100vh-64px)]">{children}</main>
+          <main id="main-content" className="min-h-[calc(100vh-64px)]">
+            {children}
+          </main>
           <Footer />
           <CommandPalette />
         </ThemeProvider>

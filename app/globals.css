@@ -48,6 +48,17 @@
     background: #fafafa;
     color: #0a0a0a;
   }
+
+  /* Visible focus ring for keyboard users (suppressed on mouse click). */
+  :focus-visible {
+    outline: 2px solid #525252;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .dark :focus-visible {
+    outline-color: #a3a3a3;
+  }
 }
 
 @layer components {
