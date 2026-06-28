@@ -78,7 +78,14 @@ export default function AboutPage() {
           <p className="text-sm text-neutral-500 mt-0.5">
             AI Software Intern · New Delhi
           </p>
-          <div className="flex items-center gap-4 mt-2">
+          <a
+            href="/contact"
+            className="group inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 text-xs font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-900 hover:text-white dark:hover:bg-neutral-100 dark:hover:text-neutral-900 transition-colors duration-200"
+          >
+            ✨ Find Sandeep across the internet
+            <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+          </a>
+          <div className="flex items-center gap-4 mt-3">
             <a
               href={siteConfig.github}
               target="_blank"
