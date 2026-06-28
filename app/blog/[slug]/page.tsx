@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/content';
 import MDXContent from '@/components/mdx-content';
 import GiscusComments from '@/components/giscus-comments';
+import TableOfContents from '@/components/table-of-contents';
+import { extractHeadings } from '@/lib/toc';
 import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
@@ -51,6 +53,7 @@ export default function BlogPostPage({ params }: Props) {
   // Reading time (~200 words/min) and previous/next posts.
   const words = post.content.trim().split(/\s+/).filter(Boolean).length;
   const readingTime = Math.max(1, Math.round(words / 200));
+  const headings = extractHeadings(post.content);
   const allPosts = getAllPosts();
   const idx = allPosts.findIndex((p) => p.slug === params.slug);
   const newer = idx > 0 ? allPosts[idx - 1] : null;
@@ -132,6 +135,9 @@ export default function BlogPostPage({ params }: Props) {
             )}
           </div>
         </div>
+
+        {/* Table of contents (long posts only) */}
+        <TableOfContents headings={headings} />
 
         {/* Divider */}
         <div className="border-t border-neutral-100 dark:border-neutral-800 my-8" />
