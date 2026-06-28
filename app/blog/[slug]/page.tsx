@@ -48,6 +48,14 @@ export default function BlogPostPage({ params }: Props) {
 
   const { title, description, date, tags } = post.frontmatter;
 
+  // Reading time (~200 words/min) and previous/next posts.
+  const words = post.content.trim().split(/\s+/).filter(Boolean).length;
+  const readingTime = Math.max(1, Math.round(words / 200));
+  const allPosts = getAllPosts();
+  const idx = allPosts.findIndex((p) => p.slug === params.slug);
+  const newer = idx > 0 ? allPosts[idx - 1] : null;
+  const older = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -108,6 +116,8 @@ export default function BlogPostPage({ params }: Props) {
           <p className="mt-2 text-base text-neutral-500">{description}</p>
           <div className="flex items-center gap-4 mt-3">
             <time className="text-xs text-neutral-400 dark:text-neutral-500">{formatDate(date)}</time>
+            <span className="text-xs text-neutral-400 dark:text-neutral-500">·</span>
+            <span className="text-xs text-neutral-400 dark:text-neutral-500">{readingTime} min read</span>
             {tags && tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {tags.map((tag) => (
@@ -128,6 +138,32 @@ export default function BlogPostPage({ params }: Props) {
 
         {/* Content */}
         <MDXContent source={post.content} />
+
+        {/* Prev / next */}
+        {(newer || older) && (
+          <nav className="mt-14 pt-8 border-t border-neutral-100 dark:border-neutral-800 flex justify-between gap-6">
+            {older ? (
+              <Link href={`/blog/${older.slug}`} className="group max-w-[48%]">
+                <span className="block text-xs text-neutral-400 dark:text-neutral-500">← Older</span>
+                <span className="block text-sm text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors mt-1 line-clamp-2">
+                  {older.frontmatter.title}
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+            {newer ? (
+              <Link href={`/blog/${newer.slug}`} className="group max-w-[48%] text-right ml-auto">
+                <span className="block text-xs text-neutral-400 dark:text-neutral-500">Newer →</span>
+                <span className="block text-sm text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors mt-1 line-clamp-2">
+                  {newer.frontmatter.title}
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+          </nav>
+        )}
 
         {/* Comments */}
         <GiscusComments />
