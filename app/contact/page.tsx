@@ -30,6 +30,21 @@ const socials = [
     href: siteConfig.leetcode,
     display: 'leetcode.com/u/turiyax',
   },
+  {
+    label: 'Pinterest',
+    href: 'https://www.pinterest.com/simplysandeepp/',
+    display: 'pinterest.com/simplysandeepp',
+  },
+  {
+    label: 'Snapchat',
+    href: 'https://www.snapchat.com/@simplysandeepp',
+    display: '@simplysandeepp',
+  },
+  {
+    label: 'Spotify',
+    href: 'https://open.spotify.com/user/31cyj3fynvoub27sgwry4ijlsaku',
+    display: 'open.spotify.com/user/simplysandeepp',
+  },
 ];
 
 export default function ContactPage() {
