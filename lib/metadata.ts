@@ -25,6 +25,16 @@ export const siteConfig = {
   // Buttondown newsletter username — the blog signup form + RSS auto-email use this.
   // Set this to your Buttondown username to enable the newsletter signup form.
   buttondownUsername: 'Sandeepp',
+  // Usernames for frontend stat embeds.
+  githubUsername: 'simplysandeepp',
+  leetcodeUsername: 'turiyax',
+  // Giscus (GitHub Discussions) blog comments — fully client-side, no backend.
+  giscus: {
+    repo: 'simplysandeepp/portfolio',
+    repoId: 'R_kgDOTGDIuA',
+    category: 'Announcements',
+    categoryId: 'DIC_kwDOTGDIuM4DAEyp',
+  },
   // Replace with the value from Google Search Console once you verify the domain.
   googleVerification: '0HfkcWG72TL4Mr_b2PxTpKNXUmcBUPdrnOrWpfwX9Q0',
 };

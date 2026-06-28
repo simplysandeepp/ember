@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/content';
 import MDXContent from '@/components/mdx-content';
+import GiscusComments from '@/components/giscus-comments';
 import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
@@ -127,6 +128,9 @@ export default function BlogPostPage({ params }: Props) {
 
         {/* Content */}
         <MDXContent source={post.content} />
+
+        {/* Comments */}
+        <GiscusComments />
       </div>
     </>
   );
