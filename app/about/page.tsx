@@ -80,12 +80,11 @@ export default function AboutPage() {
           </p>
           <a
             href="/contact"
-            className="group inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 text-xs font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-900 hover:text-white dark:hover:bg-neutral-100 dark:hover:text-neutral-900 transition-colors duration-200"
+            className="inline-block mt-2 text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
           >
-            ✨ Find Sandeep across the internet
-            <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+            ✨ Find Sandeep across the internet →
           </a>
-          <div className="flex items-center gap-4 mt-3">
+          <div className="flex items-center gap-4 mt-2">
             <a
               href={siteConfig.github}
               target="_blank"
