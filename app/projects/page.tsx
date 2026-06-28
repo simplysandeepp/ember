@@ -1,5 +1,6 @@
 import { getAllProjects } from '@/lib/content';
 import ProjectCard from '@/components/project-card';
+import ProjectsFilter from '@/components/projects-filter';
 import { buildMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
@@ -47,21 +48,13 @@ export default function ProjectsPage() {
             </section>
           )}
 
-          <section className={pinned.length > 0 ? 'mt-10' : 'mt-10'}>
+          <section className="mt-10">
             {pinned.length > 0 && (
-              <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-1">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-4">
                 All projects
               </h2>
             )}
-            <div>
-              {rest.map((project) => (
-                <ProjectCard
-                  key={project.slug}
-                  slug={project.slug}
-                  frontmatter={project.frontmatter}
-                />
-              ))}
-            </div>
+            <ProjectsFilter projects={rest} />
           </section>
         </>
       )}
