@@ -82,7 +82,7 @@ export default function AboutPage() {
             href="/contact"
             className="inline-block mt-2 text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
           >
-            ✨ Find Sandeep across the internet →
+            Find Sandeep across the internet →
           </a>
           <div className="flex items-center gap-4 mt-2">
             <a
