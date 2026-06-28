@@ -31,6 +31,11 @@ const socials = [
     display: 'leetcode.com/u/turiyax',
   },
   {
+    label: 'X (Twitter)',
+    href: 'https://x.com/simplysandeepp',
+    display: 'x.com/simplysandeepp',
+  },
+  {
     label: 'Pinterest',
     href: 'https://www.pinterest.com/simplysandeepp/',
     display: 'pinterest.com/simplysandeepp',
