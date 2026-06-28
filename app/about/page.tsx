@@ -6,6 +6,7 @@ import {
   breadcrumbJsonLd,
 } from '@/lib/metadata';
 import Logo from '@/components/logo';
+import GitHubStats from '@/components/github-stats';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = buildMetadata({
@@ -207,6 +208,9 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      {/* GitHub & LeetCode stats */}
+      <GitHubStats />
 
       {/* Certifications */}
       {certifications.length > 0 && (
