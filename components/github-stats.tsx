@@ -29,14 +29,14 @@ function ThemedImg({
         src={lightSrc}
         alt={alt}
         loading="lazy"
-        className="block dark:hidden w-full max-w-xs h-auto"
+        className="block dark:hidden w-full h-auto"
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={darkSrc}
         alt={alt}
         loading="lazy"
-        className="hidden dark:block w-full max-w-xs h-auto"
+        className="hidden dark:block w-full h-auto"
       />
     </>
   );
@@ -49,22 +49,29 @@ export default function GitHubStats() {
         Stats
       </h2>
 
-      <div className="space-y-5">
-        <ThemedImg
-          alt="GitHub stats"
-          lightSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&${LIGHT}`}
-          darkSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&${DARK}`}
-        />
-        <ThemedImg
-          alt="Top languages"
-          lightSrc={`https://github-readme-stats.vercel.app/api/top-langs/?username=${gh}&layout=compact&${LIGHT}`}
-          darkSrc={`https://github-readme-stats.vercel.app/api/top-langs/?username=${gh}&layout=compact&${DARK}`}
-        />
-        <ThemedImg
-          alt="LeetCode stats"
-          lightSrc={`https://leetcard.jacoblin.cool/${lc}?theme=light&font=Inter&ext=heatmap`}
-          darkSrc={`https://leetcard.jacoblin.cool/${lc}?theme=dark&font=Inter&ext=heatmap`}
-        />
+      <div className="grid sm:grid-cols-2 gap-5 items-start">
+        {/* Left — GitHub */}
+        <div className="space-y-4 min-w-0">
+          <ThemedImg
+            alt="GitHub stats"
+            lightSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&${LIGHT}`}
+            darkSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&${DARK}`}
+          />
+          <ThemedImg
+            alt="Top languages"
+            lightSrc={`https://github-readme-stats.vercel.app/api/top-langs/?username=${gh}&layout=compact&${LIGHT}`}
+            darkSrc={`https://github-readme-stats.vercel.app/api/top-langs/?username=${gh}&layout=compact&${DARK}`}
+          />
+        </div>
+
+        {/* Right — LeetCode */}
+        <div className="min-w-0">
+          <ThemedImg
+            alt="LeetCode stats"
+            lightSrc={`https://leetcard.jacoblin.cool/${lc}?theme=light&font=Inter&ext=heatmap`}
+            darkSrc={`https://leetcard.jacoblin.cool/${lc}?theme=dark&font=Inter&ext=heatmap`}
+          />
+        </div>
       </div>
     </section>
   );
