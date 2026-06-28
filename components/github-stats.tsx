@@ -29,14 +29,14 @@ function ThemedImg({
         src={lightSrc}
         alt={alt}
         loading="lazy"
-        className="block dark:hidden w-full max-w-md h-auto"
+        className="block dark:hidden w-full max-w-xs h-auto"
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={darkSrc}
         alt={alt}
         loading="lazy"
-        className="hidden dark:block w-full max-w-md h-auto"
+        className="hidden dark:block w-full max-w-xs h-auto"
       />
     </>
   );
