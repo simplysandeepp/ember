@@ -28,7 +28,10 @@ export const metadata: Metadata = {
   creator: siteConfig.name,
   publisher: siteConfig.name,
   category: 'technology',
-  alternates: { canonical: siteConfig.url },
+  alternates: {
+    canonical: siteConfig.url,
+    types: { 'application/rss+xml': `${siteConfig.url}/rss.xml` },
+  },
   robots: {
     index: true,
     follow: true,
