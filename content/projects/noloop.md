@@ -7,6 +7,7 @@ github: "https://github.com/simplysandeepp/Noloop"
 live: "https://noloop.sandeepp.in"
 featured: true
 priority: 1
+pinned: true
 ---
 
 ## Overview
