@@ -29,6 +29,7 @@ function ThemedImg({
         src={lightSrc}
         alt={alt}
         loading="lazy"
+        decoding="async"
         className="block dark:hidden w-full h-auto"
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -36,6 +37,7 @@ function ThemedImg({
         src={darkSrc}
         alt={alt}
         loading="lazy"
+        decoding="async"
         className="hidden dark:block w-full h-auto"
       />
     </>

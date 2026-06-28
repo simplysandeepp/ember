@@ -20,6 +20,7 @@ export default function ProjectCard({ slug, frontmatter }: Props) {
             alt={frontmatter.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
+            decoding="async"
           />
         </div>
       )}

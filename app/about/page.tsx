@@ -229,6 +229,7 @@ export default function AboutPage() {
                       alt={cert.issuer}
                       className="w-full h-full object-contain"
                       loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <span className="text-xs font-semibold text-neutral-400 dark:text-neutral-500">
