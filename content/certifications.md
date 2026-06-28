@@ -15,6 +15,7 @@ certifications:
     issued: "Oct 2025"
     link: "https://www.holopin.io/@simplysandeepp#badges"
     logo: "/logos/digitalocean.svg"
+    details: "Recognized as a Hacktoberfest 2025 Supercontributor — joined thousands of developers worldwide to celebrate open source with 6+ accepted PRs and real-world collaboration. Skills: Open Source, Git, Collaboration, Problem Solving. Milestone: 6+ accepted contributions."
   - title: "Introduction to Model Context Protocol"
     issuer: "Anthropic"
     issued: "Mar 2026"
