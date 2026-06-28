@@ -75,6 +75,18 @@ export default function GitHubStats() {
           />
         </div>
       </div>
+
+      {/* GitHub contribution heatmap (full width, below both cards) */}
+      <div className="mt-5 rounded-lg border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 overflow-x-auto">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`https://ghchart.rshah.org/409ba5/${gh}`}
+          alt={`${gh} GitHub contribution graph`}
+          loading="lazy"
+          decoding="async"
+          className="w-full min-w-[600px] h-auto"
+        />
+      </div>
     </section>
   );
 }
