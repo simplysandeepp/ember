@@ -1,5 +1,6 @@
 import { getAllPosts } from '@/lib/content';
 import BlogCard from '@/components/blog-card';
+import NewsletterSignup from '@/components/newsletter-signup';
 import { buildMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
@@ -37,6 +38,8 @@ export default function BlogPage() {
           ))}
         </div>
       )}
+
+      <NewsletterSignup />
     </div>
   );
 }

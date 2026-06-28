@@ -22,6 +22,9 @@ export const siteConfig = {
   tallyUrl: 'https://tally.so/r/rjpAAl',
   // Public resume (Google Drive). Opens in a new tab from the ⌘K palette.
   resumeUrl: 'https://drive.google.com/file/d/1I9tdTdKXyH-P6YAoZCYpWhW9UwqzzKw5/view?usp=share_link',
+  // Buttondown newsletter username — the blog signup form + RSS auto-email use this.
+  // Set this to your Buttondown username to enable the newsletter signup form.
+  buttondownUsername: '',
   // Replace with the value from Google Search Console once you verify the domain.
   googleVerification: '0HfkcWG72TL4Mr_b2PxTpKNXUmcBUPdrnOrWpfwX9Q0',
 };
