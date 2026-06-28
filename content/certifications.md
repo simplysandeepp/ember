@@ -14,7 +14,7 @@ certifications:
     issuer: "DigitalOcean"
     issued: "Oct 2025"
     link: "https://www.holopin.io/@simplysandeepp#badges"
-    logo: ""
+    logo: "/logos/digitalocean.svg"
   - title: "Introduction to Model Context Protocol"
     issuer: "Anthropic"
     issued: "Mar 2026"
