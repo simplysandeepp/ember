@@ -17,7 +17,7 @@ export const siteConfig = {
   github: 'https://github.com/simplysandeepp',
   linkedin: 'https://linkedin.com/in/simplysandeepp',
   instagram: 'https://instagram.com/simplysandeepp',
-  leetcode: 'https://leetcode.com/u/turiyax/',
+  leetcode: 'https://leetcode.com/u/simplysandeepp/',
   // Tally contact form — visitors fill this instead of a backend-powered form.
   tallyUrl: 'https://tally.so/r/rjpAAl',
   // Public resume (Google Drive). Opens in a new tab from the ⌘K palette.
@@ -27,7 +27,7 @@ export const siteConfig = {
   buttondownUsername: 'Sandeepp',
   // Usernames for frontend stat embeds.
   githubUsername: 'simplysandeepp',
-  leetcodeUsername: 'turiyax',
+  leetcodeUsername: 'simplysandeepp',
   // Giscus (GitHub Discussions) blog comments — fully client-side, no backend.
   giscus: {
     repo: 'simplysandeepp/portfolio',

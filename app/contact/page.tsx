@@ -28,7 +28,7 @@ const socials = [
   {
     label: 'LeetCode',
     href: siteConfig.leetcode,
-    display: 'leetcode.com/u/turiyax',
+    display: 'leetcode.com/u/simplysandeepp',
   },
   {
     label: 'X (Twitter)',
