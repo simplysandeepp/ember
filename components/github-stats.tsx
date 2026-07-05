@@ -8,6 +8,9 @@ import { siteConfig } from '@/lib/metadata';
 const gh = siteConfig.githubUsername;
 const lc = siteConfig.leetcodeUsername;
 
+// Self-hosted github-readme-stats instance (the public one is frequently rate-limited/paused).
+const GH_STATS_HOST = 'https://github-readme-stats-simplysandeepp.vercel.app';
+
 const COMMON =
   'hide_border=true&bg_color=00000000&hide_title=false';
 const LIGHT = `${COMMON}&title_color=1a1a1a&text_color=525252&icon_color=525252`;
@@ -56,13 +59,13 @@ export default function GitHubStats() {
         <div className="space-y-4 min-w-0">
           <ThemedImg
             alt="GitHub stats"
-            lightSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&include_all_commits=true&${LIGHT}`}
-            darkSrc={`https://github-readme-stats.vercel.app/api?username=${gh}&show_icons=true&include_all_commits=true&${DARK}`}
+            lightSrc={`${GH_STATS_HOST}/api?username=${gh}&show_icons=true&include_all_commits=true&${LIGHT}`}
+            darkSrc={`${GH_STATS_HOST}/api?username=${gh}&show_icons=true&include_all_commits=true&${DARK}`}
           />
           <ThemedImg
             alt="Top languages"
-            lightSrc={`https://github-readme-stats.vercel.app/api/top-langs/?username=${gh}&layout=compact&${LIGHT}`}
-            darkSrc={`https://github-readme-stats.vercel.app/api/top-langs/?username=${gh}&layout=compact&${DARK}`}
+            lightSrc={`${GH_STATS_HOST}/api/top-langs/?username=${gh}&layout=compact&${LIGHT}`}
+            darkSrc={`${GH_STATS_HOST}/api/top-langs/?username=${gh}&layout=compact&${DARK}`}
           />
         </div>
 
