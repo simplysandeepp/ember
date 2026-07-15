@@ -7,6 +7,7 @@ github: "https://github.com/simplysandeepp/Beacon"
 live: "https://beacon.sandeepp.in"
 featured: true
 priority: 2
+pinned: true
 ---
 
 ## Overview
