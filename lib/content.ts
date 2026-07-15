@@ -11,6 +11,7 @@ export type ProjectFrontmatter = {
   tags: string[];
   github?: string;
   live?: string;
+  demo?: string;
   featured?: boolean;
   priority?: number;
   pinned?: boolean;
