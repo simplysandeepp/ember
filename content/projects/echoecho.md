@@ -5,6 +5,7 @@ date: "2025-11-01"
 tags: ["Python", "FastAPI", "CrewAI", "Groq Llama 3.1", "Suno v4 API", "Three.js", "Render"]
 github: "https://github.com/simplysandeepp/Consolidated-EchoEcho"
 live: "https://consolidated-echoecho.onrender.com"
+demo: "https://youtu.be/UgNzkq5tmv8?si=HSPlegNlbyoBbeTE"
 featured: false
 ---
 

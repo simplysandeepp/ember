@@ -5,6 +5,7 @@ date: "2026-06-19"
 tags: ["Next.js", "React", "TypeScript", "FastAPI", "Python", "Gemini", "PostgreSQL", "Celery"]
 github: "https://github.com/simplysandeepp/Noloop"
 live: "https://noloop.sandeepp.in"
+demo: "https://youtu.be/946GA4_ADkc?si=uAjakaqGzPJq23Ec"
 featured: true
 priority: 1
 pinned: true

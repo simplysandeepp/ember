@@ -48,7 +48,7 @@ export default function ProjectPage({ params }: Props) {
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
 
-  const { title, description, date, tags, github, live, image } =
+  const { title, description, date, tags, github, live, demo, image } =
     project.frontmatter;
 
   const jsonLd = {
@@ -119,6 +119,16 @@ export default function ProjectPage({ params }: Props) {
                 className="text-xs text-neutral-500 underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
               >
                 Live demo
+              </a>
+            )}
+            {demo && (
+              <a
+                href={demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-neutral-500 underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+              >
+                Video demo
               </a>
             )}
           </div>

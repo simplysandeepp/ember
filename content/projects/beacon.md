@@ -5,6 +5,7 @@ date: "2025-02-01"
 tags: ["Next.js 14", "FastAPI", "Python", "Groq LLM", "PostgreSQL", "Firebase"]
 github: "https://github.com/simplysandeepp/Beacon"
 live: "https://beacon.sandeepp.in"
+demo: "https://youtu.be/hx63_Fr5I8g?si=xkJFNTc56JADhD88"
 featured: true
 priority: 2
 pinned: true
