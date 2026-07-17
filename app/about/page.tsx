@@ -4,6 +4,7 @@ import {
   siteConfig,
   personJsonLd,
   breadcrumbJsonLd,
+  faqJsonLd,
 } from '@/lib/metadata';
 import Logo from '@/components/logo';
 import GitHubStats from '@/components/github-stats';
@@ -66,6 +67,10 @@ export default function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Page header */}
@@ -279,6 +284,38 @@ export default function AboutPage() {
           </div>
         </section>
       )}
+
+      {/* FAQ — mirrors the FAQPage JSON-LD so the schema is backed
+          by visible, crawlable content. */}
+      <section className="mt-14" aria-labelledby="faq-heading">
+        <h2
+          id="faq-heading"
+          className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-6"
+        >
+          Frequently asked
+        </h2>
+        <div className="space-y-5">
+          {faqJsonLd.mainEntity.map((qa) => (
+            <details
+              key={qa.name}
+              className="group border-b border-neutral-100 dark:border-neutral-800 pb-4"
+            >
+              <summary className="text-sm font-medium text-neutral-900 dark:text-neutral-100 cursor-pointer list-none flex items-start justify-between gap-4">
+                <span>{qa.name}</span>
+                <span
+                  aria-hidden
+                  className="text-neutral-300 dark:text-neutral-600 group-open:rotate-45 transition-transform duration-200 flex-shrink-0"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
+                {qa.acceptedAnswer.text}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       {/* Contact */}
       <section className="mt-14 pt-10 border-t border-neutral-100 dark:border-neutral-800">
