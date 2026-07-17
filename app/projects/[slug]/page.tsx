@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getAllProjects, getProjectBySlug, formatDate } from '@/lib/content';
 import MDXContent from '@/components/mdx-content';
 import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
@@ -150,13 +151,14 @@ export default function ProjectPage({ params }: Props) {
         {/* Hero image */}
         {image && (
           <div className="mt-8 rounded-xl overflow-hidden border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={image}
-              alt={title}
+              alt={`${title} — ${description} — project by Sandeep Prajapati`}
+              width={1600}
+              height={900}
+              priority
+              sizes="(max-width: 768px) 100vw, 672px"
               className="w-full h-auto"
-              loading="lazy"
-              decoding="async"
             />
           </div>
         )}

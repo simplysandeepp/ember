@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ProjectFrontmatter } from '@/lib/content';
 
 type Props = {
@@ -17,14 +18,14 @@ export default function ProjectRow({ slug, frontmatter, index }: Props) {
         {String(index + 1).padStart(2, '0')}
       </span>
       {frontmatter.image && (
-        <div className="flex-shrink-0 w-16 h-11 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-800 mt-0.5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+        <div className="flex-shrink-0 w-16 h-11 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-800 mt-0.5 relative">
+          <Image
             src={frontmatter.image}
-            alt={frontmatter.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-            decoding="async"
+            alt={`${frontmatter.title} — project by Sandeep Prajapati`}
+            fill
+            sizes="64px"
+            priority={index < 2}
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
       )}
