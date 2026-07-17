@@ -149,3 +149,29 @@ html[data-vt-dir='to-dark']::view-transition-old(root) {
     animation: none !important;
   }
 }
+
+/* Print styles — /resume looks clean when saved as PDF. */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #0a0a0a !important;
+  }
+  nav,
+  footer,
+  [data-print-hide] {
+    display: none !important;
+  }
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  .underline-link::after {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  section {
+    page-break-inside: avoid;
+  }
+}
