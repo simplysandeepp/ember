@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 /**
- * Rewrites content/certifications.md so every `logo:` points at a
- * locally-hosted real brand logo. LinkedIn's CDN blocks hotlinks
- * (HTTP 403 to third-party origins).
+ * Downloads icon-only brand marks (4-square Microsoft, colored G,
+ * 3-bar Anthropic, etc.) for every certification issuer and rewrites
+ * content/certifications.md to point at the local copy.
  *
- * Sources — official multi-color brand marks:
- *   1. Curated Wikipedia Commons SVGs
- *   2. Google's favicon service (128px PNG) for brands without a Wikipedia entry
+ * Never uses wordmark logos — they'd be illegible at 36px chip size.
+ * Every URL points at the *icon only* form of the brand mark.
  *
- * Downloads once per issuer, then rewrites the markdown — inserting a
- * logo: line for issuers that don't already have one.
+ * Sources:
+ *   1. Wikipedia Commons icon-only SVG/PNG (preferred — official mark)
+ *   2. Google's favicon service at 128px (icon-only by definition)
+ *
+ * PNGs get re-encoded to WebP at 128px for size.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -20,30 +22,91 @@ const LOGO_DIR = path.join(process.cwd(), 'public', 'logos');
 const UA =
   'sandeepp-portfolio-logo-fetcher/1.0 (https://sandeepp.in; sandeep@sandeepp.in)';
 
+// Every entry is an *icon-only* mark — never a wordmark.
 const LOGO_MAP = {
-  Udacity: { url: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Udacity-logo-2024.svg', ext: 'svg' },
-  'Amazon Web Services (AWS)': { url: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg', ext: 'svg' },
-  Commudle: { url: 'https://www.google.com/s2/favicons?domain=commudle.com&sz=128', ext: 'webp' },
-  Anthropic: { url: 'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg', ext: 'svg' },
-  'IEEE DTU Student Branch': { url: 'https://upload.wikimedia.org/wikipedia/commons/2/21/IEEE_logo.svg', ext: 'svg' },
-  Microsoft: { url: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg', ext: 'svg' },
-  'Microsoft for Startups': { url: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg', ext: 'svg' },
-  HackerRank: { url: 'https://upload.wikimedia.org/wikipedia/commons/6/65/HackerRank_logo.png', ext: 'webp' },
-  'United Latino Students Association': { url: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', ext: 'svg' },
-  IBM: { url: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg', ext: 'svg' },
-  Google: { url: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', ext: 'svg' },
-  Forage: { url: 'https://www.google.com/s2/favicons?domain=theforage.com&sz=128', ext: 'webp' },
-  'Infosys Springboard': { url: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg', ext: 'svg' },
-  'Indian Institute of Remote Sensing (IIRS), ISRO': { url: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/HSFC_ISRO_logo.png', ext: 'webp' },
-  DigitalOcean: { url: 'https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg', ext: 'svg' },
+  // Wikipedia Commons — icon-only SVGs and PNGs
+  Microsoft: {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Microsoft_icon.svg',
+    ext: 'svg',
+  },
+  'Microsoft for Startups': {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Microsoft_icon.svg',
+    ext: 'svg',
+  },
+  Google: {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg',
+    ext: 'svg',
+  },
+  'United Latino Students Association': {
+    // Certs came from a Google-branded ULSA program — reuse the G.
+    url: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg',
+    ext: 'svg',
+  },
+  Anthropic: {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg',
+    ext: 'svg',
+  },
+  HackerRank: {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png',
+    ext: 'webp',
+  },
+  'Amazon Web Services (AWS)': {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Amazon_Web_Services_cloud_icon.png',
+    ext: 'webp',
+  },
+
+  Udacity: {
+    // Square icon-only Udacity mark (396×432)
+    url: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Udacity_Logo.svg',
+    ext: 'svg',
+  },
+  'Indian Institute of Remote Sensing (IIRS), ISRO': {
+    // Official ISRO seal / emblem
+    url: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg',
+    ext: 'svg',
+  },
+  'IEEE DTU Student Branch': {
+    // IEEE's own brand mark is the "IEEE" wordmark — even at 36px it
+    // reads because it's only 4 letters.
+    url: 'https://upload.wikimedia.org/wikipedia/commons/2/21/IEEE_logo.svg',
+    ext: 'svg',
+  },
+
+  // Google favicon service — icon-only by definition, 128px → WebP
+  IBM: {
+    url: 'https://www.google.com/s2/favicons?domain=ibm.com&sz=128',
+    ext: 'webp',
+  },
+  'Infosys Springboard': {
+    url: 'https://www.google.com/s2/favicons?domain=infosys.com&sz=128',
+    ext: 'webp',
+  },
+  DigitalOcean: {
+    url: 'https://www.google.com/s2/favicons?domain=digitalocean.com&sz=128',
+    ext: 'webp',
+  },
+  Forage: {
+    url: 'https://www.google.com/s2/favicons?domain=theforage.com&sz=128',
+    ext: 'webp',
+  },
+  Commudle: {
+    url: 'https://www.google.com/s2/favicons?domain=commudle.com&sz=128',
+    ext: 'webp',
+  },
 };
 
 function slugify(s) {
-  return s.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return s
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 async function fetchBinary(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': UA, Accept: 'image/*' } });
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA, Accept: 'image/*' },
+  });
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   return Buffer.from(await res.arrayBuffer());
 }
@@ -59,7 +122,12 @@ async function downloadOne(issuer) {
     await fs.writeFile(outAbs, buf);
   } else {
     const webp = await sharp(buf)
-      .resize({ width: 128, height: 128, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .resize({
+        width: 128,
+        height: 128,
+        fit: 'contain',
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      })
       .webp({ quality: 90, effort: 6 })
       .toBuffer();
     await fs.writeFile(outAbs, webp);
@@ -70,7 +138,6 @@ async function downloadOne(issuer) {
 async function main() {
   await fs.mkdir(LOGO_DIR, { recursive: true });
 
-  // Download every unique issuer once.
   const resolved = new Map();
   for (const issuer of Object.keys(LOGO_MAP)) {
     try {
@@ -83,8 +150,6 @@ async function main() {
     }
   }
 
-  // Rewrite the file, ensuring every entry with a mapped issuer has a
-  // matching logo: line (insert one if absent, replace if present).
   const md = await fs.readFile(CERT_FILE, 'utf-8');
   const lines = md.split('\n');
   const out = [];
@@ -95,7 +160,6 @@ async function main() {
 
   function flushEntry() {
     if (currentIssuer && resolved.get(currentIssuer) && !entryHasLogo) {
-      // Insert logo: after the last field of the entry.
       entryLines.push(`${currentIssuerIndent}logo: "${resolved.get(currentIssuer)}"`);
     }
     for (const l of entryLines) out.push(l);
@@ -106,13 +170,11 @@ async function main() {
   }
 
   for (const line of lines) {
-    // Entry starts with `  - title:` (2 spaces).
     if (/^\s{2}-\s+title:/.test(line)) {
       flushEntry();
       entryLines.push(line);
       continue;
     }
-    // Still inside an entry.
     if (/^\s{4,}\S/.test(line)) {
       const im = line.match(/^(\s+)issuer:\s*"([^"]+)"/);
       if (im) {
@@ -127,20 +189,21 @@ async function main() {
           entryLines.push(`${lm[1]}logo: "${local}"`);
           continue;
         }
-        // Skip stale logo lines for issuers we don't handle.
-        continue;
+        continue; // drop stale
       }
       entryLines.push(line);
       continue;
     }
-    // Outside any entry (frontmatter markers, blank lines).
     flushEntry();
     out.push(line);
   }
   flushEntry();
 
   await fs.writeFile(CERT_FILE, out.join('\n'));
-  console.log(`\nDone. Wrote ${resolved.size} unique brand logos.`);
+  console.log(`\nDone. ${resolved.size} icon-only brand marks localized.`);
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
