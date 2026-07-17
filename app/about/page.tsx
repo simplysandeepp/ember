@@ -232,18 +232,18 @@ export default function AboutPage() {
           <div className="space-y-5">
             {certifications.map((cert) => (
               <div key={cert.title} className="flex gap-4">
-                <div className="flex-shrink-0 w-9 h-9 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center">
+                <div className="flex-shrink-0 w-9 h-9 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-neutral-100">
                   {cert.logo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={cert.logo}
-                      alt={cert.issuer}
-                      className="w-full h-full object-contain"
+                      alt={`${cert.issuer} logo`}
+                      className="w-6 h-6 object-contain"
                       loading="lazy"
                       decoding="async"
                     />
                   ) : (
-                    <span className="text-xs font-semibold text-neutral-400 dark:text-neutral-500">
+                    <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
                       {cert.issuer.charAt(0)}
                     </span>
                   )}
