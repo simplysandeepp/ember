@@ -122,30 +122,53 @@ export default function BlogPostPage({ params }: Props) {
           ← Writing
         </Link>
 
-        {/* Header */}
-        <div className="mt-8">
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 leading-snug">
-            {title}
-          </h1>
-          <p className="mt-2 text-base text-neutral-500">{description}</p>
-          <div className="flex items-center gap-4 mt-3">
-            <time className="text-xs text-neutral-400 dark:text-neutral-500">{formatDate(date)}</time>
-            <span className="text-xs text-neutral-400 dark:text-neutral-500">·</span>
-            <span className="text-xs text-neutral-400 dark:text-neutral-500">{readingTime} min read</span>
-            {tags && tags.length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        {/* Header — <article> lets Google identify the main content block. */}
+        <article className="mt-8">
+          <header>
+            <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 leading-snug">
+              {title}
+            </h1>
+            <p className="mt-2 text-base text-neutral-500">{description}</p>
+            <div className="flex items-center gap-4 mt-3 flex-wrap">
+              <p
+                className="text-xs text-neutral-500 dark:text-neutral-400"
+                itemScope
+                itemType="https://schema.org/Person"
+              >
+                By{' '}
+                <Link
+                  href="/about"
+                  className="underline-link"
+                  rel="author"
+                  itemProp="url"
+                >
+                  <span itemProp="name">Sandeep Prajapati</span>
+                </Link>
+              </p>
+              <span aria-hidden className="text-xs text-neutral-300 dark:text-neutral-600">·</span>
+              <time
+                className="text-xs text-neutral-400 dark:text-neutral-500"
+                dateTime={date}
+              >
+                {formatDate(date)}
+              </time>
+              <span aria-hidden className="text-xs text-neutral-300 dark:text-neutral-600">·</span>
+              <span className="text-xs text-neutral-400 dark:text-neutral-500">{readingTime} min read</span>
+              {tags && tags.length > 0 && (
+                <div className="flex flex-wrap gap-1.5">
+                  {tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </header>
+        </article>
 
         {/* Table of contents (long posts only) */}
         <TableOfContents headings={headings} />
@@ -155,6 +178,34 @@ export default function BlogPostPage({ params }: Props) {
 
         {/* Content */}
         <MDXContent source={post.content} />
+
+        {/* Author bio — classic E-E-A-T signal. Every post ends with an
+            explicit "who wrote this" byline linked to /about. */}
+        <aside className="mt-14 pt-8 border-t border-neutral-100 dark:border-neutral-800">
+          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-3">
+            About the author
+          </p>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            <Link href="/about" className="font-medium text-neutral-900 dark:text-neutral-100 underline-link">
+              Sandeep Prajapati
+            </Link>{' '}
+            is an AI Engineer &amp; Full-Stack Developer in New Delhi,
+            building production RAG pipelines and AI agents. He&apos;s
+            currently an AI Software Developer Intern at{' '}
+            <a href="https://drcode.ai" target="_blank" rel="noopener noreferrer" className="underline-link">
+              DrCode
+            </a>
+            . More at{' '}
+            <Link href="/projects" className="underline-link">
+              /projects
+            </Link>{' '}
+            or{' '}
+            <Link href="/about" className="underline-link">
+              /about
+            </Link>
+            .
+          </p>
+        </aside>
 
         {/* Prev / next */}
         {(newer || older) && (
