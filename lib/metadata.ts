@@ -205,6 +205,68 @@ export const websiteJsonLd = {
   publisher: { '@id': `${siteUrl}/#person` },
 };
 
+/**
+ * FAQPage schema tuned for the "who is Sandeep Prajapati" / "what does
+ * Sandeep Prajapati do" name searches. Every answer restates the full
+ * name so Google's entity extractor keeps mapping the query to this
+ * person.
+ */
+export const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${siteUrl}/#faq`,
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Who is Sandeep Prajapati?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sandeep Prajapati is an AI Engineer & Full-Stack Developer based in New Delhi, India. He currently works as an AI Software Developer Intern at DrCode, where he builds production AI features including RAG pipelines, AI agents, and full-stack applications with Next.js and Python.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does Sandeep Prajapati do?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sandeep Prajapati builds intelligent systems — retrieval-augmented generation (RAG) pipelines, LLM-powered agents with LangGraph and CrewAI, and the full-stack applications that ship them. His work combines Python/FastAPI backends with Next.js and TypeScript on the frontend.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where is Sandeep Prajapati based?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sandeep Prajapati is based in New Delhi, India. He is currently a B.Tech Computer Science student at Galgotias University, Greater Noida, and works hybrid at DrCode.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can I contact Sandeep Prajapati?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You can reach Sandeep Prajapati through the contact form at sandeepp.in/contact, on LinkedIn at linkedin.com/in/simplysandeepp, or on GitHub at github.com/simplysandeepp.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What technologies does Sandeep Prajapati work with?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sandeep Prajapati works with Python, FastAPI, TypeScript, Next.js, React, and Node.js. On the AI side he uses LangGraph, LangChain, CrewAI, Pydantic AI, vector databases, and the OpenAI, Anthropic, and Groq APIs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where can I see Sandeep Prajapati’s projects and resume?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sandeep Prajapati’s projects live at sandeepp.in/projects and the full HTML resume is at sandeepp.in/resume. The site also links to his GitHub, LinkedIn, and LeetCode profiles.',
+      },
+    },
+  ],
+};
+
 /** BreadcrumbList builder for detail pages. */
 export function breadcrumbJsonLd(
   items: { name: string; path: string }[]
