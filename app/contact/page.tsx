@@ -1,13 +1,42 @@
-import { buildMetadata, siteConfig } from '@/lib/metadata';
+import {
+  buildMetadata,
+  siteConfig,
+  breadcrumbJsonLd,
+} from '@/lib/metadata';
 import type { Metadata } from 'next';
 import ContactForm from './contact-form';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Contact',
   description:
-    'Get in touch with Sandeep Prajapati — AI Engineer & Full-Stack Developer.',
+    'Get in touch with Sandeep Prajapati — AI Engineer & Full-Stack Developer in New Delhi. Available on GitHub, LinkedIn, LeetCode, X, Instagram, and via a direct contact form.',
   path: '/contact',
+  keywords: [
+    'Sandeep Prajapati contact',
+    'Sandeep Prajapati email',
+    'Sandeep Prajapati LinkedIn',
+    'Sandeep Prajapati GitHub',
+    'contact AI engineer New Delhi',
+    'hire Sandeep Prajapati',
+  ],
 });
+
+const contactJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `${siteConfig.url}/contact#page`,
+  url: `${siteConfig.url}/contact`,
+  name: 'Contact Sandeep Prajapati',
+  description:
+    'Contact Sandeep Prajapati, AI Engineer & Full-Stack Developer in New Delhi.',
+  mainEntity: { '@id': `${siteConfig.url}/#person` },
+  isPartOf: { '@id': `${siteConfig.url}/#website` },
+};
+
+const contactBreadcrumb = breadcrumbJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Contact', path: '/contact' },
+]);
 
 const socials = [
   {
@@ -55,12 +84,20 @@ const socials = [
 export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactBreadcrumb) }}
+      />
       <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
-        Contact
+        Contact Sandeep Prajapati
       </h1>
       <p className="mt-2 text-sm text-neutral-500 leading-relaxed max-w-sm">
         Open to AI engineering roles, interesting projects, and good
-        conversations.
+        conversations. Based in New Delhi, India.
       </p>
 
       {/* Socials */}
