@@ -38,7 +38,7 @@ export default function HomePage() {
               Sandeep Prajapati
             </h1>
             <p className="text-sm text-neutral-500 mt-0.5">
-              AI Engineer &amp; Full-Stack Developer
+              AI Software Engineer
             </p>
             <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-3">
               Exploring what&apos;s next, one stack at a time
