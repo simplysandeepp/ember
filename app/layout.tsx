@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Nav from '@/components/nav';
 import Footer from '@/components/footer';
@@ -75,6 +75,21 @@ export const metadata: Metadata = {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false,
+  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
+  colorScheme: 'light dark',
 };
 
 export default function RootLayout({
@@ -83,6 +98,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        {/* Perf hints — warm up sockets to origins we hit on nearly every visit. */}
+        <link rel="preconnect" href="https://vitals.vercel-insights.com" crossOrigin="" />
+        <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://github-readme-stats.vercel.app" />
+        <link rel="dns-prefetch" href="https://leetcard.jacoblin.cool" />
+        <link rel="dns-prefetch" href="https://media.licdn.com" />
+        <link rel="dns-prefetch" href="https://giscus.app" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
