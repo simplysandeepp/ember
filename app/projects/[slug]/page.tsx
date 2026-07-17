@@ -52,19 +52,30 @@ export default function ProjectPage({ params }: Props) {
   const { title, description, date, tags, github, live, demo, image } =
     project.frontmatter;
 
+  const projectUrl = `${siteConfig.url}/projects/${params.slug}`;
+  const ogImage = `${projectUrl}/opengraph-image`;
+  const heroImage = image ? `${siteConfig.url}${image}` : ogImage;
+  const author = {
+    '@type': 'Person',
+    '@id': `${siteConfig.url}/#person`,
+    name: 'Sandeep Prajapati',
+    url: siteConfig.url,
+  };
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareSourceCode',
     name: title,
     description,
-    author: {
-      '@type': 'Person',
-      name: 'Sandeep Prajapati',
-      url: siteConfig.url,
-    },
-    url: `${siteConfig.url}/projects/${params.slug}`,
+    author,
+    creator: author,
+    dateCreated: date,
+    url: projectUrl,
+    image: [heroImage, ogImage],
     ...(github ? { codeRepository: github } : {}),
+    programmingLanguage: tags,
     keywords: tags?.join(', '),
+    isPartOf: { '@id': `${siteConfig.url}/#website` },
   };
 
   const breadcrumb = breadcrumbJsonLd([

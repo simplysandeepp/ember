@@ -59,6 +59,15 @@ export default function BlogPostPage({ params }: Props) {
   const newer = idx > 0 ? allPosts[idx - 1] : null;
   const older = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
 
+  const postUrl = `${siteConfig.url}/blog/${params.slug}`;
+  const ogImage = `${postUrl}/opengraph-image`;
+  const author = {
+    '@type': 'Person',
+    '@id': `${siteConfig.url}/#person`,
+    name: 'Sandeep Prajapati',
+    url: siteConfig.url,
+  };
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -66,23 +75,25 @@ export default function BlogPostPage({ params }: Props) {
     description,
     datePublished: date,
     dateModified: date,
-    author: {
-      '@type': 'Person',
-      name: 'Sandeep Prajapati',
-      url: siteConfig.url,
-    },
-    publisher: {
-      '@type': 'Person',
-      name: 'Sandeep Prajapati',
-      url: siteConfig.url,
-    },
+    author,
+    creator: author,
+    publisher: author,
+    wordCount: words,
+    timeRequired: `PT${readingTime}M`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${siteConfig.url}/blog/${params.slug}`,
+      '@id': postUrl,
     },
-    image: `${siteConfig.url}/opengraph-image`,
-    url: `${siteConfig.url}/blog/${params.slug}`,
+    image: {
+      '@type': 'ImageObject',
+      url: ogImage,
+      width: 1200,
+      height: 630,
+    },
+    url: postUrl,
     keywords: tags?.join(', '),
+    inLanguage: 'en',
+    isPartOf: { '@id': `${siteConfig.url}/#website` },
   };
 
   const breadcrumb = breadcrumbJsonLd([
