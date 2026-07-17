@@ -4,6 +4,7 @@ import Nav from '@/components/nav';
 import Footer from '@/components/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import CommandPalette from '@/components/command-palette';
 import {
   siteConfig,
@@ -108,6 +109,7 @@ export default function RootLayout({
           <CommandPalette />
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
