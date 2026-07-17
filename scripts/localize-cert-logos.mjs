@@ -1,131 +1,146 @@
 #!/usr/bin/env node
 /**
  * Rewrites content/certifications.md so every `logo:` points at a
- * locally-hosted asset. LinkedIn's CDN (media.licdn.com) rejects
- * third-party requests with 403, so the previous remote URLs never
- * rendered from sandeepp.in.
+ * locally-hosted real brand logo. LinkedIn's CDN blocks hotlinks
+ * (HTTP 403 to third-party origins).
  *
- * Strategy per issuer:
- *   1. If we already have a local file at public/logos/<slug>.{svg,webp,png},
- *      point at it (idempotent).
- *   2. Else try Simple Icons CDN and save as SVG.
- *   3. Else clear the logo field so the About page falls back to the
- *      styled initial-letter placeholder (which always renders).
+ * Sources — official multi-color brand marks:
+ *   1. Curated Wikipedia Commons SVGs
+ *   2. Google's favicon service (128px PNG) for brands without a Wikipedia entry
  *
- * Only official-brand SVGs come from Simple Icons — no LinkedIn or
- * private-CDN references remain in the file.
+ * Downloads once per issuer, then rewrites the markdown — inserting a
+ * logo: line for issuers that don't already have one.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import sharp from 'sharp';
 
 const CERT_FILE = path.join(process.cwd(), 'content', 'certifications.md');
 const LOGO_DIR = path.join(process.cwd(), 'public', 'logos');
+const UA =
+  'sandeepp-portfolio-logo-fetcher/1.0 (https://sandeepp.in; sandeep@sandeepp.in)';
 
-// Issuer → Simple Icons slug (or null for "no logo, use initial").
-const SIMPLE_ICONS = {
-  Udacity: 'udacity',
-  'Amazon Web Services (AWS)': null, // Simple Icons dropped Amazon
-  Commudle: null,
-  Anthropic: 'anthropic',
-  'IEEE DTU Student Branch': 'ieee',
-  Microsoft: null, // trademark restriction
-  'Microsoft for Startups': null,
-  HackerRank: 'hackerrank',
-  'United Latino Students Association': 'google',
-  IBM: null,
-  Google: 'google',
-  Forage: null,
-  'Infosys Springboard': 'infosys',
-  'Indian Institute of Remote Sensing (IIRS), ISRO': 'isro',
-  DigitalOcean: 'digitalocean',
+const LOGO_MAP = {
+  Udacity: { url: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Udacity-logo-2024.svg', ext: 'svg' },
+  'Amazon Web Services (AWS)': { url: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg', ext: 'svg' },
+  Commudle: { url: 'https://www.google.com/s2/favicons?domain=commudle.com&sz=128', ext: 'webp' },
+  Anthropic: { url: 'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg', ext: 'svg' },
+  'IEEE DTU Student Branch': { url: 'https://upload.wikimedia.org/wikipedia/commons/2/21/IEEE_logo.svg', ext: 'svg' },
+  Microsoft: { url: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg', ext: 'svg' },
+  'Microsoft for Startups': { url: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg', ext: 'svg' },
+  HackerRank: { url: 'https://upload.wikimedia.org/wikipedia/commons/6/65/HackerRank_logo.png', ext: 'webp' },
+  'United Latino Students Association': { url: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', ext: 'svg' },
+  IBM: { url: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg', ext: 'svg' },
+  Google: { url: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', ext: 'svg' },
+  Forage: { url: 'https://www.google.com/s2/favicons?domain=theforage.com&sz=128', ext: 'webp' },
+  'Infosys Springboard': { url: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg', ext: 'svg' },
+  'Indian Institute of Remote Sensing (IIRS), ISRO': { url: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/HSFC_ISRO_logo.png', ext: 'webp' },
+  DigitalOcean: { url: 'https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg', ext: 'svg' },
 };
 
 function slugify(s) {
-  return s
-    .toLowerCase()
-    .replace(/&/g, ' and ')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
+  return s.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-async function fileExists(p) {
-  try {
-    await fs.access(p);
-    return true;
-  } catch {
-    return false;
-  }
+async function fetchBinary(url) {
+  const res = await fetch(url, { headers: { 'User-Agent': UA, Accept: 'image/*' } });
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+  return Buffer.from(await res.arrayBuffer());
 }
 
-async function fetchSimpleIcon(slug) {
-  const res = await fetch(`https://cdn.simpleicons.org/${slug}`, {
-    headers: { Accept: 'image/svg+xml' },
-  });
-  if (!res.ok) return null;
-  return await res.text();
-}
-
-async function resolveLocal(issuer) {
+async function downloadOne(issuer) {
+  const entry = LOGO_MAP[issuer];
+  if (!entry) return '';
   const slug = slugify(issuer);
-  // 1. Already-downloaded local files from the previous attempt.
-  for (const ext of ['svg', 'webp', 'png']) {
-    if (await fileExists(path.join(LOGO_DIR, `${slug}.${ext}`))) {
-      return `/logos/${slug}.${ext}`;
-    }
+  const outAbs = path.join(LOGO_DIR, `${slug}.${entry.ext}`);
+  const outRel = `/logos/${slug}.${entry.ext}`;
+  const buf = await fetchBinary(entry.url);
+  if (entry.ext === 'svg') {
+    await fs.writeFile(outAbs, buf);
+  } else {
+    const webp = await sharp(buf)
+      .resize({ width: 128, height: 128, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .webp({ quality: 90, effort: 6 })
+      .toBuffer();
+    await fs.writeFile(outAbs, webp);
   }
-  // 2. Simple Icons.
-  const iconSlug = SIMPLE_ICONS[issuer];
-  if (iconSlug) {
-    const svg = await fetchSimpleIcon(iconSlug);
-    if (svg) {
-      const outAbs = path.join(LOGO_DIR, `${slug}.svg`);
-      await fs.writeFile(outAbs, svg);
-      return `/logos/${slug}.svg`;
-    }
-  }
-  // 3. No logo — fallback initial will render.
-  return '';
+  return outRel;
 }
 
 async function main() {
   await fs.mkdir(LOGO_DIR, { recursive: true });
-  const md = await fs.readFile(CERT_FILE, 'utf-8');
-  const lines = md.split('\n');
 
-  let pendingIssuer = null;
-  let localized = 0;
-  let cleared = 0;
-
-  for (let i = 0; i < lines.length; i++) {
-    const issuerMatch = lines[i].match(/^\s+issuer:\s*"([^"]+)"/);
-    if (issuerMatch) {
-      pendingIssuer = issuerMatch[1];
-      continue;
-    }
-    const logoMatch = lines[i].match(/^(\s+logo:\s*)"([^"]+)"/);
-    if (!logoMatch) continue;
-    const url = logoMatch[2];
-    if (url.startsWith('/logos/')) continue; // already local
-
-    const resolved = await resolveLocal(pendingIssuer);
-    if (resolved) {
-      lines[i] = `${logoMatch[1]}"${resolved}"`;
-      localized++;
-      console.log(`✓ ${pendingIssuer} → ${resolved}`);
-    } else {
-      // Drop the logo line entirely so the About page fallback kicks in.
-      lines.splice(i, 1);
-      i--;
-      cleared++;
-      console.log(`− ${pendingIssuer} → no logo (initial fallback)`);
+  // Download every unique issuer once.
+  const resolved = new Map();
+  for (const issuer of Object.keys(LOGO_MAP)) {
+    try {
+      const p = await downloadOne(issuer);
+      resolved.set(issuer, p);
+      if (p) console.log(`✓ ${issuer} → ${p}`);
+    } catch (e) {
+      console.warn(`✗ ${issuer}: ${e.message}`);
+      resolved.set(issuer, '');
     }
   }
 
-  await fs.writeFile(CERT_FILE, lines.join('\n'));
-  console.log(`\nDone. ${localized} logos localized, ${cleared} cleared.`);
+  // Rewrite the file, ensuring every entry with a mapped issuer has a
+  // matching logo: line (insert one if absent, replace if present).
+  const md = await fs.readFile(CERT_FILE, 'utf-8');
+  const lines = md.split('\n');
+  const out = [];
+  let currentIssuer = null;
+  let currentIssuerIndent = '';
+  let entryHasLogo = false;
+  let entryLines = [];
+
+  function flushEntry() {
+    if (currentIssuer && resolved.get(currentIssuer) && !entryHasLogo) {
+      // Insert logo: after the last field of the entry.
+      entryLines.push(`${currentIssuerIndent}logo: "${resolved.get(currentIssuer)}"`);
+    }
+    for (const l of entryLines) out.push(l);
+    entryLines = [];
+    currentIssuer = null;
+    currentIssuerIndent = '';
+    entryHasLogo = false;
+  }
+
+  for (const line of lines) {
+    // Entry starts with `  - title:` (2 spaces).
+    if (/^\s{2}-\s+title:/.test(line)) {
+      flushEntry();
+      entryLines.push(line);
+      continue;
+    }
+    // Still inside an entry.
+    if (/^\s{4,}\S/.test(line)) {
+      const im = line.match(/^(\s+)issuer:\s*"([^"]+)"/);
+      if (im) {
+        currentIssuerIndent = im[1];
+        currentIssuer = im[2];
+      }
+      const lm = line.match(/^(\s+)logo:\s*"([^"]+)"/);
+      if (lm) {
+        entryHasLogo = true;
+        const local = resolved.get(currentIssuer);
+        if (local) {
+          entryLines.push(`${lm[1]}logo: "${local}"`);
+          continue;
+        }
+        // Skip stale logo lines for issuers we don't handle.
+        continue;
+      }
+      entryLines.push(line);
+      continue;
+    }
+    // Outside any entry (frontmatter markers, blank lines).
+    flushEntry();
+    out.push(line);
+  }
+  flushEntry();
+
+  await fs.writeFile(CERT_FILE, out.join('\n'));
+  console.log(`\nDone. Wrote ${resolved.size} unique brand logos.`);
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+main().catch((e) => { console.error(e); process.exit(1); });
