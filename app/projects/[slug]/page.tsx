@@ -104,15 +104,32 @@ export default function ProjectPage({ params }: Props) {
           ← Projects
         </Link>
 
-        {/* Header */}
-        <div className="mt-8">
+        {/* Header — <article> so Google identifies the main content block. */}
+        <article className="mt-8">
+          <header>
           <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
             {title}
           </h1>
           <p className="mt-2 text-base text-neutral-500">{description}</p>
 
+          <p
+            className="mt-3 text-xs text-neutral-500 dark:text-neutral-400"
+            itemScope
+            itemType="https://schema.org/Person"
+          >
+            Built by{' '}
+            <Link
+              href="/about"
+              className="underline-link"
+              rel="author"
+              itemProp="url"
+            >
+              <span itemProp="name">Sandeep Prajapati</span>
+            </Link>
+          </p>
+
           <div className="flex flex-wrap items-center gap-3 mt-4">
-            <time className="text-xs text-neutral-400 dark:text-neutral-500">{formatDate(date)}</time>
+            <time className="text-xs text-neutral-400 dark:text-neutral-500" dateTime={date}>{formatDate(date)}</time>
             {github && (
               <a
                 href={github}
@@ -157,7 +174,8 @@ export default function ProjectPage({ params }: Props) {
               ))}
             </div>
           )}
-        </div>
+          </header>
+        </article>
 
         {/* Hero image */}
         {image && (
@@ -179,6 +197,31 @@ export default function ProjectPage({ params }: Props) {
 
         {/* Content */}
         <MDXContent source={project.content} />
+
+        {/* About the author — E-E-A-T signal mirroring the blog pattern. */}
+        <aside className="mt-14 pt-8 border-t border-neutral-100 dark:border-neutral-800">
+          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-3">
+            About the builder
+          </p>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            <Link
+              href="/about"
+              className="font-medium text-neutral-900 dark:text-neutral-100 underline-link"
+            >
+              Sandeep Prajapati
+            </Link>{' '}
+            is an AI Engineer &amp; Full-Stack Developer in New Delhi
+            building production RAG pipelines and AI agents. See{' '}
+            <Link href="/projects" className="underline-link">
+              more projects
+            </Link>{' '}
+            or read the{' '}
+            <Link href="/blog" className="underline-link">
+              dev-log blog
+            </Link>
+            .
+          </p>
+        </aside>
       </div>
     </>
   );
