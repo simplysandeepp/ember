@@ -11,7 +11,6 @@ import {
   siteKeywords,
   personJsonLd,
   websiteJsonLd,
-  faqJsonLd,
 } from '@/lib/metadata';
 
 const defaultTitle =
@@ -112,10 +111,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       </head>
       <body
