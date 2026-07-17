@@ -84,7 +84,7 @@ export default function ProjectPage({ params }: Props) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareSourceCode',
+    '@type': live ? ['SoftwareSourceCode', 'SoftwareApplication'] : 'SoftwareSourceCode',
     name: title,
     description,
     author,
@@ -93,6 +93,21 @@ export default function ProjectPage({ params }: Props) {
     url: projectUrl,
     image: [heroImage, ogImage],
     ...(github ? { codeRepository: github } : {}),
+    ...(live
+      ? {
+          // SoftwareApplication fields — makes the project eligible for
+          // Google's app-style rich cards when there's a live URL to try.
+          applicationCategory: 'DeveloperApplication',
+          operatingSystem: 'Web',
+          browserRequirements: 'Requires a modern web browser with JavaScript.',
+          installUrl: live,
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+          },
+        }
+      : {}),
     programmingLanguage: tags,
     keywords: tags?.join(', '),
     isPartOf: { '@id': `${siteConfig.url}/#website` },
