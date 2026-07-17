@@ -59,6 +59,24 @@ export default function BlogPostPage({ params }: Props) {
   const newer = idx > 0 ? allPosts[idx - 1] : null;
   const older = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
 
+  // Related posts — top 3 other posts scored by tag overlap, then recency.
+  const postTagSet = new Set(post.frontmatter.tags ?? []);
+  const relatedPosts = allPosts
+    .filter((p) => p.slug !== params.slug)
+    .map((p) => ({
+      p,
+      score: (p.frontmatter.tags ?? []).filter((t) => postTagSet.has(t)).length,
+    }))
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return (
+        new Date(b.p.frontmatter.date).getTime() -
+        new Date(a.p.frontmatter.date).getTime()
+      );
+    })
+    .slice(0, 3)
+    .map((x) => x.p);
+
   const postUrl = `${siteConfig.url}/blog/${params.slug}`;
   const ogImage = `${postUrl}/opengraph-image`;
   const author = {
@@ -178,6 +196,36 @@ export default function BlogPostPage({ params }: Props) {
 
         {/* Content */}
         <MDXContent source={post.content} />
+
+        {/* Related posts — internal-linking + engagement signal. */}
+        {relatedPosts.length > 0 && (
+          <section className="mt-14 pt-8 border-t border-neutral-100 dark:border-neutral-800">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-4">
+              Related posts
+            </h2>
+            <div>
+              {relatedPosts.map((r) => (
+                <Link
+                  key={r.slug}
+                  href={`/blog/${r.slug}`}
+                  className="group flex items-start justify-between gap-6 py-3 border-b border-neutral-100 dark:border-neutral-800 last:border-0"
+                >
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors">
+                      {r.frontmatter.title}
+                    </p>
+                    <p className="mt-0.5 text-sm text-neutral-500 line-clamp-1">
+                      {r.frontmatter.description}
+                    </p>
+                  </div>
+                  <span className="text-neutral-300 dark:text-neutral-600 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5">
+                    →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Author bio — classic E-E-A-T signal. Every post ends with an
             explicit "who wrote this" byline linked to /about. */}

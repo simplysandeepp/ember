@@ -52,6 +52,26 @@ export default function ProjectPage({ params }: Props) {
   const { title, description, date, tags, github, live, demo, image } =
     project.frontmatter;
 
+  // "Related projects" — score every other project by the number of tags
+  // it shares with this one, then take the top 3. Falls back to the most
+  // recent projects when this one has no tags.
+  const projectTagSet = new Set(tags ?? []);
+  const related = getAllProjects()
+    .filter((p) => p.slug !== params.slug)
+    .map((p) => ({
+      p,
+      score: (p.frontmatter.tags ?? []).filter((t) => projectTagSet.has(t)).length,
+    }))
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return (
+        new Date(b.p.frontmatter.date).getTime() -
+        new Date(a.p.frontmatter.date).getTime()
+      );
+    })
+    .slice(0, 3)
+    .map((x) => x.p);
+
   const projectUrl = `${siteConfig.url}/projects/${params.slug}`;
   const ogImage = `${projectUrl}/opengraph-image`;
   const heroImage = image ? `${siteConfig.url}${image}` : ogImage;
@@ -197,6 +217,36 @@ export default function ProjectPage({ params }: Props) {
 
         {/* Content */}
         <MDXContent source={project.content} />
+
+        {/* Related projects — internal-linking + engagement signal. */}
+        {related.length > 0 && (
+          <section className="mt-14 pt-8 border-t border-neutral-100 dark:border-neutral-800">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-4">
+              Related projects
+            </h2>
+            <div>
+              {related.map((r) => (
+                <Link
+                  key={r.slug}
+                  href={`/projects/${r.slug}`}
+                  className="group flex items-start justify-between gap-6 py-3 border-b border-neutral-100 dark:border-neutral-800 last:border-0"
+                >
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors">
+                      {r.frontmatter.title}
+                    </p>
+                    <p className="mt-0.5 text-sm text-neutral-500 line-clamp-1">
+                      {r.frontmatter.description}
+                    </p>
+                  </div>
+                  <span className="text-neutral-300 dark:text-neutral-600 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5">
+                    →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* About the author — E-E-A-T signal mirroring the blog pattern. */}
         <aside className="mt-14 pt-8 border-t border-neutral-100 dark:border-neutral-800">
