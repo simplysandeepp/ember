@@ -113,12 +113,12 @@ export default function AboutPage() {
               Contact
             </a>
             <a
-              href={siteConfig.resumeUrl}
+              href="https://sandeepp.in/resume"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-auto text-xs font-medium text-neutral-900 dark:text-neutral-100 underline underline-offset-2 hover:text-neutral-500 dark:hover:text-neutral-400 transition-colors duration-200 flex-shrink-0"
             >
-              Download CV
+              Click here to view full resume →
             </a>
           </div>
         </div>
