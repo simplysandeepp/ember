@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
+import ImageLightbox from '@/components/image-lightbox';
 import { getAllProjects, getProjectBySlug, formatDate } from '@/lib/content';
 import MDXContent from '@/components/mdx-content';
 import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
@@ -215,7 +215,7 @@ export default function ProjectPage({ params }: Props) {
         {/* Hero image */}
         {image && (
           <div className="mt-8 rounded-xl overflow-hidden border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900">
-            <Image
+            <ImageLightbox
               src={image}
               alt={`${title} — ${description} — project by Sandeep Prajapati`}
               width={1600}
