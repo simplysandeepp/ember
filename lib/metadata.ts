@@ -165,8 +165,10 @@ export const personJsonLd = {
     ],
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Plot No. 2, Sector 17-A, Yamuna Expressway',
       addressLocality: 'Greater Noida',
       addressRegion: 'Uttar Pradesh',
+      postalCode: '203201',
       addressCountry: 'IN',
     },
   },
