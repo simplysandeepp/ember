@@ -147,12 +147,22 @@ export const personJsonLd = {
   description: siteConfig.description,
   worksFor: {
     '@type': 'Organization',
+    '@id': 'https://drcode.ai/#organization',
     name: 'DrCode',
     url: 'https://drcode.ai',
+    sameAs: [
+      'https://www.linkedin.com/company/drcode-ai',
+      'https://github.com/drcode-ai',
+    ],
   },
   alumniOf: {
     '@type': 'CollegeOrUniversity',
     name: 'Galgotias University',
+    url: 'https://www.galgotiasuniversity.edu.in/',
+    sameAs: [
+      'https://en.wikipedia.org/wiki/Galgotias_University',
+      'https://www.galgotiasuniversity.edu.in/',
+    ],
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Greater Noida',
@@ -160,6 +170,10 @@ export const personJsonLd = {
       addressCountry: 'IN',
     },
   },
+  knowsLanguage: [
+    { '@type': 'Language', name: 'English', alternateName: 'en' },
+  ],
+  owns: { '@id': `${siteUrl}/#website` },
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'New Delhi',
@@ -234,6 +248,25 @@ export const personJsonLd = {
   ],
 };
 
+/**
+ * Person schema with `mentions` pointing at top public projects — creates a
+ * one-way entity graph from Sandeep → his named works. Called on the home
+ * page after loading project data. Prefer this over the plain constant when
+ * you have project titles/slugs available.
+ */
+export function personJsonLdWith(
+  mentions: { title: string; slug: string }[]
+) {
+  return {
+    ...personJsonLd,
+    mentions: mentions.map((p) => ({
+      '@type': 'CreativeWork',
+      name: p.title,
+      url: `${siteUrl}/projects/${p.slug}`,
+    })),
+  };
+}
+
 /** WebSite structured data — enables sitelinks search box eligibility. */
 export const websiteJsonLd = {
   '@context': 'https://schema.org',
@@ -250,25 +283,40 @@ export const websiteJsonLd = {
  * ProfilePage schema for the home page — the strongest single signal to Google
  * that "sandeepp.in" is the primary web presence for the person "Sandeep
  * Prajapati". Directly wired to the Person entity via mainEntity.
+ *
+ * Accepts optional `mentions` (top projects) so the ProfilePage transitively
+ * associates named works with the Person entity — improves entity graph.
  */
-export const profilePageJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  '@id': `${siteUrl}/#profilepage`,
-  url: siteUrl,
-  name: `${siteConfig.name} — ${siteConfig.jobTitle}`,
-  description: siteConfig.description,
-  inLanguage: 'en',
-  isPartOf: { '@id': `${siteUrl}/#website` },
-  mainEntity: { '@id': `${siteUrl}/#person` },
-  about: { '@id': `${siteUrl}/#person` },
-  breadcrumb: {
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
-    ],
-  },
-};
+export function profilePageJsonLd(
+  mentions: { title: string; slug: string }[] = []
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${siteUrl}/#profilepage`,
+    url: siteUrl,
+    name: `${siteConfig.name} — ${siteConfig.jobTitle}`,
+    description: siteConfig.description,
+    inLanguage: 'en',
+    isPartOf: { '@id': `${siteUrl}/#website` },
+    mainEntity: { '@id': `${siteUrl}/#person` },
+    about: { '@id': `${siteUrl}/#person` },
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      ],
+    },
+    ...(mentions.length > 0 && {
+      mentions: mentions.map((p) => ({
+        '@type': 'CreativeWork',
+        name: p.title,
+        url: `${siteUrl}/projects/${p.slug}`,
+        creator: { '@id': `${siteUrl}/#person` },
+      })),
+    }),
+  };
+}
 
 /**
  * FAQPage schema tuned for the "who is Sandeep Prajapati" / "what does

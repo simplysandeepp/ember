@@ -30,7 +30,16 @@ export default function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            profilePageJsonLd(
+              allProjects.slice(0, 6).map((p) => ({
+                title: p.frontmatter.title,
+                slug: p.slug,
+              }))
+            )
+          ),
+        }}
       />
       <div className="max-w-2xl mx-auto px-6 py-16 relative">
         <div
