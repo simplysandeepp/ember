@@ -100,9 +100,10 @@ export default function RootLayout({
         {/* Perf hints — warm up sockets to origins we hit on nearly every visit. */}
         <link rel="preconnect" href="https://vitals.vercel-insights.com" crossOrigin="" />
         <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="" />
+        {/* media.licdn.com serves certification logos in the About page fold — preconnect for faster paint. */}
+        <link rel="preconnect" href="https://media.licdn.com" crossOrigin="" />
         <link rel="dns-prefetch" href="https://github-readme-stats.vercel.app" />
         <link rel="dns-prefetch" href="https://leetcard.jacoblin.cool" />
-        <link rel="dns-prefetch" href="https://media.licdn.com" />
         <link rel="dns-prefetch" href="https://giscus.app" />
         <script
           type="application/ld+json"
