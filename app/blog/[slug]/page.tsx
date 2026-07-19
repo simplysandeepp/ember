@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/content';
 import MDXContent from '@/components/mdx-content';
 import GiscusComments from '@/components/giscus-comments';
+import ReadingProgress from '@/components/reading-progress';
 import TableOfContents from '@/components/table-of-contents';
 import { extractHeadings } from '@/lib/toc';
 import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
@@ -130,6 +131,8 @@ export default function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
+
+      <ReadingProgress />
 
       <div className="max-w-2xl mx-auto px-6 py-16">
         {/* Back */}
