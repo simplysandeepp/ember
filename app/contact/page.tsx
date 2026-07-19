@@ -4,7 +4,9 @@ import {
   breadcrumbJsonLd,
 } from '@/lib/metadata';
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import ContactForm from './contact-form';
+import SuccessToast from './success-toast';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Contact',
@@ -126,6 +128,10 @@ export default function ContactPage() {
 
       {/* Form */}
       <ContactForm />
+
+      <Suspense fallback={null}>
+        <SuccessToast />
+      </Suspense>
     </div>
   );
 }
