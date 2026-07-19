@@ -1,5 +1,6 @@
+import { Suspense } from 'react';
 import { getAllPosts } from '@/lib/content';
-import BlogCard from '@/components/blog-card';
+import BlogSearch from '@/components/blog-search';
 import NewsletterSignup from '@/components/newsletter-signup';
 import { buildMetadata, siteConfig, breadcrumbJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
@@ -67,15 +68,9 @@ export default function BlogPage() {
           Nothing published yet — check back soon.
         </p>
       ) : (
-        <div className="mt-10">
-          {posts.map((post) => (
-            <BlogCard
-              key={post.slug}
-              slug={post.slug}
-              frontmatter={post.frontmatter}
-            />
-          ))}
-        </div>
+        <Suspense fallback={<div className="mt-10" />}>
+          <BlogSearch posts={posts} />
+        </Suspense>
       )}
 
       <NewsletterSignup />
