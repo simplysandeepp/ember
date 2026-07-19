@@ -267,7 +267,11 @@ export function personJsonLdWith(
   };
 }
 
-/** WebSite structured data — enables sitelinks search box eligibility. */
+/**
+ * WebSite structured data — enables Google sitelinks search box.
+ * The `potentialAction` needs a URL that actually returns matching content
+ * (the blog page filters posts by ?q=…), otherwise Google may ignore it.
+ */
 export const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -277,6 +281,14 @@ export const websiteJsonLd = {
   description: siteConfig.shortDescription,
   inLanguage: 'en',
   publisher: { '@id': `${siteUrl}/#person` },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 /**
