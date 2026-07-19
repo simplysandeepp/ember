@@ -97,6 +97,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        {/* Identity chain — rel=me on GitHub + LinkedIn plus rel=author lets
+            Google connect this site to Sandeep Prajapati's verified profiles. */}
+        <link rel="me" href={siteConfig.github} />
+        <link rel="me" href={siteConfig.linkedin} />
+        <link rel="author" href={`${siteConfig.url}/about`} />
+
         {/* Perf hints — warm up sockets to origins we hit on nearly every visit. */}
         <link rel="preconnect" href="https://vitals.vercel-insights.com" crossOrigin="" />
         <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="" />

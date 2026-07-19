@@ -50,7 +50,7 @@ export default function Footer() {
             <a
               href={siteConfig.github}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -m-2 p-2 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
               aria-label="GitHub"
             >
@@ -61,7 +61,7 @@ export default function Footer() {
             <a
               href={siteConfig.linkedin}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -m-2 p-2 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
               aria-label="LinkedIn"
             >
@@ -72,7 +72,7 @@ export default function Footer() {
             <a
               href={siteConfig.instagram}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -m-2 p-2 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
               aria-label="Instagram"
             >

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getAllProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
 import ProjectRow from '@/components/project-row';
 import Logo from '@/components/logo';
-import { siteConfig } from '@/lib/metadata';
+import { siteConfig, profilePageJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -28,6 +28,10 @@ export default function HomePage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
+      />
       <div className="max-w-2xl mx-auto px-6 py-16 relative">
         <div
           aria-hidden="true"

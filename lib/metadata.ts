@@ -166,7 +166,48 @@ export const personJsonLd = {
     addressRegion: 'Delhi',
     addressCountry: 'IN',
   },
+  homeLocation: {
+    '@type': 'Place',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'New Delhi',
+      addressRegion: 'Delhi',
+      addressCountry: 'IN',
+    },
+  },
   nationality: { '@type': 'Country', name: 'India' },
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'AI Engineer & Full-Stack Developer',
+    occupationLocation: {
+      '@type': 'City',
+      name: 'New Delhi',
+    },
+    skills: [
+      'RAG Pipelines',
+      'AI Agents',
+      'LangGraph',
+      'LangChain',
+      'Large Language Models',
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Python',
+      'FastAPI',
+    ].join(', '),
+  },
+  identifier: [
+    {
+      '@type': 'PropertyValue',
+      propertyID: 'GitHub',
+      value: 'simplysandeepp',
+    },
+    {
+      '@type': 'PropertyValue',
+      propertyID: 'LinkedIn',
+      value: 'simplysandeepp',
+    },
+  ],
   knowsAbout: [
     'Artificial Intelligence',
     'Machine Learning',
@@ -203,6 +244,30 @@ export const websiteJsonLd = {
   description: siteConfig.shortDescription,
   inLanguage: 'en',
   publisher: { '@id': `${siteUrl}/#person` },
+};
+
+/**
+ * ProfilePage schema for the home page — the strongest single signal to Google
+ * that "sandeepp.in" is the primary web presence for the person "Sandeep
+ * Prajapati". Directly wired to the Person entity via mainEntity.
+ */
+export const profilePageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': `${siteUrl}/#profilepage`,
+  url: siteUrl,
+  name: `${siteConfig.name} — ${siteConfig.jobTitle}`,
+  description: siteConfig.description,
+  inLanguage: 'en',
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  mainEntity: { '@id': `${siteUrl}/#person` },
+  about: { '@id': `${siteUrl}/#person` },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    ],
+  },
 };
 
 /**
