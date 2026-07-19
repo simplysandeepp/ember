@@ -58,6 +58,15 @@ export default function AboutPage() {
   const experience = getAllExperience();
   const certifications = getCertifications();
 
+  const certsByYear = certifications.reduce<
+    Record<string, typeof certifications>
+  >((acc, cert) => {
+    const year = String(new Date(cert.issued).getFullYear() || 'Undated');
+    (acc[year] ??= []).push(cert);
+    return acc;
+  }, {});
+  const certYears = Object.keys(certsByYear).sort((a, b) => Number(b) - Number(a));
+
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
       <script
@@ -229,9 +238,25 @@ export default function AboutPage() {
           <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-6">
             Certifications
           </h2>
-          <div className="space-y-5">
-            {certifications.map((cert) => (
-              <div key={cert.title} className="flex gap-4">
+          <div className="space-y-3">
+            {certYears.map((year, yearIndex) => (
+              <details
+                key={year}
+                open={yearIndex === 0}
+                className="group border-b border-neutral-100 dark:border-neutral-800 last:border-0 pb-4"
+              >
+                <summary className="flex items-center justify-between cursor-pointer list-none marker:hidden py-2 -mx-2 px-2 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-900/40 transition-colors">
+                  <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                    {year}
+                    <span className="ml-2 text-xs font-normal text-neutral-400 dark:text-neutral-500">
+                      {certsByYear[year].length} {certsByYear[year].length === 1 ? 'cert' : 'certs'}
+                    </span>
+                  </span>
+                  <span className="text-neutral-400 dark:text-neutral-500 group-open:rotate-90 transition-transform duration-200" aria-hidden="true">›</span>
+                </summary>
+                <div className="space-y-5 pt-4">
+                  {certsByYear[year].map((cert) => (
+                    <div key={cert.title} className="flex gap-4">
                 <div className="flex-shrink-0 w-9 h-9 rounded-md overflow-hidden bg-white dark:bg-neutral-100 border border-neutral-100 dark:border-neutral-800 flex items-center justify-center p-1.5">
                   {cert.logo ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -268,10 +293,10 @@ export default function AboutPage() {
                     {cert.issuer} · {cert.issued}
                   </p>
                   {cert.details && (
-                    <details className="group mt-1.5">
+                    <details className="group/details mt-1.5">
                       <summary className="text-xs text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 cursor-pointer list-none transition-colors duration-200 marker:hidden">
-                        <span className="group-open:hidden">Details +</span>
-                        <span className="hidden group-open:inline">Details −</span>
+                        <span className="group-open/details:hidden">Details +</span>
+                        <span className="hidden group-open/details:inline">Details −</span>
                       </summary>
                       <p className="mt-1.5 text-xs text-neutral-500 leading-relaxed">
                         {cert.details}
@@ -280,6 +305,9 @@ export default function AboutPage() {
                   )}
                 </div>
               </div>
+                  ))}
+                </div>
+              </details>
             ))}
           </div>
         </section>
