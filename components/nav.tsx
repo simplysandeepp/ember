@@ -88,9 +88,18 @@ export default function Nav() {
         </div>
       </nav>
 
+      {/* Mobile backdrop — tap outside to dismiss */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 top-14 z-40 bg-black/30 backdrop-blur-sm sm:hidden"
+          aria-hidden="true"
+        />
+      )}
+
       {/* Mobile menu panel */}
       {open && (
-        <div className="sm:hidden border-t border-neutral-100 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md">
+        <div className="sm:hidden relative z-50 border-t border-neutral-100 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md">
           <ul className="max-w-2xl mx-auto px-4 py-2">
             {links.map((link) => {
               const isActive = pathname.startsWith(link.href);
