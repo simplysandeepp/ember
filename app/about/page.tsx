@@ -28,8 +28,21 @@ export const metadata: Metadata = buildMetadata({
 const profileJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
+  '@id': `${siteConfig.url}/about#profile`,
   url: `${siteConfig.url}/about`,
+  name: 'About Sandeep Prajapati',
+  description:
+    'About Sandeep Prajapati — AI Engineer & Full-Stack Developer in New Delhi. Background, experience at DrCode, and skills across RAG, LangGraph, Next.js, and Python.',
+  inLanguage: 'en',
+  isPartOf: { '@id': `${siteConfig.url}/#website` },
   mainEntity: personJsonLd,
+  about: { '@id': `${siteConfig.url}/#person` },
+  significantLink: [
+    { '@type': 'WebPage', name: 'Projects', url: `${siteConfig.url}/projects` },
+    { '@type': 'WebPage', name: 'Writing', url: `${siteConfig.url}/blog` },
+    { '@type': 'WebPage', name: 'Resume', url: `${siteConfig.url}/resume` },
+    { '@type': 'WebPage', name: 'Contact', url: `${siteConfig.url}/contact` },
+  ],
 };
 
 const breadcrumb = breadcrumbJsonLd([
