@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectFrontmatter } from '@/lib/content';
+import { BLUR_DATA_URL } from '@/lib/blur';
 
 type Props = {
   slug: string;
@@ -20,6 +21,8 @@ export default function ProjectCard({ slug, frontmatter }: Props) {
             alt={`${frontmatter.title} — project by Sandeep Prajapati`}
             fill
             sizes="80px"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
