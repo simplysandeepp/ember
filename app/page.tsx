@@ -28,10 +28,14 @@ export default function HomePage() {
 
   return (
     <>
-      <div className="max-w-2xl mx-auto px-6 py-16">
+      <div className="max-w-2xl mx-auto px-6 py-16 relative">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,255,255,0.06),transparent_70%)] motion-reduce:hidden"
+        />
 
         {/* Hero */}
-        <section className="flex items-start gap-5">
+        <section className="flex items-start gap-5 relative">
           <Logo size="lg" />
           <div className="flex-1 min-w-0">
             <h1 className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
