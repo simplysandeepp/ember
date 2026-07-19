@@ -31,9 +31,20 @@ export default function Footer() {
   return (
     <footer className="w-full border-t border-neutral-100 dark:border-neutral-800 mt-24">
       <div className="max-w-2xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <p className="text-sm text-neutral-400 dark:text-neutral-500">
-          &copy; {new Date().getFullYear()} Sandeep Prajapati
-        </p>
+        <div className="flex items-center gap-3">
+          <p className="text-sm text-neutral-400 dark:text-neutral-500">
+            &copy; {new Date().getFullYear()} Sandeep Prajapati
+          </p>
+          <span
+            className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono text-neutral-400 dark:text-neutral-500"
+            aria-label="Press Cmd K or Ctrl K to open command palette"
+          >
+            <kbd className="px-1.5 py-0.5 bg-neutral-100 dark:bg-neutral-800 rounded border border-neutral-200 dark:border-neutral-700">
+              ⌘K
+            </kbd>
+            <span className="text-neutral-300 dark:text-neutral-600">to search</span>
+          </span>
+        </div>
         <ul className="flex items-center gap-5">
           <li>
             <a
