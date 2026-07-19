@@ -167,7 +167,7 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-8">
             {experience.map((exp) => (
-              <div key={exp.slug} className="flex gap-8">
+              <div key={exp.slug} className="flex gap-4 sm:gap-8">
                 <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-20">
                   {exp.frontmatter.start} – {exp.frontmatter.end}
                 </div>
@@ -195,7 +195,7 @@ export default function AboutPage() {
         <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-6">
           Education
         </h2>
-        <div className="flex gap-8">
+        <div className="flex gap-4 sm:gap-8">
           <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-20">
             2023 – 2027
           </div>
@@ -217,7 +217,7 @@ export default function AboutPage() {
         </h2>
         <div className="space-y-3">
           {Object.entries(skills).map(([category, items]) => (
-            <div key={category} className="flex gap-8">
+            <div key={category} className="flex gap-4 sm:gap-8">
               <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 w-20">
                 {category}
               </div>

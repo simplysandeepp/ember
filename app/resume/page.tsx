@@ -145,7 +145,7 @@ export default function ResumePage() {
           </h2>
           <div className="space-y-6">
             {experience.map((exp) => (
-              <div key={exp.slug} className="flex gap-8">
+              <div key={exp.slug} className="flex gap-4 sm:gap-8">
                 <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-24">
                   {exp.frontmatter.start} – {exp.frontmatter.end}
                 </div>
@@ -173,7 +173,7 @@ export default function ResumePage() {
         <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-5">
           Education
         </h2>
-        <div className="flex gap-8">
+        <div className="flex gap-4 sm:gap-8">
           <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-24">
             2023 – 2027
           </div>
@@ -195,7 +195,7 @@ export default function ResumePage() {
         </h2>
         <div className="space-y-3">
           {Object.entries(skills).map(([category, items]) => (
-            <div key={category} className="flex gap-8">
+            <div key={category} className="flex gap-4 sm:gap-8">
               <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 w-24">
                 {category}
               </div>
@@ -215,7 +215,7 @@ export default function ResumePage() {
           </h2>
           <div className="space-y-4">
             {topProjects.map((p) => (
-              <div key={p.slug} className="flex gap-8">
+              <div key={p.slug} className="flex gap-4 sm:gap-8">
                 <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-24">
                   {formatDate(p.frontmatter.date)}
                 </div>
@@ -258,7 +258,7 @@ export default function ResumePage() {
           </h2>
           <div className="space-y-3">
             {certifications.map((cert) => (
-              <div key={cert.title} className="flex gap-8">
+              <div key={cert.title} className="flex gap-4 sm:gap-8">
                 <div className="flex-shrink-0 text-xs text-neutral-400 dark:text-neutral-500 pt-0.5 leading-5 w-24">
                   {cert.issued}
                 </div>
