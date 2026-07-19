@@ -51,7 +51,7 @@ export default function Footer() {
               href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+              className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -m-2 p-2 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
               aria-label="GitHub"
             >
               <GitHubIcon />
@@ -62,7 +62,7 @@ export default function Footer() {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+              className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -m-2 p-2 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
               aria-label="LinkedIn"
             >
               <LinkedInIcon />
@@ -73,7 +73,7 @@ export default function Footer() {
               href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+              className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -m-2 p-2 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
               aria-label="Instagram"
             >
               <InstagramIcon />

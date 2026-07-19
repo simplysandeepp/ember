@@ -283,7 +283,7 @@ export default function AboutPage() {
                         href={cert.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-shrink-0 text-xs font-normal text-neutral-400 dark:text-neutral-500 underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
+                        className="flex-shrink-0 inline-flex items-center min-h-[44px] px-2 -mx-2 text-xs font-normal text-neutral-400 dark:text-neutral-500 underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
                       >
                         Verify
                       </a>
