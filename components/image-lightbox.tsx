@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { BLUR_DATA_URL } from '@/lib/blur';
 
 type Props = {
   src: string;
@@ -53,6 +54,8 @@ export default function ImageLightbox({
           height={height}
           priority={priority}
           sizes={sizes}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
           className={className}
         />
       </button>
