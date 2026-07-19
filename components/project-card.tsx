@@ -11,7 +11,7 @@ export default function ProjectCard({ slug, frontmatter }: Props) {
   return (
     <Link
       href={`/projects/${slug}`}
-      className="group flex items-start gap-4 py-5 border-b border-neutral-100 dark:border-neutral-800 last:border-0"
+      className="group flex items-start gap-4 py-5 px-3 -mx-3 rounded-lg border-b border-neutral-100 dark:border-neutral-800 last:border-0 transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-50/70 dark:hover:bg-neutral-900/40 hover:shadow-sm motion-reduce:hover:transform-none"
     >
       {frontmatter.image && (
         <div className="flex-shrink-0 w-20 h-14 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-800 relative">
