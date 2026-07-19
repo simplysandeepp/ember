@@ -39,6 +39,20 @@ export default function ProjectsPage() {
         position: i + 1,
         url: `${siteConfig.url}/projects/${p.slug}`,
         name: p.frontmatter.title,
+        item: {
+          '@type': 'CreativeWork',
+          '@id': `${siteConfig.url}/projects/${p.slug}#work`,
+          name: p.frontmatter.title,
+          description: p.frontmatter.description,
+          url: `${siteConfig.url}/projects/${p.slug}`,
+          ...(p.frontmatter.image
+            ? { image: `${siteConfig.url}${p.frontmatter.image}` }
+            : {}),
+          creator: { '@id': `${siteConfig.url}/#person` },
+          ...(p.frontmatter.tags?.length
+            ? { keywords: p.frontmatter.tags.join(', ') }
+            : {}),
+        },
       })),
     },
   };
