@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectFrontmatter } from '@/lib/content';
 import { BLUR_DATA_URL } from '@/lib/blur';
+import { colors } from '@/lib/colors';
 
 type Props = {
   slug: string;
@@ -12,10 +13,10 @@ export default function ProjectCard({ slug, frontmatter }: Props) {
   return (
     <Link
       href={`/projects/${slug}`}
-      className="group flex items-start gap-4 py-5 px-3 -mx-3 rounded-lg border-b border-neutral-100 dark:border-neutral-800 last:border-0 transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-50/70 dark:hover:bg-neutral-900/40 hover:shadow-sm motion-reduce:hover:transform-none"
+      className={`group flex items-start gap-4 py-5 px-3 -mx-3 rounded-lg border-b ${colors.border} last:border-0 transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-50/70 dark:hover:bg-neutral-900/40 hover:shadow-sm motion-reduce:hover:transform-none`}
     >
       {frontmatter.image && (
-        <div className="flex-shrink-0 w-20 h-14 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-800 relative">
+        <div className={`flex-shrink-0 w-20 h-14 rounded-md overflow-hidden ${colors.bgSubtle} border ${colors.border} relative`}>
           <Image
             src={frontmatter.image}
             alt={`${frontmatter.title} — project by Sandeep Prajapati`}
@@ -28,14 +29,14 @@ export default function ProjectCard({ slug, frontmatter }: Props) {
         </div>
       )}
       <div className="flex-1 min-w-0">
-        <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors duration-200">
+        <h3 className={`text-sm font-medium ${colors.fg} group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors duration-200`}>
           {frontmatter.title}
         </h3>
-        <p className="mt-0.5 text-sm text-neutral-500 line-clamp-2 leading-relaxed">
+        <p className={`mt-0.5 text-sm ${colors.fgMuted} line-clamp-2 leading-relaxed`}>
           {frontmatter.description}
         </p>
         {frontmatter.tags?.length > 0 && (
-          <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-2">
+          <p className={`text-xs ${colors.fgSubtle} mt-2`}>
             {frontmatter.tags.slice(0, 4).join(' · ')}
           </p>
         )}
