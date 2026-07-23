@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BlogFrontmatter, formatDate } from '@/lib/content';
+import { BlogFrontmatter, formatDate } from '@/lib/content-types';
 
 type Props = {
   slug: string;

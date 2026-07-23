@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ProjectFrontmatter } from '@/lib/content';
+import { ProjectFrontmatter } from '@/lib/content-types';
 import { BLUR_DATA_URL } from '@/lib/blur';
 import { colors } from '@/lib/colors';
 

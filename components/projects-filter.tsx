@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import ProjectCard from '@/components/project-card';
-import type { ProjectFrontmatter } from '@/lib/content';
+import type { ProjectFrontmatter } from '@/lib/content-types';
 
 type Item = { slug: string; frontmatter: ProjectFrontmatter };
 
