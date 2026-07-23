@@ -6,7 +6,7 @@ import MDXContent from '@/components/mdx-content';
 import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 
@@ -15,10 +15,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   if (!project) return {};
   const { title, description, tags } = project.frontmatter;
-  const url = `${siteConfig.url}/projects/${params.slug}`;
+  const url = `${siteConfig.url}/projects/${slug}`;
   return {
     title: `${title} | Sandeep Prajapati`,
     description,
@@ -45,8 +46,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ProjectPage({ params }: Props) {
-  const project = getProjectBySlug(params.slug);
+export default async function ProjectPage({ params }: Props) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   if (!project) notFound();
 
   const { title, description, date, tags, github, live, demo, image } =
@@ -57,7 +59,7 @@ export default function ProjectPage({ params }: Props) {
   // recent projects when this one has no tags.
   const projectTagSet = new Set(tags ?? []);
   const related = getAllProjects()
-    .filter((p) => p.slug !== params.slug)
+    .filter((p) => p.slug !== slug)
     .map((p) => ({
       p,
       score: (p.frontmatter.tags ?? []).filter((t) => projectTagSet.has(t)).length,
@@ -72,7 +74,7 @@ export default function ProjectPage({ params }: Props) {
     .slice(0, 3)
     .map((x) => x.p);
 
-  const projectUrl = `${siteConfig.url}/projects/${params.slug}`;
+  const projectUrl = `${siteConfig.url}/projects/${slug}`;
   const ogImage = `${projectUrl}/opengraph-image`;
   const heroImage = image ? `${siteConfig.url}${image}` : ogImage;
   const author = {
@@ -116,7 +118,7 @@ export default function ProjectPage({ params }: Props) {
   const breadcrumb = breadcrumbJsonLd([
     { name: 'Home', path: '/' },
     { name: 'Projects', path: '/projects' },
-    { name: title, path: `/projects/${params.slug}` },
+    { name: title, path: `/projects/${slug}` },
   ]);
 
   return (

@@ -9,7 +9,7 @@ import { extractHeadings } from '@/lib/toc';
 import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 
@@ -18,10 +18,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) return {};
   const { title, description, date, tags } = post.frontmatter;
-  const url = `${siteConfig.url}/blog/${params.slug}`;
+  const url = `${siteConfig.url}/blog/${slug}`;
   return {
     title: `${title} | Sandeep Prajapati`,
     description,
@@ -45,8 +46,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function BlogPostPage({ params }: Props) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) notFound();
 
   const { title, description, date, tags } = post.frontmatter;
@@ -56,14 +58,14 @@ export default function BlogPostPage({ params }: Props) {
   const readingTime = Math.max(1, Math.round(words / 200));
   const headings = extractHeadings(post.content);
   const allPosts = getAllPosts();
-  const idx = allPosts.findIndex((p) => p.slug === params.slug);
+  const idx = allPosts.findIndex((p) => p.slug === slug);
   const newer = idx > 0 ? allPosts[idx - 1] : null;
   const older = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
 
   // Related posts — top 3 other posts scored by tag overlap, then recency.
   const postTagSet = new Set(post.frontmatter.tags ?? []);
   const relatedPosts = allPosts
-    .filter((p) => p.slug !== params.slug)
+    .filter((p) => p.slug !== slug)
     .map((p) => ({
       p,
       score: (p.frontmatter.tags ?? []).filter((t) => postTagSet.has(t)).length,
@@ -78,7 +80,7 @@ export default function BlogPostPage({ params }: Props) {
     .slice(0, 3)
     .map((x) => x.p);
 
-  const postUrl = `${siteConfig.url}/blog/${params.slug}`;
+  const postUrl = `${siteConfig.url}/blog/${slug}`;
   const ogImage = `${postUrl}/opengraph-image`;
   const author = {
     '@type': 'Person',
@@ -118,7 +120,7 @@ export default function BlogPostPage({ params }: Props) {
   const breadcrumb = breadcrumbJsonLd([
     { name: 'Home', path: '/' },
     { name: 'Writing', path: '/blog' },
-    { name: title, path: `/blog/${params.slug}` },
+    { name: title, path: `/blog/${slug}` },
   ]);
 
   return (

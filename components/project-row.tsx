@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ProjectFrontmatter } from '@/lib/content';
+import { ProjectFrontmatter } from '@/lib/content-types';
 
 type Props = {
   slug: string;

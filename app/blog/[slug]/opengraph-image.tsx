@@ -9,9 +9,10 @@ export const contentType = 'image/png';
 export default async function Image({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   const title = post?.frontmatter.title ?? 'Writing';
   const description = post?.frontmatter.description ?? '';
 

@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import BlogCard from '@/components/blog-card';
-import type { BlogFrontmatter } from '@/lib/content';
+import type { BlogFrontmatter } from '@/lib/content-types';
 
 type Item = { slug: string; frontmatter: BlogFrontmatter };
 

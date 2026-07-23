@@ -1,53 +1,23 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from 'front-matter';
+import type {
+  ProjectFrontmatter,
+  BlogFrontmatter,
+  ExperienceFrontmatter,
+  Certification,
+  ContentItem,
+} from './content-types';
+export type {
+  ProjectFrontmatter,
+  BlogFrontmatter,
+  ExperienceFrontmatter,
+  Certification,
+  ContentItem,
+};
+export { formatDate } from './content-types';
 
 const contentDir = path.join(process.cwd(), 'content');
-
-export type ProjectFrontmatter = {
-  title: string;
-  description: string;
-  date: string;
-  tags: string[];
-  github?: string;
-  live?: string;
-  demo?: string;
-  featured?: boolean;
-  priority?: number;
-  pinned?: boolean;
-  image?: string;
-};
-
-export type BlogFrontmatter = {
-  title: string;
-  description: string;
-  date: string;
-  tags?: string[];
-  published?: boolean;
-};
-
-export type ExperienceFrontmatter = {
-  company: string;
-  role: string;
-  start: string;
-  end: string;
-  order?: number;
-};
-
-export type Certification = {
-  title: string;
-  issuer: string;
-  issued: string;
-  link?: string;
-  logo?: string;
-  details?: string;
-};
-
-export type ContentItem<T> = {
-  slug: string;
-  frontmatter: T;
-  content: string;
-};
 
 function readDir(folder: string): string[] {
   const dir = path.join(contentDir, folder);
@@ -74,13 +44,13 @@ function findProjectImage(slug: string): string | undefined {
 function parseFile<T>(folder: string, filename: string): ContentItem<T> {
   const filePath = path.join(contentDir, folder, filename);
   const raw = fs.readFileSync(filePath, 'utf-8');
-  const { data, content } = matter(raw);
+  const { attributes, body } = matter(raw);
   const slug = filename.replace(/\.(md|mdx)$/, '');
-  if (folder === 'projects' && !(data as ProjectFrontmatter).image) {
+  if (folder === 'projects' && !(attributes as ProjectFrontmatter).image) {
     const found = findProjectImage(slug);
-    if (found) (data as ProjectFrontmatter).image = found;
+    if (found) (attributes as ProjectFrontmatter).image = found;
   }
-  return { slug, frontmatter: data as T, content };
+  return { slug, frontmatter: attributes as T, content: body };
 }
 
 export function getAllProjects(): ContentItem<ProjectFrontmatter>[] {
@@ -142,20 +112,12 @@ export function getCertifications(): Certification[] {
   const filePath = path.join(contentDir, 'certifications.md');
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, 'utf-8');
-  const { data } = matter(raw);
-  const certs = (data.certifications as Certification[]) ?? [];
+  const { attributes } = matter(raw) as { attributes: Record<string, unknown> };
+  const certs = (attributes.certifications as Certification[]) ?? [];
   return certs
     .slice()
     .sort(
       (a, b) =>
         new Date(b.issued).getTime() - new Date(a.issued).getTime()
     );
-}
-
-export function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
 }
