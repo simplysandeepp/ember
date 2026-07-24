@@ -1,7 +1,7 @@
 import { getAllProjects } from '@/lib/content';
 import ProjectCard from '@/components/project-card';
 import ProjectsFilter from '@/components/projects-filter';
-import { buildMetadata, siteConfig, breadcrumbJsonLd } from '@/lib/metadata';
+import { buildMetadata, siteConfig, breadcrumbJsonLd, jsonLdString } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = buildMetadata({
@@ -66,11 +66,11 @@ export default function ProjectsPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(itemListJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumb) }}
       />
       <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
         Projects

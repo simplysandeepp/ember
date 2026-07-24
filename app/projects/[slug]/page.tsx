@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ImageLightbox from '@/components/image-lightbox';
 import { getAllProjects, getProjectBySlug, formatDate } from '@/lib/content';
 import MDXContent from '@/components/mdx-content';
-import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
+import { siteConfig, siteKeywords, breadcrumbJsonLd, jsonLdString } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -125,11 +125,11 @@ export default async function ProjectPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumb) }}
       />
 
       <div className="max-w-2xl mx-auto px-6 py-16">

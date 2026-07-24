@@ -2,6 +2,12 @@ import { Metadata } from 'next';
 
 const siteUrl = 'https://sandeepp.in';
 
+// Escapes '<' so JSON-LD content can never break out of its <script> tag
+// (e.g. a future post title containing "</script>").
+export function jsonLdString(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, '\\u003c');
+}
+
 export const siteConfig = {
   name: 'Sandeep Prajapati',
   firstName: 'Sandeep',

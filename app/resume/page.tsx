@@ -11,6 +11,7 @@ import {
   siteConfig,
   personJsonLd,
   breadcrumbJsonLd,
+  jsonLdString,
 } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
@@ -75,11 +76,11 @@ export default function ResumePage() {
     <div className="max-w-2xl mx-auto px-6 py-16 print:py-6 print:max-w-none">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(resumeJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(resumeJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumb) }}
       />
 
       {/* Header */}

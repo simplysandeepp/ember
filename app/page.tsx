@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getAllProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
 import ProjectRow from '@/components/project-row';
 import Logo from '@/components/logo';
-import { siteConfig, profilePageJsonLd } from '@/lib/metadata';
+import { siteConfig, profilePageJsonLd, jsonLdString } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
+          __html: jsonLdString(
             profilePageJsonLd(
               allProjects.slice(0, 6).map((p) => ({
                 title: p.frontmatter.title,

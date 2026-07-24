@@ -2,6 +2,7 @@ import {
   buildMetadata,
   siteConfig,
   breadcrumbJsonLd,
+  jsonLdString,
 } from '@/lib/metadata';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
@@ -88,11 +89,11 @@ export default function ContactPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(contactJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactBreadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(contactBreadcrumb) }}
       />
       <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
         Contact Sandeep Prajapati

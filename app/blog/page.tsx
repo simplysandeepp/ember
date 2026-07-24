@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { getAllPosts } from '@/lib/content';
 import BlogSearch from '@/components/blog-search';
 import NewsletterSignup from '@/components/newsletter-signup';
-import { buildMetadata, siteConfig, breadcrumbJsonLd } from '@/lib/metadata';
+import { buildMetadata, siteConfig, breadcrumbJsonLd, jsonLdString } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = buildMetadata({
@@ -50,11 +50,11 @@ export default function BlogPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(blogJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumb) }}
       />
       <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
         Writing

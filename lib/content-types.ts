@@ -44,9 +44,11 @@ export type ContentItem<T> = {
 };
 
 export function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-US', {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'UTC',
   });
 }
