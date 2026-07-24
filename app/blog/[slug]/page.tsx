@@ -6,7 +6,7 @@ import GiscusComments from '@/components/giscus-comments';
 import ReadingProgress from '@/components/reading-progress';
 import TableOfContents from '@/components/table-of-contents';
 import { extractHeadings } from '@/lib/toc';
-import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
+import { siteConfig, siteKeywords, breadcrumbJsonLd, jsonLdString } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -127,11 +127,11 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumb) }}
       />
 
       <ReadingProgress />

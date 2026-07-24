@@ -5,6 +5,7 @@ import {
   personJsonLd,
   breadcrumbJsonLd,
   faqJsonLd,
+  jsonLdString,
 } from '@/lib/metadata';
 import Logo from '@/components/logo';
 import GitHubStats from '@/components/github-stats';
@@ -84,15 +85,15 @@ export default function AboutPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(profileJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumb) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(faqJsonLd) }}
       />
 
       {/* Page header */}
