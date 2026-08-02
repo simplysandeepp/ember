@@ -22,6 +22,13 @@ type Result = {
 
 const SNIPPET_RADIUS = 60;
 
+/** Dispatch on `window` to open the palette from anywhere (see nav.tsx). */
+export const OPEN_EVENT = 'commandpalette:open';
+
+export function openCommandPalette() {
+  window.dispatchEvent(new Event(OPEN_EVENT));
+}
+
 /** Extracts a window of text around the first match so the hit is visible. */
 function snippetAround(text: string, query: string): string | undefined {
   const at = text.toLowerCase().indexOf(query);
@@ -51,6 +58,8 @@ export default function CommandPalette() {
   const [active, setActive] = useState(0);
   const [docs, setDocs] = useState<SearchDoc[] | null>(null);
   const listRef = useRef<HTMLUListElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
+  const openRef = useRef(false);
 
   const commands = useMemo<Command[]>(() => {
     const go = (path: string) => () => {
@@ -142,23 +151,63 @@ export default function CommandPalette() {
   }, [query, commands, docs, router]);
 
   useEffect(() => {
+    // Captured here rather than in an effect: the input's autoFocus has
+    // already moved focus by the time effects run, so an effect would only
+    // ever record the palette itself as the opener.
+    function rememberOpener() {
+      if (!openRef.current) {
+        openerRef.current = document.activeElement as HTMLElement | null;
+      }
+    }
     function onKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
+        rememberOpener();
         setOpen((o) => !o);
       } else if (e.key === 'Escape') {
         setOpen(false);
       }
     }
+    // Lets the nav's search button (and anything else) open the palette
+    // without threading state through a provider.
+    function onOpenRequest() {
+      rememberOpener();
+      setOpen(true);
+    }
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener(OPEN_EVENT, onOpenRequest);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener(OPEN_EVENT, onOpenRequest);
+    };
   }, []);
+
+  useEffect(() => {
+    openRef.current = open;
+  }, [open]);
 
   useEffect(() => {
     if (open) {
       setQuery('');
       setActive(0);
     }
+  }, [open]);
+
+  // Lock background scroll while open, matching the mobile nav and lightbox.
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
+
+  // Return focus to whatever opened the palette, so keyboard users are not
+  // dumped back at the top of the document on close.
+  useEffect(() => {
+    if (!open) return;
+    return () => openerRef.current?.focus?.();
   }, [open]);
 
   useEffect(() => {
@@ -181,11 +230,24 @@ export default function CommandPalette() {
       onClick={() => setOpen(false)}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Search this site"
         className="w-full max-w-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <input
           autoFocus
+          type="text"
+          role="combobox"
+          aria-label="Search this site"
+          aria-expanded="true"
+          aria-controls="command-palette-results"
+          aria-activedescendant={
+            results[active] ? `command-palette-option-${active}` : undefined
+          }
+          aria-autocomplete="list"
+          autoComplete="off"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
@@ -198,12 +260,22 @@ export default function CommandPalette() {
             } else if (e.key === 'Enter') {
               e.preventDefault();
               results[active]?.action();
+            } else if (e.key === 'Tab') {
+              // The input is the only tab stop — arrows move through results.
+              // Without this, Tab walks onto the page behind the overlay.
+              e.preventDefault();
             }
           }}
           placeholder="Search projects, writing, and everything on this site…"
           className="w-full px-4 py-3.5 text-sm bg-transparent text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 border-b border-neutral-100 dark:border-neutral-800 focus:outline-none"
         />
-        <ul ref={listRef} className="max-h-80 overflow-y-auto py-1">
+        <ul
+          ref={listRef}
+          id="command-palette-results"
+          role="listbox"
+          aria-label="Search results"
+          className="max-h-80 overflow-y-auto py-1"
+        >
           {loading ? (
             <li className="px-4 py-3 text-sm text-neutral-400 dark:text-neutral-500">
               Searching…
@@ -214,8 +286,14 @@ export default function CommandPalette() {
             </li>
           ) : (
             results.map((r, i) => (
-              <li key={r.key}>
+              <li
+                key={r.key}
+                id={`command-palette-option-${i}`}
+                role="option"
+                aria-selected={i === active}
+              >
                 <button
+                  tabIndex={-1}
                   onMouseEnter={() => setActive(i)}
                   onClick={() => r.action()}
                   className={`w-full flex items-start justify-between gap-4 px-4 py-2.5 text-sm text-left transition-colors duration-100 ${
@@ -242,6 +320,11 @@ export default function CommandPalette() {
             ))
           )}
         </ul>
+        <p aria-live="polite" className="sr-only">
+          {loading
+            ? 'Searching'
+            : `${results.length} result${results.length === 1 ? '' : 's'}`}
+        </p>
       </div>
     </div>
   );
