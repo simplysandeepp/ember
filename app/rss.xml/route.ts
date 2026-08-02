@@ -45,7 +45,7 @@ export async function GET() {
     <title>${escapeXml(siteConfig.name)} — Writing</title>
     <link>${site}/blog</link>
     <description>${escapeXml(
-      'Writing by Sandeep Prajapati on AI engineering, LLMs, RAG pipelines, LangGraph, and full-stack development.'
+      'Writing by Sandeep Prajapati on AI engineering, LLMs, multi-agent RAG systems, AI automation, and full-stack development.'
     )}</description>
     <language>en</language>
     <copyright>© ${new Date().getFullYear()} ${escapeXml(author)}</copyright>

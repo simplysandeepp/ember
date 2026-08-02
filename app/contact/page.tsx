@@ -11,7 +11,7 @@ import SuccessToast from './success-toast';
 export const metadata: Metadata = buildMetadata({
   title: 'Contact',
   description:
-    'Get in touch with Sandeep Prajapati — AI Engineer & Full-Stack Developer in New Delhi. Available on GitHub, LinkedIn, LeetCode, X, Instagram, and via a direct contact form.',
+    'Get in touch with Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems in New Delhi. Available on GitHub, LinkedIn, LeetCode, X, Instagram, and via a direct contact form.',
   path: '/contact',
   keywords: [
     'Sandeep Prajapati contact',
@@ -30,7 +30,7 @@ const contactJsonLd = {
   url: `${siteConfig.url}/contact`,
   name: 'Contact Sandeep Prajapati',
   description:
-    'Contact Sandeep Prajapati, AI Engineer & Full-Stack Developer in New Delhi.',
+    'Contact Sandeep Prajapati, Full-Stack Engineer building AI Products & Agentic Systems in New Delhi.',
   mainEntity: { '@id': `${siteConfig.url}/#person` },
   isPartOf: { '@id': `${siteConfig.url}/#website` },
 };
@@ -98,7 +98,7 @@ export default function ContactPage() {
         Contact Sandeep Prajapati
       </h1>
       <p className="mt-2 text-sm text-neutral-500 leading-relaxed max-w-sm">
-        Open to AI engineering roles, interesting projects, and good
+        Open to full-stack AI engineering roles, interesting projects, and good
         conversations. Based in New Delhi, India.
       </p>
 

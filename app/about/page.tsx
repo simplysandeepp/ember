@@ -13,7 +13,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = buildMetadata({
   title: 'About — Sandeep Prajapati',
   description:
-    'About Sandeep Prajapati — AI Engineer & Full-Stack Developer from New Delhi, India. Experience at DrCode, GDG on Campus, Google, and Infosys Springboard, plus skills in RAG, LangGraph, Next.js, and Python.',
+    'About Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems, from New Delhi, India. Experience at DrCode, GDG on Campus, Google, and Infosys Springboard, plus skills in multi-agent RAG systems, AI automation, Next.js, and Python.',
   path: '/about',
   keywords: [
     'Sandeep Prajapati about',
@@ -32,7 +32,7 @@ const profileJsonLd = {
   url: `${siteConfig.url}/about`,
   name: 'About Sandeep Prajapati',
   description:
-    'About Sandeep Prajapati — AI Engineer & Full-Stack Developer in New Delhi. Background, experience at DrCode, and skills across RAG, LangGraph, Next.js, and Python.',
+    'About Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems in New Delhi. Background, experience at DrCode, and skills across multi-agent RAG systems, AI automation, Next.js, and Python.',
   inLanguage: 'en',
   isPartOf: { '@id': `${siteConfig.url}/#website` },
   mainEntity: personJsonLd,
@@ -51,13 +51,11 @@ const breadcrumb = breadcrumbJsonLd([
 ]);
 
 const skills: Record<string, string[]> = {
-  'AI / ML': [
-    'RAG Pipelines',
-    'LangGraph',
-    'LangChain',
+  'AI Systems & Agents': [
+    'Multi-Agent RAG Systems',
     'AI Agents',
-    'CrewAI',
-    'Pydantic AI',
+    'AI Automation',
+    'Monitoring & Evaluation',
     'Prompt Engineering',
     'Vector Databases',
   ],
@@ -103,7 +101,7 @@ export default function AboutPage() {
             Sandeep Prajapati
           </h1>
           <p className="text-sm text-neutral-500 mt-0.5">
-            AI Software Intern · New Delhi
+            Full-Stack Engineer — AI Products & Agentic Systems · New Delhi
           </p>
           <a
             href="/contact"
@@ -162,9 +160,10 @@ export default function AboutPage() {
           use in production.
         </p>
         <p>
-          My focus is on delivering AI-powered full-stack solutions — systems
-          that combine RAG pipelines, agentic workflows, and clean product
-          interfaces into something that works end to end, not just in a demo.
+          My focus is on delivering full-stack, scalable AI products —
+          multi-agent RAG systems, AI agents, and automation pipelines, backed
+          by production monitoring, evaluation, and DevOps — into something
+          that works end to end, not just in a demo.
         </p>
         <p>
           I explore new and upcoming tech stacks daily, always looking for
@@ -361,8 +360,8 @@ export default function AboutPage() {
       {/* Contact */}
       <section className="mt-14 pt-10 border-t border-neutral-100 dark:border-neutral-800">
         <p className="text-sm text-neutral-500 leading-relaxed">
-          Open to AI engineering roles, interesting projects, and good
-          conversations.{' '}
+          Open to full-stack AI engineering roles, interesting projects, and
+          good conversations.{' '}
           <a href="/contact" className="underline-link">
             Get in touch →
           </a>
