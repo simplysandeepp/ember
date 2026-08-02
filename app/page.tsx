@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getAllProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
-import ProjectRow from '@/components/project-row';
+import ProjectBento from '@/components/project-bento';
 import Logo from '@/components/logo';
 import { siteConfig, profilePageJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
@@ -130,16 +130,7 @@ export default function HomePage() {
                 All projects →
               </Link>
             </div>
-            <div className="mt-2">
-              {displayProjects.map((project, i) => (
-                <ProjectRow
-                  key={project.slug}
-                  slug={project.slug}
-                  frontmatter={project.frontmatter}
-                  index={i}
-                />
-              ))}
-            </div>
+            <ProjectBento projects={displayProjects} />
           </section>
         )}
 
