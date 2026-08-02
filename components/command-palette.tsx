@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { siteConfig } from '@/lib/metadata';
+import type { SearchDoc } from '@/lib/search-index';
 
 type Command = {
   label: string;
@@ -11,11 +12,45 @@ type Command = {
   keywords?: string;
 };
 
+type Result = {
+  key: string;
+  label: string;
+  hint: string;
+  snippet?: string;
+  action: () => void;
+};
+
+const SNIPPET_RADIUS = 60;
+
+/** Extracts a window of text around the first match so the hit is visible. */
+function snippetAround(text: string, query: string): string | undefined {
+  const at = text.toLowerCase().indexOf(query);
+  if (at === -1) return undefined;
+  const start = Math.max(0, at - SNIPPET_RADIUS);
+  const end = Math.min(text.length, at + query.length + SNIPPET_RADIUS);
+  return `${start > 0 ? '…' : ''}${text.slice(start, end).trim()}${
+    end < text.length ? '…' : ''
+  }`;
+}
+
+/** Title hits outrank heading hits, which outrank body hits. */
+function scoreOf(doc: SearchDoc, query: string): number {
+  const title = doc.title.toLowerCase();
+  if (title === query) return 0;
+  if (title.startsWith(query)) return 1;
+  if (title.includes(query)) return 2;
+  if (doc.heading?.toLowerCase().includes(query)) return 3;
+  if (doc.text.toLowerCase().includes(query)) return 4;
+  return Infinity;
+}
+
 export default function CommandPalette() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
+  const [docs, setDocs] = useState<SearchDoc[] | null>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
   const commands = useMemo<Command[]>(() => {
     const go = (path: string) => () => {
@@ -40,15 +75,71 @@ export default function CommandPalette() {
     ];
   }, [router]);
 
-  const filtered = useMemo(() => {
+  // Fetched on first open only — keeps the index off the initial page payload.
+  useEffect(() => {
+    if (!open || docs) return;
+    let cancelled = false;
+    fetch('/search-index.json')
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data: SearchDoc[]) => {
+        if (!cancelled) setDocs(data);
+      })
+      .catch(() => {
+        if (!cancelled) setDocs([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [open, docs]);
+
+  const results = useMemo<Result[]>(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return commands;
-    return commands.filter(
-      (c) =>
-        c.label.toLowerCase().includes(q) ||
-        c.keywords?.toLowerCase().includes(q)
-    );
-  }, [query, commands]);
+
+    if (!q) {
+      return commands.map((c) => ({
+        key: c.label,
+        label: c.label,
+        hint: c.hint ?? '',
+        action: c.action,
+      }));
+    }
+
+    const navHits: Result[] = commands
+      .filter(
+        (c) =>
+          c.label.toLowerCase().includes(q) || c.keywords?.toLowerCase().includes(q)
+      )
+      .map((c) => ({
+        key: c.label,
+        label: c.label,
+        hint: c.hint ?? '',
+        action: c.action,
+      }));
+
+    const seen = new Set<string>();
+    const contentHits: Result[] = (docs ?? [])
+      .map((doc) => ({ doc, score: scoreOf(doc, q) }))
+      .filter(({ score }) => score !== Infinity)
+      .sort((a, b) => a.score - b.score)
+      .reduce<Result[]>((acc, { doc }) => {
+        // One row per destination — the best-scoring section wins.
+        if (seen.has(doc.url) || acc.length >= 40) return acc;
+        seen.add(doc.url);
+        acc.push({
+          key: doc.url,
+          label: doc.heading ? `${doc.title} — ${doc.heading}` : doc.title,
+          hint: doc.kind,
+          snippet: snippetAround(doc.text, q),
+          action: () => {
+            setOpen(false);
+            router.push(doc.url);
+          },
+        });
+        return acc;
+      }, []);
+
+    return [...navHits, ...contentHits];
+  }, [query, commands, docs, router]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -74,7 +165,15 @@ export default function CommandPalette() {
     setActive(0);
   }, [query]);
 
+  useEffect(() => {
+    listRef.current
+      ?.querySelectorAll('li')
+      [active]?.scrollIntoView({ block: 'nearest' });
+  }, [active]);
+
   if (!open) return null;
+
+  const loading = docs === null && query.trim().length > 0;
 
   return (
     <div
@@ -82,7 +181,7 @@ export default function CommandPalette() {
       onClick={() => setOpen(false)}
     >
       <div
-        className="w-full max-w-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-2xl overflow-hidden"
+        className="w-full max-w-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -92,39 +191,50 @@ export default function CommandPalette() {
           onKeyDown={(e) => {
             if (e.key === 'ArrowDown') {
               e.preventDefault();
-              setActive((a) => Math.min(a + 1, filtered.length - 1));
+              setActive((a) => Math.min(a + 1, results.length - 1));
             } else if (e.key === 'ArrowUp') {
               e.preventDefault();
               setActive((a) => Math.max(a - 1, 0));
             } else if (e.key === 'Enter') {
               e.preventDefault();
-              filtered[active]?.action();
+              results[active]?.action();
             }
           }}
-          placeholder="Jump to…"
+          placeholder="Search projects, writing, and everything on this site…"
           className="w-full px-4 py-3.5 text-sm bg-transparent text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 border-b border-neutral-100 dark:border-neutral-800 focus:outline-none"
         />
-        <ul className="max-h-72 overflow-y-auto py-1">
-          {filtered.length === 0 ? (
+        <ul ref={listRef} className="max-h-80 overflow-y-auto py-1">
+          {loading ? (
+            <li className="px-4 py-3 text-sm text-neutral-400 dark:text-neutral-500">
+              Searching…
+            </li>
+          ) : results.length === 0 ? (
             <li className="px-4 py-3 text-sm text-neutral-400 dark:text-neutral-500">
               No results
             </li>
           ) : (
-            filtered.map((c, i) => (
-              <li key={c.label}>
+            results.map((r, i) => (
+              <li key={r.key}>
                 <button
                   onMouseEnter={() => setActive(i)}
-                  onClick={() => c.action()}
-                  className={`w-full flex items-center justify-between px-4 py-2.5 text-sm text-left transition-colors duration-100 ${
+                  onClick={() => r.action()}
+                  className={`w-full flex items-start justify-between gap-4 px-4 py-2.5 text-sm text-left transition-colors duration-100 ${
                     i === active
                       ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
                       : 'text-neutral-600 dark:text-neutral-400'
                   }`}
                 >
-                  <span>{c.label}</span>
-                  {c.hint && (
-                    <span className="text-xs text-neutral-400 dark:text-neutral-500">
-                      {c.hint}
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate">{r.label}</span>
+                    {r.snippet && (
+                      <span className="mt-0.5 block truncate text-xs text-neutral-400 dark:text-neutral-500">
+                        {r.snippet}
+                      </span>
+                    )}
+                  </span>
+                  {r.hint && (
+                    <span className="flex-shrink-0 pt-0.5 text-xs text-neutral-400 dark:text-neutral-500">
+                      {r.hint}
                     </span>
                   )}
                 </button>
