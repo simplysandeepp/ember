@@ -11,7 +11,7 @@ import SuccessToast from './success-toast';
 export const metadata: Metadata = buildMetadata({
   title: 'Contact',
   description:
-    'Get in touch with Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems in New Delhi. Available on GitHub, LinkedIn, LeetCode, X, Instagram, and via a direct contact form.',
+    'Get in touch with Sandeep Prajapati — Full-Stack Engineer in New Delhi. On GitHub, LinkedIn, LeetCode, X, Instagram, and via a direct contact form.',
   path: '/contact',
   keywords: [
     'Sandeep Prajapati contact',
