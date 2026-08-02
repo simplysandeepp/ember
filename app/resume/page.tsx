@@ -15,7 +15,7 @@ import {
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Resume — Sandeep Prajapati',
+  title: 'Resume',
   description:
     'Full resume of Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems in New Delhi. Experience at DrCode, Google, Infosys Springboard, and GDG on Campus. Skills in multi-agent RAG systems, AI automation, Next.js, Python, and more.',
   path: '/resume',

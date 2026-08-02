@@ -91,10 +91,12 @@ export function buildMetadata({
 }): Metadata {
   const url = `${siteUrl}${pagePath}`;
   const resolvedImage = image ?? ogImage;
-  const fullTitle = `${title} | Sandeep Prajapati`;
 
   return {
-    title: fullTitle,
+    // Bare title — the `%s | Sandeep Prajapati` template in the root layout
+    // appends the brand suffix for every child route. Adding it here too is
+    // what produced "About | Sandeep Prajapati | Sandeep Prajapati".
+    title,
     description,
     metadataBase: new URL(siteUrl),
     keywords: keywords ? [...siteKeywords, ...keywords] : siteKeywords,

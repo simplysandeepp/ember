@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { title, description, tags } = project.frontmatter;
   const url = `${siteConfig.url}/projects/${slug}`;
   return {
-    title: `${title} | Sandeep Prajapati`,
+    title,
     description,
     keywords: [
       ...siteKeywords,
