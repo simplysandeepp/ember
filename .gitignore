@@ -40,3 +40,6 @@ next-env.d.ts
 
 # Local staging — extracted GitHub repo data
 repo-import/
+
+# LaTeX CV source — kept local, the published resume lives at /resume
+cv/
