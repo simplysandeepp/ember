@@ -11,7 +11,7 @@ import GitHubStats from '@/components/github-stats';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'About — Sandeep Prajapati',
+  title: 'About',
   description:
     'About Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems, from New Delhi, India. Experience at DrCode, GDG on Campus, Google, and Infosys Springboard, plus skills in multi-agent RAG systems, AI automation, Next.js, and Python.',
   path: '/about',

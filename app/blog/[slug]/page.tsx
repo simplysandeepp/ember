@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { title, description, date, tags } = post.frontmatter;
   const url = `${siteConfig.url}/blog/${slug}`;
   return {
-    title: `${title} | Sandeep Prajapati`,
+    title,
     description,
     keywords: [...siteKeywords, title, ...(tags ?? [])],
     alternates: { canonical: url },
