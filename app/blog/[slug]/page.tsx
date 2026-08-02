@@ -242,8 +242,8 @@ export default async function BlogPostPage({ params }: Props) {
             <Link href="/about" className="font-medium text-neutral-900 dark:text-neutral-100 underline-link">
               Sandeep Prajapati
             </Link>{' '}
-            is an AI Engineer &amp; Full-Stack Developer in New Delhi,
-            building production RAG pipelines and AI agents. He&apos;s
+            is a Full-Stack Engineer in New Delhi, building scalable AI
+            products — multi-agent RAG systems and AI agents. He&apos;s
             currently an AI Software Developer Intern at{' '}
             <a href="https://drcode.ai" target="_blank" rel="noopener noreferrer" className="underline-link">
               DrCode

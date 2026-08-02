@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = buildMetadata({
   title: 'Projects',
   description:
-    'Projects by Sandeep Prajapati — RAG pipelines, AI agents built with LangGraph and CrewAI, full-stack applications on Next.js and FastAPI, and developer tools.',
+    'Projects by Sandeep Prajapati — multi-agent RAG systems, AI agents and automation pipelines, full-stack applications on Next.js and FastAPI, and developer tools.',
   path: '/projects',
   keywords: [
     'Sandeep Prajapati projects',

@@ -6,7 +6,7 @@ import { siteConfig, profilePageJsonLd } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
+  title: 'Sandeep Prajapati — Full-Stack Engineer, AI Products & Agents',
   description: siteConfig.description,
   alternates: { canonical: siteConfig.url },
 };
@@ -55,7 +55,7 @@ export default function HomePage() {
               Sandeep Prajapati
             </h1>
             <p className="text-sm text-neutral-500 mt-0.5">
-              AI Software Engineer
+              Full-Stack Engineer — AI Products & Agentic Systems
             </p>
             <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-3">
               Exploring what&apos;s next, one stack at a time
@@ -66,8 +66,10 @@ export default function HomePage() {
         {/* Bio */}
         <section className="mt-10">
           <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            I build intelligent systems — RAG pipelines, AI agents, and the
-            full-stack applications that run them. Currently interning at{' '}
+            I build full-stack, scalable AI products — multi-agent RAG
+            systems, AI agents, and automation pipelines — with production
+            monitoring, evaluation, and DevOps baked in. Currently interning
+            at{' '}
             <a
               href="https://drcode.ai"
               target="_blank"

@@ -3,10 +3,10 @@ import { MetadataRoute } from 'next';
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: '/',
-    name: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
+    name: 'Sandeep Prajapati — Full-Stack Engineer, AI Products & Agents',
     short_name: 'Sandeep Prajapati',
     description:
-      'Portfolio of Sandeep Prajapati — AI Engineer & Full-Stack Developer in New Delhi. Projects, writing, and CV.',
+      'Portfolio of Sandeep Prajapati — Full-Stack Engineer, AI Products & Agents in New Delhi. Projects, writing, and CV.',
     start_url: '/',
     scope: '/',
     display: 'standalone',

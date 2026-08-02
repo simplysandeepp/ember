@@ -277,8 +277,8 @@ export default async function ProjectPage({ params }: Props) {
             >
               Sandeep Prajapati
             </Link>{' '}
-            is an AI Engineer &amp; Full-Stack Developer in New Delhi
-            building production RAG pipelines and AI agents. See{' '}
+            is a Full-Stack Engineer in New Delhi building scalable AI
+            products — multi-agent RAG systems and AI agents. See{' '}
             <Link href="/projects" className="underline-link">
               more projects
             </Link>{' '}

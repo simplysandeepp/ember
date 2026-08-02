@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Sandeep Prajapati — AI Engineer & Full-Stack Developer';
+export const alt = 'Sandeep Prajapati — Full-Stack Engineer, AI Products & Agents';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -50,7 +50,7 @@ export default function OpengraphImage() {
               letterSpacing: '-0.01em',
             }}
           >
-            AI Engineer &amp; Full-Stack Developer
+            Full-Stack Engineer — AI Products &amp; Agentic Systems
           </div>
           <div
             style={{
@@ -59,7 +59,7 @@ export default function OpengraphImage() {
               marginTop: 28,
             }}
           >
-            RAG pipelines · AI agents · Next.js · New Delhi, India
+            Multi-agent RAG systems · AI agents · Next.js · New Delhi, India
           </div>
         </div>
 

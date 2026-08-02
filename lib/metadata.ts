@@ -7,11 +7,11 @@ export const siteConfig = {
   firstName: 'Sandeep',
   lastName: 'Prajapati',
   url: siteUrl,
-  jobTitle: 'AI Engineer & Full-Stack Developer',
+  jobTitle: 'Full-Stack Engineer — AI Products & Agentic Systems',
   description:
-    'Sandeep Prajapati is an AI Engineer & Full-Stack Developer based in New Delhi, India. He builds intelligent systems with RAG pipelines, AI agents, LangGraph, Next.js, and Python — currently an AI Software Developer Intern at DrCode.',
+    'Sandeep Prajapati is a Full-Stack Engineer based in New Delhi, India. He builds full-stack, scalable AI products — multi-agent RAG systems, AI agents, and automation pipelines — with production-grade monitoring, evaluation, and DevOps practices. Currently an AI Software Developer Intern at DrCode.',
   shortDescription:
-    'AI Engineer & Full-Stack Developer in New Delhi — RAG pipelines, AI agents, and modern web apps.',
+    'Full-Stack Engineer in New Delhi — scalable AI products, multi-agent RAG systems, agents, automation, and production monitoring.',
   location: 'New Delhi, India',
   twitter: '@simplysandeepp',
   github: 'https://github.com/simplysandeepp',
@@ -55,9 +55,12 @@ export const siteKeywords = [
   'Full-Stack Developer',
   'Full Stack Developer New Delhi',
   'RAG pipelines',
+  'Multi-agent RAG systems',
   'AI agents',
-  'LangGraph',
-  'LangChain',
+  'AI automation',
+  'AI product engineering',
+  'Production monitoring and evaluation',
+  'DevOps',
   'Generative AI Engineer',
   'Machine Learning Engineer India',
   'Next.js developer',
@@ -194,17 +197,18 @@ export const personJsonLd = {
   nationality: { '@type': 'Country', name: 'India' },
   hasOccupation: {
     '@type': 'Occupation',
-    name: 'AI Engineer & Full-Stack Developer',
+    name: 'Full-Stack Engineer — AI Products & Agentic Systems',
     occupationLocation: {
       '@type': 'City',
       name: 'New Delhi',
     },
     skills: [
-      'RAG Pipelines',
+      'Multi-Agent RAG Systems',
       'AI Agents',
-      'LangGraph',
-      'LangChain',
+      'AI Automation',
+      'Production Monitoring & Evaluation',
       'Large Language Models',
+      'DevOps',
       'Next.js',
       'React',
       'TypeScript',
@@ -228,9 +232,11 @@ export const personJsonLd = {
     'Artificial Intelligence',
     'Machine Learning',
     'RAG Pipelines',
+    'Multi-Agent RAG Systems',
     'AI Agents',
-    'LangGraph',
-    'LangChain',
+    'AI Automation',
+    'Production Monitoring & Evaluation',
+    'DevOps',
     'Large Language Models',
     'Full-Stack Development',
     'Next.js',
@@ -348,7 +354,7 @@ export const faqJsonLd = {
       name: 'Who is Sandeep Prajapati?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Sandeep Prajapati is an AI Engineer & Full-Stack Developer based in New Delhi, India. He currently works as an AI Software Developer Intern at DrCode, where he builds production AI features including RAG pipelines, AI agents, and full-stack applications with Next.js and Python.',
+        text: 'Sandeep Prajapati is a Full-Stack Engineer based in New Delhi, India, building scalable AI products, agents, and agentic systems. He currently works as an AI Software Developer Intern at DrCode, where he builds production AI features including multi-agent RAG systems, automation pipelines, and full-stack applications with Next.js and Python.',
       },
     },
     {
@@ -356,7 +362,7 @@ export const faqJsonLd = {
       name: 'What does Sandeep Prajapati do?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Sandeep Prajapati builds intelligent systems — retrieval-augmented generation (RAG) pipelines, LLM-powered agents with LangGraph and CrewAI, and the full-stack applications that ship them. His work combines Python/FastAPI backends with Next.js and TypeScript on the frontend.',
+        text: 'Sandeep Prajapati builds full-stack, scalable AI products — multi-agent retrieval-augmented generation (RAG) systems, LLM-powered agents, and automation pipelines with production-grade monitoring, evaluation, and DevOps — plus the full-stack applications that ship them. His work combines Python/FastAPI backends with Next.js and TypeScript on the frontend.',
       },
     },
     {
@@ -380,7 +386,7 @@ export const faqJsonLd = {
       name: 'What technologies does Sandeep Prajapati work with?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Sandeep Prajapati works with Python, FastAPI, TypeScript, Next.js, React, and Node.js. On the AI side he uses LangGraph, LangChain, CrewAI, Pydantic AI, vector databases, and the OpenAI, Anthropic, and Groq APIs.',
+        text: 'Sandeep Prajapati works with Python, FastAPI, TypeScript, Next.js, React, and Node.js. On the AI side he builds multi-agent RAG systems, AI agents, and automation pipelines with vector databases, production monitoring and evaluation, and the OpenAI, Anthropic, and Groq APIs.',
       },
     },
     {

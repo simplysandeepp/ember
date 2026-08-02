@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = buildMetadata({
   title: 'Writing',
   description:
-    'Writing by Sandeep Prajapati on AI engineering, LLMs, RAG pipelines, LangGraph, and full-stack development.',
+    'Writing by Sandeep Prajapati on AI engineering, LLMs, multi-agent RAG systems, AI automation, and full-stack development.',
   path: '/blog',
   keywords: [
     'Sandeep Prajapati blog',

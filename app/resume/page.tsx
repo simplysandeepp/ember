@@ -17,7 +17,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = buildMetadata({
   title: 'Resume — Sandeep Prajapati',
   description:
-    'Full resume of Sandeep Prajapati — AI Engineer & Full-Stack Developer in New Delhi. Experience at DrCode, Google, Infosys Springboard, and GDG on Campus. Skills in RAG, LangGraph, Next.js, Python, and more.',
+    'Full resume of Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems in New Delhi. Experience at DrCode, Google, Infosys Springboard, and GDG on Campus. Skills in multi-agent RAG systems, AI automation, Next.js, Python, and more.',
   path: '/resume',
   keywords: [
     'Sandeep Prajapati resume',
@@ -30,13 +30,11 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const skills: Record<string, string[]> = {
-  'AI / ML': [
-    'RAG Pipelines',
-    'LangGraph',
-    'LangChain',
+  'AI Systems & Agents': [
+    'Multi-Agent RAG Systems',
     'AI Agents',
-    'CrewAI',
-    'Pydantic AI',
+    'AI Automation',
+    'Monitoring & Evaluation',
     'Prompt Engineering',
     'Vector Databases',
     'Groq',
@@ -61,7 +59,7 @@ const resumeJsonLd = {
   url: `${siteConfig.url}/resume`,
   name: 'Resume — Sandeep Prajapati',
   description:
-    'Full resume and CV for Sandeep Prajapati, AI Engineer & Full-Stack Developer.',
+    'Full resume and CV for Sandeep Prajapati, Full-Stack Engineer building AI Products & Agentic Systems.',
   mainEntity: personJsonLd,
 };
 
@@ -88,12 +86,13 @@ export default function ResumePage() {
           Sandeep Prajapati
         </h1>
         <p className="mt-1 text-sm text-neutral-500">
-          AI Engineer &amp; Full-Stack Developer · New Delhi, India
+          Full-Stack Engineer — AI Products &amp; Agentic Systems · New Delhi, India
         </p>
         <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-          Sandeep Prajapati builds intelligent systems — RAG pipelines, AI
-          agents, and the full-stack applications that run them. Currently an
-          AI Software Developer Intern at DrCode, working on production AI
+          Sandeep Prajapati builds full-stack, scalable AI products —
+          multi-agent RAG systems, AI agents, and automation pipelines, with
+          production monitoring, evaluation, and DevOps. Currently an AI
+          Software Developer Intern at DrCode, working on production AI
           features used by real developers.
         </p>
 
@@ -279,7 +278,7 @@ export default function ResumePage() {
       {/* Contact */}
       <section className="mt-12 pt-8 border-t border-neutral-100 dark:border-neutral-800 print:mt-8">
         <p className="text-sm text-neutral-500 leading-relaxed">
-          Open to AI engineering roles and collaborations.{' '}
+          Open to full-stack AI engineering roles and collaborations.{' '}
           <Link href="/contact" className="underline-link">
             Get in touch →
           </Link>

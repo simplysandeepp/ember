@@ -14,7 +14,7 @@ import {
 } from '@/lib/metadata';
 
 const defaultTitle =
-  'Sandeep Prajapati — AI Engineer & Full-Stack Developer';
+  'Sandeep Prajapati — Full-Stack Engineer, AI Products & Agents';
 
 export const metadata: Metadata = {
   title: {
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: 'Sandeep Prajapati — AI Engineer & Full-Stack Developer',
+        alt: 'Sandeep Prajapati — Full-Stack Engineer, AI Products & Agents',
       },
     ],
   },
