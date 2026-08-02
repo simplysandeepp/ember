@@ -8,7 +8,12 @@ export const siteConfig = {
   lastName: 'Prajapati',
   url: siteUrl,
   jobTitle: 'Full-Stack Engineer — AI Products & Agentic Systems',
+  // Meta/OG description. Google truncates around 160 characters, so this is
+  // kept under that; `longDescription` carries the full text for JSON-LD,
+  // where there is no length penalty.
   description:
+    'Sandeep Prajapati is a Full-Stack Engineer in New Delhi building scalable AI products — multi-agent RAG systems, AI agents, and automation pipelines.',
+  longDescription:
     'Sandeep Prajapati is a Full-Stack Engineer based in New Delhi, India. He builds full-stack, scalable AI products — multi-agent RAG systems, AI agents, and automation pipelines — with production-grade monitoring, evaluation, and DevOps practices. Currently an AI Software Developer Intern at DrCode.',
   shortDescription:
     'Full-Stack Engineer in New Delhi — scalable AI products, multi-agent RAG systems, agents, automation, and production monitoring.',
@@ -149,7 +154,7 @@ export const personJsonLd = {
   url: siteUrl,
   image: `${siteUrl}/opengraph-image`,
   jobTitle: siteConfig.jobTitle,
-  description: siteConfig.description,
+  description: siteConfig.longDescription,
   worksFor: {
     '@type': 'Organization',
     '@id': 'https://drcode.ai/#organization',
@@ -318,7 +323,7 @@ export function profilePageJsonLd(
     '@id': `${siteUrl}/#profilepage`,
     url: siteUrl,
     name: `${siteConfig.name} — ${siteConfig.jobTitle}`,
-    description: siteConfig.description,
+    description: siteConfig.longDescription,
     inLanguage: 'en',
     isPartOf: { '@id': `${siteUrl}/#website` },
     mainEntity: { '@id': `${siteUrl}/#person` },

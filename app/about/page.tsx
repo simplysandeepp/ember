@@ -13,7 +13,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = buildMetadata({
   title: 'About',
   description:
-    'About Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems, from New Delhi, India. Experience at DrCode, GDG on Campus, Google, and Infosys Springboard, plus skills in multi-agent RAG systems, AI automation, Next.js, and Python.',
+    'Sandeep Prajapati — Full-Stack Engineer in New Delhi. Experience at DrCode, GDG on Campus, Google, and Infosys Springboard, plus skills and certifications.',
   path: '/about',
   keywords: [
     'Sandeep Prajapati about',
@@ -32,7 +32,7 @@ const profileJsonLd = {
   url: `${siteConfig.url}/about`,
   name: 'About Sandeep Prajapati',
   description:
-    'About Sandeep Prajapati — Full-Stack Engineer building AI Products & Agentic Systems in New Delhi. Background, experience at DrCode, and skills across multi-agent RAG systems, AI automation, Next.js, and Python.',
+    'Background, experience at DrCode, and skills across multi-agent RAG systems, AI automation, Next.js, and Python.',
   inLanguage: 'en',
   isPartOf: { '@id': `${siteConfig.url}/#website` },
   mainEntity: personJsonLd,
