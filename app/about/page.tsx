@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getAllExperience, getCertifications } from '@/lib/content';
 import {
   buildMetadata,
@@ -109,7 +110,7 @@ export default function AboutPage() {
           >
             Find Sandeep across the internet →
           </a>
-          <div className="flex items-center gap-4 mt-2">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-2">
             <a
               href={siteConfig.github}
               target="_blank"
@@ -132,14 +133,12 @@ export default function AboutPage() {
             >
               Contact
             </a>
-            <a
-              href="https://sandeepp.in/resume"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-auto text-xs font-medium text-neutral-900 dark:text-neutral-100 underline underline-offset-2 hover:text-neutral-500 dark:hover:text-neutral-400 transition-colors duration-200 flex-shrink-0"
+            <Link
+              href="/resume"
+              className="sm:ml-auto text-xs font-medium text-neutral-900 dark:text-neutral-100 underline underline-offset-2 hover:text-neutral-500 dark:hover:text-neutral-400 transition-colors duration-200 flex-shrink-0"
             >
-              Click here to view full resume →
-            </a>
+              Full resume →
+            </Link>
           </div>
         </div>
       </div>
