@@ -1,6 +1,7 @@
 ---
 title: "RAG Document Assistant"
 description: "A production-style Retrieval-Augmented Generation system — documents are chunked, embedded with SentenceTransformers, indexed in Endee's HNSW vector database, and retrieved via cosine-similarity k-NN search to ground Groq's Llama 3.3 70B in a user-provided knowledge base with full source attribution."
+metaDescription: "A production-style RAG system — documents are chunked, embedded, and indexed, then retrieved to ground Groq's Llama 3.3 70B with full source attribution."
 date: "2026-03-12"
 tags: ["Python", "RAG", "Streamlit", "Endee Vector DB", "HNSW", "SentenceTransformers", "Groq Llama 3.3", "Render"]
 github: "https://github.com/simplysandeepp/endee"

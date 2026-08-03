@@ -1,6 +1,7 @@
 ---
 title: "LearnLoop AI"
 description: "An AI-powered learning platform that adapts to your learning style — with a study chatbot, performance analytics, planning, and weak-area detection in a premium, distraction-free UI."
+metaDescription: "An AI-powered learning platform that adapts to your learning style — with a study chatbot, performance analytics, planning, and weak-area detection."
 date: "2025-02-15"
 tags: ["Next.js 16", "React 19", "TypeScript", "FastAPI", "Tailwind CSS", "Framer Motion", "Recharts"]
 github: "https://github.com/simplysandeepp/LearnLoop-AI"

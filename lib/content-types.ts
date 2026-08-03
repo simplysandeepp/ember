@@ -1,6 +1,11 @@
 export type ProjectFrontmatter = {
   title: string;
   description: string;
+  // Optional override for <meta name="description">/OG/Twitter, capped
+  // around 155-160 chars so Google doesn't truncate it. `description` stays
+  // full-length for the visible on-page sub-headline; falls back to it when
+  // unset.
+  metaDescription?: string;
   date: string;
   tags: string[];
   github?: string;
@@ -15,6 +20,8 @@ export type ProjectFrontmatter = {
 export type BlogFrontmatter = {
   title: string;
   description: string;
+  // See ProjectFrontmatter.metaDescription — same override, same fallback.
+  metaDescription?: string;
   date: string;
   tags?: string[];
   published?: boolean;

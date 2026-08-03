@@ -1,6 +1,7 @@
 ---
 title: "InnoSpark'25 — Hosting the Gemini AI Workshop"
 description: "Facilitated a hands-on Gemini API session at GDG OC GU's InnoSpark event — exploring prompt engineering, multimodal inputs, and live coding with Google's latest models."
+metaDescription: "Facilitated a hands-on Gemini API session at GDG OC GU's InnoSpark — prompt engineering, multimodal inputs, and live coding with Google's models."
 date: "2025-10-10"
 tags: ["GDG", "Gemini", "AI", "Workshop", "Event"]
 published: true

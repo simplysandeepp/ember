@@ -1,6 +1,7 @@
 ---
 title: "Echo Echo"
 description: "An AI music generation platform — multi-agent LLM orchestration (CrewAI + Groq Llama 3.1) composes 30-second instrumental sketches via the Suno v4 API, generates thematically aligned lyrics, and scores every output through an automated copyright-similarity detection pipeline."
+metaDescription: "An AI music generation platform — multi-agent LLM orchestration composes instrumental sketches and lyrics, then screens output for copyright similarity."
 date: "2025-11-01"
 tags: ["Python", "FastAPI", "CrewAI", "Groq Llama 3.1", "Suno v4 API", "Three.js", "Render"]
 github: "https://github.com/simplysandeepp/Consolidated-EchoEcho"

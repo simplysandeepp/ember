@@ -1,6 +1,7 @@
 ---
 title: "IEEE DTU Vihaan 9.0 — Building an AI Healthcare Claims System Under Pressure"
 description: "Our team built an end-to-end AI-powered healthcare claims processing system at Vihaan 9.0. We made it to the finals. Here's what we built, what broke, and what I learned."
+metaDescription: "Our team built an end-to-end AI-powered healthcare claims system at Vihaan 9.0 and made the finals. What we built, what broke, and what I learned."
 date: "2026-04-20"
 tags: ["Hackathon", "AI", "Healthcare", "Multi-Agent", "RAG", "Machine Learning"]
 published: true
