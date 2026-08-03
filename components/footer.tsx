@@ -81,6 +81,14 @@ export default function Footer() {
           </li>
           <li>
             <Link
+              href="/resume"
+              className="text-sm text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+            >
+              Resume
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/contact"
               className="text-sm text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
             >
