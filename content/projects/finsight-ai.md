@@ -1,6 +1,7 @@
 ---
 title: "FinSight AI"
 description: "An AI-powered financial intelligence platform — parallel agents deliver probabilistic revenue forecasts, buy/sell signals, and peer benchmarks in under 20 seconds."
+metaDescription: "An AI-powered financial intelligence platform — parallel agents deliver revenue forecasts, buy/sell signals, and peer benchmarks in under 20 seconds."
 date: "2025-03-01"
 tags: ["Python", "FastAPI", "React", "Scikit-learn", "SHAP", "Groq LLaMA", "MongoDB"]
 github: "https://github.com/simplysandeepp/finSight-AI"

@@ -1,6 +1,7 @@
 ---
 title: "TechSprint × Google — Tech Interview Prep Session"
 description: "A structured technical interview preparation session run as part of TechSprint'26 — covering DSA patterns, system design fundamentals, and mock interview practice."
+metaDescription: "A structured technical interview prep session from TechSprint'26 — covering DSA patterns, system design fundamentals, and mock interview practice."
 date: "2026-01-25"
 tags: ["TechSprint", "DSA", "Interview Prep", "Google", "Event"]
 published: true

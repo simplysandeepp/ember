@@ -1,6 +1,7 @@
 ---
 title: "NoLoop Dev Log — Migrating the Backend from NestJS to FastAPI"
 description: "One big day on NoLoop: kicked off the NestJS → FastAPI migration with 4 verified PRs, planned 14 issues of roadmap, deployed the admin dashboard, and earned some hard-won pgbouncer and timezone lessons."
+metaDescription: "One big day on NoLoop: kicked off the NestJS → FastAPI migration, planned 14 roadmap issues, deployed the admin dashboard, and hard-won pgbouncer lessons."
 date: "2026-07-15"
 tags: ["NoLoop", "FastAPI", "Python", "Migration", "PostgreSQL", "Dev Log"]
 published: true

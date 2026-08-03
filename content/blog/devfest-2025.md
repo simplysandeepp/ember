@@ -1,6 +1,7 @@
 ---
 title: "DevFest 2025 — Organizing at Scale"
 description: "Helped organize DevFest 2025 for GDG On Campus GU — Google's flagship annual developer conference, run locally with talks, demos, and workshops across a full day."
+metaDescription: "Helped organize DevFest 2025 for GDG On Campus GU — Google's flagship developer conference, run locally with talks, demos, and workshops."
 date: "2025-12-15"
 tags: ["GDG", "DevFest", "Event", "Conference"]
 published: true
