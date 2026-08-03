@@ -14,7 +14,10 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Sandeep Prajapati — Full-Stack Engineer, AI Products & Agents',
   description: siteConfig.description,
-  alternates: { canonical: siteConfig.url },
+  alternates: {
+    canonical: siteConfig.url,
+    types: { 'application/rss+xml': `${siteConfig.url}/rss.xml` },
+  },
 };
 
 export default function HomePage() {

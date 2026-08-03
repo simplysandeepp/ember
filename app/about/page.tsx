@@ -3,7 +3,6 @@ import { getAllExperience, getCertifications } from '@/lib/content';
 import {
   buildMetadata,
   siteConfig,
-  personJsonLd,
   breadcrumbJsonLd,
   faqJsonLd,
 } from '@/lib/metadata';
@@ -36,7 +35,10 @@ const profileJsonLd = {
     'Background, experience at DrCode, and skills across multi-agent RAG systems, AI automation, Next.js, and Python.',
   inLanguage: 'en',
   isPartOf: { '@id': `${siteConfig.url}/#website` },
-  mainEntity: personJsonLd,
+  // Referenced by @id, not inlined — the full Person object already ships
+  // once per page via personJsonLd in app/layout.tsx. Inlining it again here
+  // defined the same @id twice on one page with two competing bodies.
+  mainEntity: { '@id': `${siteConfig.url}/#person` },
   about: { '@id': `${siteConfig.url}/#person` },
   significantLink: [
     { '@type': 'WebPage', name: 'Projects', url: `${siteConfig.url}/projects` },

@@ -108,7 +108,15 @@ export function buildMetadata({
     authors: [{ name: siteConfig.name, url: siteUrl }],
     creator: siteConfig.name,
     publisher: siteConfig.name,
-    alternates: { canonical: url },
+    // Per-page `alternates` replaces the whole object rather than merging
+    // with the root layout's, so the layout's RSS `types` entry was silently
+    // dropped on every page that goes through buildMetadata. Repeating it
+    // here keeps `<link rel="alternate" type="application/rss+xml">`
+    // discoverable site-wide instead of on zero pages.
+    alternates: {
+      canonical: url,
+      types: { 'application/rss+xml': `${siteUrl}/rss.xml` },
+    },
     robots: {
       index: true,
       follow: true,

@@ -1,4 +1,14 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+// Without this, the page inherited the root layout's blanket
+// `robots: { index: true, follow: true, googleBot: {...} }`, which rendered
+// alongside Next's own auto-injected `noindex` for the not-found route —
+// two conflicting <meta name="robots"> tags, plus a `googlebot` tag that
+// explicitly said "index, follow" on a 404.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
   return (
