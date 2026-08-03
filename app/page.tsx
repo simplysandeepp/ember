@@ -1,5 +1,11 @@
 import Link from 'next/link';
-import { getAllProjects, getAllPosts, getCertifications, formatDate } from '@/lib/content';
+import {
+  getAllProjects,
+  getFeaturedProjects,
+  getAllPosts,
+  getCertifications,
+  formatDate,
+} from '@/lib/content';
 import ProjectBento from '@/components/project-bento';
 import Logo from '@/components/logo';
 import { siteConfig, profilePageJsonLd } from '@/lib/metadata';
@@ -13,8 +19,16 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const allProjects = getAllProjects();
-  // Selected Work = the 4 most recently dated projects (fully dynamic).
-  const displayProjects = allProjects.slice(0, 4);
+  // Selected Work follows the `featured` + `priority` curation in project
+  // frontmatter, not raw date order — the bento gives its first cell hero
+  // treatment, so that slot needs to be chosen rather than whatever happens
+  // to be newest. Topped up with recent projects if fewer than 4 are
+  // featured, so the grid is never partially filled.
+  const featured = getFeaturedProjects();
+  const displayProjects = [
+    ...featured,
+    ...allProjects.filter((p) => !featured.some((f) => f.slug === p.slug)),
+  ].slice(0, 4);
   const allPosts = getAllPosts();
   const recentPosts = allPosts.slice(0, 4);
   const certifications = getCertifications();
