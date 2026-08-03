@@ -1,6 +1,12 @@
 import { MetadataRoute } from 'next';
 import { getAllProjects, getAllPosts } from '@/lib/content';
 import { siteConfig } from '@/lib/metadata';
+import { gitLastModified } from '@/lib/git-date';
+
+// Fallback used only if git history for a path is unavailable at build time
+// (e.g. a shallow clone). Bump manually if these pages change meaningfully
+// and git history somehow isn't available in the deploy environment.
+const FALLBACK_DATE = '2026-08-01';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const allProjects = getAllProjects();
@@ -32,13 +38,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: siteConfig.url,
-      lastModified: new Date(),
+      lastModified: gitLastModified('app/page.tsx', FALLBACK_DATE),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
       url: `${siteConfig.url}/about`,
-      lastModified: new Date(),
+      lastModified: gitLastModified('app/about/page.tsx', FALLBACK_DATE),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
@@ -56,13 +62,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteConfig.url}/resume`,
-      lastModified: new Date(),
+      lastModified: gitLastModified('app/resume/page.tsx', FALLBACK_DATE),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${siteConfig.url}/contact`,
-      lastModified: new Date(),
+      lastModified: gitLastModified('app/contact/page.tsx', FALLBACK_DATE),
       changeFrequency: 'yearly',
       priority: 0.5,
     },
