@@ -7,6 +7,7 @@ import ReadingProgress from '@/components/reading-progress';
 import TableOfContents from '@/components/table-of-contents';
 import { extractHeadings } from '@/lib/toc';
 import { siteConfig, siteKeywords, breadcrumbJsonLd } from '@/lib/metadata';
+import { gitLastModified } from '@/lib/git-date';
 import type { Metadata } from 'next';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -35,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       type: 'article',
       publishedTime: date,
+      modifiedTime: gitLastModified(`content/blog/${slug}.md`, date).toISOString(),
       authors: ['Sandeep Prajapati'],
     },
     twitter: {
@@ -52,6 +54,15 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const { title, description, date, tags } = post.frontmatter;
+
+  // Real "last edited" signal from git history on the content file, not the
+  // publish date repeated verbatim — a dateModified that never differs from
+  // datePublished tells Google nothing about freshness. Falls back to `date`
+  // if git history for the file is unavailable.
+  const dateModified = gitLastModified(
+    `content/blog/${slug}.md`,
+    date
+  ).toISOString();
 
   // Reading time (~200 words/min) and previous/next posts.
   const words = post.content.trim().split(/\s+/).filter(Boolean).length;
@@ -95,7 +106,7 @@ export default async function BlogPostPage({ params }: Props) {
     headline: title,
     description,
     datePublished: date,
-    dateModified: date,
+    dateModified,
     author,
     creator: author,
     publisher: author,
