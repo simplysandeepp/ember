@@ -9,7 +9,6 @@ import {
 import {
   buildMetadata,
   siteConfig,
-  personJsonLd,
   breadcrumbJsonLd,
 } from '@/lib/metadata';
 import type { Metadata } from 'next';
@@ -56,11 +55,16 @@ const breadcrumb = breadcrumbJsonLd([
 const resumeJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
+  '@id': `${siteConfig.url}/resume#profile`,
   url: `${siteConfig.url}/resume`,
   name: 'Resume — Sandeep Prajapati',
   description:
     'Full resume and CV for Sandeep Prajapati, Full-Stack Engineer building AI Products & Agentic Systems.',
-  mainEntity: personJsonLd,
+  inLanguage: 'en',
+  isPartOf: { '@id': `${siteConfig.url}/#website` },
+  // Referenced by @id — see app/about/page.tsx for why this isn't the full
+  // personJsonLd object inlined a second time.
+  mainEntity: { '@id': `${siteConfig.url}/#person` },
 };
 
 export default function ResumePage() {

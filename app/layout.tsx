@@ -29,8 +29,12 @@ export const metadata: Metadata = {
   creator: siteConfig.name,
   publisher: siteConfig.name,
   category: 'technology',
+  // No `canonical` here — every real page sets its own (buildMetadata and
+  // each per-page `alternates`). A blanket canonical at this level was only
+  // ever inherited by pages that skip metadata entirely, i.e. the 404 page,
+  // where it wrongly pointed google at the homepage as the "real" URL for
+  // a not-found page.
   alternates: {
-    canonical: siteConfig.url,
     types: { 'application/rss+xml': `${siteConfig.url}/rss.xml` },
   },
   robots: {
