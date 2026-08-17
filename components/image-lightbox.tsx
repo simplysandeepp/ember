@@ -39,6 +39,8 @@ export default function ImageLightbox({
     };
   }, [open]);
 
+  if (!src) return null;
+
   return (
     <>
       <button

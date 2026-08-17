@@ -99,6 +99,12 @@ export const viewport: Viewport = {
   colorScheme: 'light dark',
 };
 
+// Combined JSON-LD for Person + WebSite - single script tag instead of two
+const rootJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [personJsonLd, websiteJsonLd],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -121,11 +127,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://giscus.app" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(rootJsonLd) }}
         />
       </head>
       <body
