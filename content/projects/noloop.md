@@ -3,7 +3,7 @@ title: "Noloop"
 description: "A glass-box medical claims adjudication and fraud-defense platform — an AI agent pipeline turns unstructured claim documents into explainable, role-specific decisions for patients, hospitals, and insurers."
 metaDescription: "A glass-box medical claims adjudication platform — an AI agent pipeline turns unstructured claims into explainable decisions for patients, hospitals, insurers."
 date: "2026-06-19"
-tags: ["Next.js", "React", "TypeScript", "FastAPI", "Python", "Gemini", "PostgreSQL", "Celery"]
+tags: ["Next.js", "React", "TypeScript", "FastAPI", "Python", "Gemini", "PostgreSQL", "Celery", "CI/CD", "Render & Vercel"]
 github: "https://github.com/simplysandeepp/Noloop"
 live: "https://noloop.sandeepp.in"
 demo: "https://youtu.be/946GA4_ADkc?si=uAjakaqGzPJq23Ec"
