@@ -19,6 +19,12 @@ export { formatDate } from './content-types';
 
 const contentDir = path.join(process.cwd(), 'content');
 
+// Module-level cache for build-time content (static files don't change during build)
+let _allProjectsCache: ContentItem<ProjectFrontmatter>[] | null = null;
+let _allPostsCache: ContentItem<BlogFrontmatter>[] | null = null;
+let _allExperienceCache: ContentItem<ExperienceFrontmatter>[] | null = null;
+let _certificationsCache: Certification[] | null = null;
+
 function readDir(folder: string): string[] {
   const dir = path.join(contentDir, folder);
   if (!fs.existsSync(dir)) return [];
@@ -54,13 +60,15 @@ function parseFile<T>(folder: string, filename: string): ContentItem<T> {
 }
 
 export function getAllProjects(): ContentItem<ProjectFrontmatter>[] {
-  return readDir('projects')
+  if (_allProjectsCache) return _allProjectsCache;
+  _allProjectsCache = readDir('projects')
     .map((f) => parseFile<ProjectFrontmatter>('projects', f))
     .sort(
       (a, b) =>
         new Date(b.frontmatter.date).getTime() -
         new Date(a.frontmatter.date).getTime()
     );
+  return _allProjectsCache;
 }
 
 export function getFeaturedProjects(): ContentItem<ProjectFrontmatter>[] {
@@ -83,7 +91,8 @@ export function getProjectBySlug(
 }
 
 export function getAllPosts(): ContentItem<BlogFrontmatter>[] {
-  return readDir('blog')
+  if (_allPostsCache) return _allPostsCache;
+  _allPostsCache = readDir('blog')
     .map((f) => parseFile<BlogFrontmatter>('blog', f))
     .filter((p) => p.frontmatter.published !== false)
     .sort(
@@ -91,6 +100,7 @@ export function getAllPosts(): ContentItem<BlogFrontmatter>[] {
         new Date(b.frontmatter.date).getTime() -
         new Date(a.frontmatter.date).getTime()
     );
+  return _allPostsCache;
 }
 
 export function getPostBySlug(
@@ -103,21 +113,25 @@ export function getPostBySlug(
 }
 
 export function getAllExperience(): ContentItem<ExperienceFrontmatter>[] {
-  return readDir('experience')
+  if (_allExperienceCache) return _allExperienceCache;
+  _allExperienceCache = readDir('experience')
     .map((f) => parseFile<ExperienceFrontmatter>('experience', f))
     .sort((a, b) => (a.frontmatter.order ?? 99) - (b.frontmatter.order ?? 99));
+  return _allExperienceCache;
 }
 
 export function getCertifications(): Certification[] {
+  if (_certificationsCache) return _certificationsCache;
   const filePath = path.join(contentDir, 'certifications.md');
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, 'utf-8');
   const { attributes } = matter(raw) as { attributes: Record<string, unknown> };
   const certs = (attributes.certifications as Certification[]) ?? [];
-  return certs
+  _certificationsCache = certs
     .slice()
     .sort(
       (a, b) =>
         new Date(b.issued).getTime() - new Date(a.issued).getTime()
     );
+  return _certificationsCache;
 }

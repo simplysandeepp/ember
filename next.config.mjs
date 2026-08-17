@@ -38,7 +38,7 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
-  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   transpilePackages: ['next-mdx-remote'],
   async headers() {
     return [

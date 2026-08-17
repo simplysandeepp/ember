@@ -24,8 +24,22 @@ export type SearchDoc = {
  * fences, link syntax, and emphasis markers cluttering the body.
  */
 function stripMarkdown(md: string): string {
-  return md
-    .replace(/```[\s\S]*?```/g, ' ')
+  // Track fenced code block state to handle nested fences correctly
+  let inFence = false;
+  const lines = md.split('\n');
+  const cleanedLines: string[] = [];
+
+  for (const line of lines) {
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    cleanedLines.push(line);
+  }
+
+  return cleanedLines
+    .join('\n')
     .replace(/`([^`]+)`/g, '$1')
     .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
@@ -68,7 +82,8 @@ function sectionsOf(
   };
 
   for (const line of lines) {
-    const match = /^(#{1,6})\s+(.*)$/.exec(line);
+    // Skip H1 (# Heading) - page-level doc already exists before first heading
+    const match = /^(#{2,6})\s+(.*)$/.exec(line);
     if (match) {
       flush();
       buffer = [];

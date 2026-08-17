@@ -51,9 +51,15 @@ export type ContentItem<T> = {
 };
 
 export function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-US', {
+  // Parse as UTC to avoid timezone shifting (e.g. "2024-01-15" -> Jan 15, not Jan 14 in some TZs)
+  // Handle both date-only (YYYY-MM-DD) and datetime strings
+  const date = dateStr.includes('T')
+    ? new Date(dateStr)
+    : new Date(dateStr + 'T00:00:00Z');
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'UTC',
   });
 }
