@@ -6,7 +6,7 @@ date: "2025-03-01"
 tags: ["Python", "FastAPI", "React", "Scikit-learn", "SHAP", "Groq LLaMA", "MongoDB"]
 github: "https://github.com/simplysandeepp/finSight-AI"
 featured: true
-priority: 3
+priority: 4
 ---
 
 ## Overview

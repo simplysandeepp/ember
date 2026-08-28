@@ -6,7 +6,7 @@ tags: ["React", "TypeScript", "Node.js", "MongoDB", "Framer Motion", "GSAP"]
 github: "https://github.com/simplysandeepp/Portfolio"
 live: "https://portfolio-simplysandeepp.vercel.app"
 featured: true
-priority: 5
+priority: 6
 ---
 
 ## Overview

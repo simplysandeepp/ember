@@ -7,7 +7,7 @@ github: "https://github.com/simplysandeepp/Beacon"
 live: "https://beacon.sandeepp.in"
 demo: "https://youtu.be/hx63_Fr5I8g?si=xkJFNTc56JADhD88"
 featured: true
-priority: 2
+priority: 3
 pinned: true
 ---
 

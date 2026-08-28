@@ -6,7 +6,7 @@ tags: ["React 19", "TypeScript", "Vite", "Monaco Editor", "Firebase", "Framer Mo
 github: "https://github.com/simplysandeepp/Stateful"
 live: "https://stateful.sandeepp.in"
 featured: true
-priority: 4
+priority: 5
 ---
 
 ## Overview
