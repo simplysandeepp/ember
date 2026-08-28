@@ -6,4 +6,4 @@ end: "Present"
 order: 1
 ---
 
-Building production features across the full stack — backend API pipelines, Next.js frontend, AI agent/RAG integrations, CI/CD pipelines, AWS, Render, and SMTP services. Hybrid, New Delhi.
+Full-stack development across two client platforms — one a member-management system (Next.js, dual-JWT auth architecture, webhook-driven ingestion), the other backend/infrastructure work with Django, PostgreSQL, Elasticsearch, and Linux server environments. Also building AI agent/RAG integrations and CI/CD pipelines. Hybrid, New Delhi.
