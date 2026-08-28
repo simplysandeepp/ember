@@ -72,7 +72,7 @@ export default function HomePage() {
               Sandeep Prajapati
             </h1>
             <p className="text-sm text-neutral-500 mt-0.5">
-              Software Engineer — AI Products, Full-Stack & Server Infrastructure
+              Full-Stack Engineer — AI Products & Agentic Systems
             </p>
             <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-3">
               Exploring what&apos;s next, one stack at a time
@@ -83,9 +83,10 @@ export default function HomePage() {
         {/* Bio */}
         <section className="mt-10">
           <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            I build software end to end — from AI agent pipelines and
-            full-stack web apps to the backend and server infrastructure
-            underneath them. Currently at{' '}
+            I build full-stack, scalable AI products — multi-agent RAG
+            systems, AI agents, and automation pipelines — with production
+            monitoring, evaluation, and DevOps baked in. Currently interning
+            at{' '}
             <a
               href="https://drcode.ai"
               target="_blank"
@@ -94,8 +95,8 @@ export default function HomePage() {
             >
               DrCode
             </a>{' '}
-            in New Delhi, working across Next.js, FastAPI/Django, PostgreSQL,
-            Elasticsearch, and Linux server environments.
+            in New Delhi, where I work on production AI features used by real
+            developers.
           </p>
           <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mt-3">
             I care about making AI systems actually reliable — not just

@@ -62,25 +62,9 @@ const skills: Record<string, string[]> = {
     'Prompt Engineering',
     'Vector Databases',
   ],
-  Frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vite', 'TanStack Query/Router'],
-  Backend: ['Node.js', 'FastAPI', 'Django', 'Python', 'Express', 'Drizzle ORM'],
-  Database: ['PostgreSQL', 'MongoDB', 'Elasticsearch', 'Redis'],
-  'Auth & Security': [
-    'JWT/OAuth Architecture',
-    'Session Management',
-    'scrypt/bcrypt Hashing',
-    'Webhook Signature Verification',
-    'Rate Limiting',
-  ],
-  'Systems & Infrastructure': [
-    'Linux Server Administration',
-    'systemd',
-    'Multi-Server Automation',
-    'Docker',
-    'CI/CD (GitHub Actions, GitLab CI)',
-    'Nginx/Traefik',
-    'WebRTC/Media Streaming',
-  ],
+  Frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+  Backend: ['Node.js', 'FastAPI', 'Python', 'Express'],
+  Database: ['PostgreSQL', 'MongoDB'],
   Tools: ['Docker', 'Git', 'n8n', 'Vercel'],
 };
 
@@ -120,7 +104,7 @@ export default function AboutPage() {
             Sandeep Prajapati
           </h1>
           <p className="text-sm text-neutral-500 mt-0.5">
-            Software Engineer — AI Products, Full-Stack & Server Infrastructure · New Delhi
+            Full-Stack Engineer — AI Products & Agentic Systems · New Delhi
           </p>
           <a
             href="/contact"
@@ -164,7 +148,7 @@ export default function AboutPage() {
       {/* Bio */}
       <div className="mt-10 space-y-4 text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
         <p>
-          I&apos;m Sandeep — a Software Engineer Intern at{' '}
+          I&apos;m Sandeep — an AI Software Developer Intern at{' '}
           <a
             href="https://drcode.ai"
             target="_blank"
@@ -173,25 +157,18 @@ export default function AboutPage() {
           >
             DrCode
           </a>
-          , where I work across full-stack product development and
-          backend/server infrastructure: Next.js and React on the frontend,
-          FastAPI/Django and Node.js on the backend, PostgreSQL and
-          Elasticsearch for data, and Linux server environments for
-          deployment and automation.
+          , where I work on building AI-powered features that developers actually
+          use in production.
         </p>
         <p>
-          My focus is full-stack ownership, end to end — from AI agent
-          pipelines and frontends down to the auth systems and server
-          infrastructure that make them actually work in production, not
-          just in a demo. I also build and run my own infrastructure outside
-          of work — like Camio, a self-hosted security camera platform with
-          its own media-streaming pipeline, authentication system, and 24/7
-          Linux deployment, no cloud dependency by design.
+          My focus is on delivering full-stack, scalable AI products —
+          multi-agent RAG systems, AI agents, and automation pipelines, backed
+          by production monitoring, evaluation, and DevOps — into something
+          that works end to end, not just in a demo.
         </p>
         <p>
-          I explore new stacks daily, and I&apos;d rather understand a
-          system down to how it actually runs than treat any layer as a
-          black box.
+          I explore new and upcoming tech stacks daily, always looking for
+          better ways to build and ship intelligent products.
         </p>
       </div>
 
