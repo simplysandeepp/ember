@@ -9,7 +9,6 @@ certifications:
     issuer: "Amazon Web Services (AWS)"
     issued: "Jun 2026"
     link: "https://www.udacity.com/certificate/e/ef05ef52-2fd8-11f1-a81b-8b587cc1e9b7"
-    logo: "/logos/amazon-web-services-aws.webp"
   - title: "AWS Scholars Program Project Badge: Analyze Data using AI with PartyRock"
     issuer: "Udacity"
     issued: "May 2026"
