@@ -26,7 +26,7 @@ export const siteConfig = {
   // Tally contact form — visitors fill this instead of a backend-powered form.
   tallyUrl: 'https://tally.so/r/rjpAAl',
   // Public resume (Google Drive). Opens in a new tab from the ⌘K palette.
-  resumeUrl: 'https://drive.google.com/file/d/1I9tdTdKXyH-P6YAoZCYpWhW9UwqzzKw5/view?usp=share_link',
+  resumeUrl: 'https://drive.google.com/file/d/1WFJsqCDF4Bz-Y--Z7pDDrOAILf3QeQNz/view?usp=sharing',
   // Buttondown newsletter username — the blog signup form + RSS auto-email use this.
   // Set this to your Buttondown username to enable the newsletter signup form.
   buttondownUsername: 'Sandeepp',
