@@ -1,14 +1,20 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  confettiBurst,
+  celebrate,
   radialWipe,
   prefersReducedMotion,
   navigateTo,
-} from '@/lib/celebrate';
-import { SIBLING_SITE, THIS_SITE, SWITCH_HASH, siblingHref } from '@/lib/sibling-site';
+  resetCelebration,
+} from "@/lib/celebrate";
+import {
+  SIBLING_SITE,
+  THIS_SITE,
+  SWITCH_HASH,
+  siblingHref,
+} from "@/lib/sibling-site";
 
 /**
  * Jump between the two portfolio designs.
@@ -31,6 +37,10 @@ import { SIBLING_SITE, THIS_SITE, SWITCH_HASH, siblingHref } from '@/lib/sibling
 /** Long enough to read as deliberate, short enough not to feel like latency. */
 const WIPE_MS = 420;
 
+/** If the navigation has not taken us away by now, it was cancelled or
+    blocked — put the page back rather than leave a green screen over it. */
+const GIVE_UP_MS = 4000;
+
 export default function SiteSwitch() {
   const pathname = usePathname();
   const ref = useRef<HTMLAnchorElement>(null);
@@ -48,12 +58,30 @@ export default function SiteSwitch() {
   // route change from re-firing it.
   useEffect(() => {
     if (window.location.hash !== SWITCH_HASH) return;
-    history.replaceState(null, '', window.location.pathname + window.location.search);
+    history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search,
+    );
     if (prefersReducedMotion()) return;
     const { x, y } = centre();
-    const id = window.setTimeout(() => confettiBurst(x, y, { count: 110 }), 220);
+    const id = window.setTimeout(() => celebrate(x, y), 220);
     return () => window.clearTimeout(id);
   }, [centre]);
+
+  // Back/forward. Pressing Back from the other site restores this page from
+  // the browser's back/forward cache exactly as it was left — wipe overlay and
+  // all, so the reader sees a solid green screen. `pageshow` with `persisted`
+  // is the only signal that happens, and it fires without a re-mount.
+  useEffect(() => {
+    const onPageShow = (event: PageTransitionEvent) => {
+      if (!event.persisted) return;
+      resetCelebration();
+      setLeaving(false);
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
 
   const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     // Let the browser handle every intentional "somewhere else" click.
@@ -75,8 +103,16 @@ export default function SiteSwitch() {
     setLeaving(true);
 
     const { x, y } = centre();
-    confettiBurst(x, y, { count: 110 });
-    radialWipe(x, y, '#c4f82a', WIPE_MS).then(() => navigateTo(href));
+    celebrate(x, y);
+    radialWipe(x, y, "#c4f82a", WIPE_MS).then(() => {
+      navigateTo(href);
+      // Normally the page is gone before this runs. If it is not, the
+      // navigation never happened and the overlay has to come down.
+      window.setTimeout(() => {
+        resetCelebration();
+        setLeaving(false);
+      }, GIVE_UP_MS);
+    });
   };
 
   // The knob sits under the active half, and slides across as you leave.
@@ -88,16 +124,16 @@ export default function SiteSwitch() {
       href={siblingHref(pathname)}
       onClick={onClick}
       data-leaving={leaving}
-      aria-label={`Switch to ${SIBLING_SITE.name} at ${SIBLING_SITE.url.replace('https://', '')}`}
+      aria-label={`Switch to ${SIBLING_SITE.name} at ${SIBLING_SITE.url.replace("https://", "")}`}
       title={`Switch to ${SIBLING_SITE.label} — ${SIBLING_SITE.name}`}
-      className="group relative ml-1 inline-flex shrink-0 items-center rounded-full border border-neutral-200 p-[2px] transition-colors duration-200 hover:border-neutral-300 dark:border-neutral-700 dark:hover:border-neutral-600"
+      className="group relative ml-1.5 inline-flex shrink-0 items-center rounded-full border border-neutral-300 p-[3px] transition-colors duration-200 hover:border-neutral-400 dark:border-neutral-700 dark:hover:border-neutral-500"
     >
       {/* Sliding knob. Animated with a transform so it never reflows the
           labels sitting above it. */}
       <span
         aria-hidden="true"
-        className={`absolute left-[2px] top-[2px] h-[calc(100%-4px)] w-[calc(50%-2px)] rounded-full bg-neutral-900 transition-transform duration-300 ease-out dark:bg-neutral-100 ${
-          onLeft ? 'translate-x-0' : 'translate-x-full'
+        className={`absolute left-[3px] top-[3px] h-[calc(100%-6px)] w-[calc(50%-3px)] rounded-full bg-neutral-900 transition-transform duration-300 ease-out dark:bg-neutral-100 ${
+          onLeft ? "translate-x-0" : "translate-x-full"
         }`}
       />
       {[THIS_SITE.label, SIBLING_SITE.label].map((label, i) => {
@@ -106,10 +142,10 @@ export default function SiteSwitch() {
           <span
             key={label}
             aria-hidden="true"
-            className={`relative z-10 w-6 py-[5px] text-center font-mono text-[10px] font-medium leading-none transition-colors duration-200 ${
+            className={`relative z-10 w-8 py-2 text-center font-mono text-[12px] font-medium leading-none transition-colors duration-200 ${
               active
-                ? 'text-white dark:text-neutral-900'
-                : 'text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300'
+                ? "text-white dark:text-neutral-900"
+                : "text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300"
             }`}
           >
             {label}
