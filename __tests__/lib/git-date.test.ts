@@ -54,4 +54,17 @@ describe('gitLastModified', () => {
     const result = gitLastModified('file.md', '2024-06-01');
     expect(result).toEqual(new Date('2024-06-01'));
   });
+
+  it('prefers the port-content date recorded by fetch-content', () => {
+    jest.isolateModules(() => {
+      const fs = require('fs');
+      const spy = jest
+        .spyOn(fs, 'readFileSync')
+        .mockReturnValueOnce(JSON.stringify({ 'content/blog/x.md': '2025-02-03T00:00:00Z' }));
+      const { gitLastModified: fresh } = require('@/lib/git-date');
+      expect(fresh('content/blog/x.md', '2024-01-01')).toEqual(new Date('2025-02-03T00:00:00Z'));
+      expect(mockExecSync).not.toHaveBeenCalled();
+      spy.mockRestore();
+    });
+  });
 });

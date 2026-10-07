@@ -43,3 +43,10 @@ repo-import/
 
 # LaTeX CV source — kept local, the published resume lives at /resume
 cv/
+
+# Content lives in the private port-content repo — scripts/fetch-content.mjs
+# copies it in before dev / build / test. Never commit it here.
+/content/
+/public/projects/
+/public/logos/
+/.content-cache/

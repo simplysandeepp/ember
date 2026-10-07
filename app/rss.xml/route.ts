@@ -1,6 +1,9 @@
 import { getAllPosts } from '@/lib/content';
 import { siteConfig } from '@/lib/metadata';
 
+// Built once at deploy time like every other page — no runtime function.
+export const dynamic = 'force-static';
+
 // Escape XML-special characters in text used inside RSS elements.
 function escapeXml(value: string): string {
   return value

@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "content": "node scripts/fetch-content.mjs",
+    "dev": "node scripts/fetch-content.mjs && next dev",
+    "build": "node scripts/fetch-content.mjs && next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "node scripts/fetch-content.mjs && jest",
+    "test:coverage": "node scripts/fetch-content.mjs && jest --coverage"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
