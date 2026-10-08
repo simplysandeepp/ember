@@ -15,7 +15,7 @@ describe('siteConfig', () => {
     expect(siteConfig.name).toBe('Sandeep Prajapati');
     expect(siteConfig.firstName).toBe('Sandeep');
     expect(siteConfig.lastName).toBe('Prajapati');
-    expect(siteConfig.url).toBe('https://sandeepp.in');
+    expect(siteConfig.url).toBe('https://beta.sandeepp.in');
   });
 
   it('has social links', () => {
@@ -96,7 +96,7 @@ describe('buildMetadata', () => {
       description: 'My projects',
       path: '/projects',
     });
-    expect(meta.alternates?.canonical).toBe('https://sandeepp.in/projects');
+    expect(meta.alternates?.canonical).toBe('https://beta.sandeepp.in/projects');
   });
 
   it('defaults path to empty string', () => {
@@ -104,7 +104,7 @@ describe('buildMetadata', () => {
       title: 'Home',
       description: 'Home page',
     });
-    expect(meta.alternates?.canonical).toBe('https://sandeepp.in');
+    expect(meta.alternates?.canonical).toBe('https://beta.sandeepp.in');
   });
 
   it('includes RSS alternate', () => {
@@ -136,7 +136,7 @@ describe('buildMetadata', () => {
     const og = meta.openGraph as Record<string, unknown>;
     expect(og.title).toBe('Page Title');
     expect(og.description).toBe('Page desc');
-    expect(og.url).toBe('https://sandeepp.in/page');
+    expect(og.url).toBe('https://beta.sandeepp.in/page');
     expect(og.type).toBe('website');
   });
 
@@ -173,7 +173,7 @@ describe('buildMetadata', () => {
 
   it('sets metadataBase', () => {
     const meta = buildMetadata({ title: 'Test', description: 'Test' });
-    expect(meta.metadataBase?.toString()).toBe('https://sandeepp.in/');
+    expect(meta.metadataBase?.toString()).toBe('https://beta.sandeepp.in/');
   });
 });
 
@@ -187,7 +187,7 @@ describe('personJsonLd', () => {
   });
 
   it('has URL', () => {
-    expect(personJsonLd.url).toBe('https://sandeepp.in');
+    expect(personJsonLd.url).toBe('https://beta.sandeepp.in');
   });
 
   it('has job title', () => {
@@ -231,7 +231,7 @@ describe('personJsonLdWith', () => {
     ]);
     expect(result.mentions).toHaveLength(2);
     expect(result.mentions[0].name).toBe('Project A');
-    expect(result.mentions[0].url).toBe('https://sandeepp.in/projects/project-a');
+    expect(result.mentions[0].url).toBe('https://beta.sandeepp.in/projects/project-a');
     expect(result.mentions[1].name).toBe('Project B');
   });
 
@@ -253,7 +253,7 @@ describe('websiteJsonLd', () => {
   });
 
   it('has correct URL', () => {
-    expect(websiteJsonLd.url).toBe('https://sandeepp.in');
+    expect(websiteJsonLd.url).toBe('https://beta.sandeepp.in');
   });
 
   it('has search action', () => {
@@ -345,7 +345,7 @@ describe('breadcrumbJsonLd', () => {
     const result = breadcrumbJsonLd([
       { name: 'Test', path: '/test' },
     ]);
-    expect(result.itemListElement[0].item).toBe('https://sandeepp.in/test');
+    expect(result.itemListElement[0].item).toBe('https://beta.sandeepp.in/test');
   });
 
   it('handles empty array', () => {

@@ -1,6 +1,10 @@
 import { Metadata } from 'next';
 
-const siteUrl = 'https://sandeepp.in';
+// This minimalist build now lives at beta.sandeepp.in; the interactive
+// redesign is the main site at sandeepp.in. This host is kept out of search
+// (app/layout.tsx `robots`, app/robots.ts) so the two never compete for
+// Sandeep's name.
+const siteUrl = 'https://beta.sandeepp.in';
 
 export const siteConfig = {
   name: 'Sandeep Prajapati',

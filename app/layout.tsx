@@ -37,16 +37,12 @@ export const metadata: Metadata = {
   alternates: {
     types: { 'application/rss+xml': `${siteConfig.url}/rss.xml` },
   },
+  // Secondary host — excluded from search so it doesn't duplicate sandeepp.in.
   robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
-    },
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: { index: false, follow: false },
   },
   ...(siteConfig.googleVerification
     ? { verification: { google: siteConfig.googleVerification } }
